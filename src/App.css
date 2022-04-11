@@ -80,3 +80,19 @@
   text-decoration: none;
 
 }
+
+
+
+
+
+.container {
+  display: grid;
+  grid-template-columns: 10rem 10rem 10rem;
+  grid-gap: 1rem;
+  grid-auto-flow: row;
+
+  column-gap: 1px; 
+  row-gap: 1px; 
+  /* grid-template-columns: 10rem;  */
+  /* grid-template-rows: 10rem;  */
+}
