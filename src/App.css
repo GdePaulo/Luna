@@ -39,7 +39,7 @@
 
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #333;
+  background-color: #FFFFFF;
   overflow: hidden;
   /* max-width: 300:langpx; */
   /* margin: 0 auto; */
@@ -49,37 +49,34 @@
   margin: 0;
   padding:0;
   list-style:none;
-  /* display:inline-block; */
 }
 /* Style the links inside the navigation bar */
 .topnav li {
-  /* display:block; */
   float: left;
   color: #f2f2f2;
   text-align: center;
-  /* padding: 0;
-  margin:0; */
   padding: 0;
   text-decoration: none;
   font-size: 17px;
 }
 
 /* Change the color of links on hover */
-.topnav li:hover {
+.topnav a:hover {
   background-color: #ddd;
   color: black;
 }
 
 /* Add a color to the active/current link */
-.topnav li.active {
-  background-color: #04AA6D;
+.topnav a.active {
+  background-color: #42A5F5;
+  /* background-color: #04AA6D; */
   color: white;
 }
 .topnav a {
   display: inline-block;
-  background-color: #a0a5a3;
+  background-color: #d4d5d6;
   color: rgb(255, 255, 255);
-  /* width: 200px;
-  height: 50px; */
-  padding: 10px;
+  padding: 20px;
+  text-decoration: none;
+
 }

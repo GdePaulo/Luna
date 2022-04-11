@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 function Navbar() {
+    const navigationElements = [
+        { id: 1, to:"/", text: "Home"},
+        { id: 2, to:"/about", text: "About"},
+        { id: 3, to:"/projects", text: "Projects"},
+        { id: 4, to:"/cool", text: "Cool"}
+    ];
+    const [activeId, setActiveId] = useState(1);
     return (
         <div className="topnav">
             <ul>
-                <li className="active">
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/about">About</Link>
-                </li>
-                <li>
-                    <Link to="/sheeps">Sheeps</Link>
-                </li>
-                <li>
-                    <Link to="/goats">Goats</Link>
-                </li>
+                {
+                    navigationElements.map((x) => (
+                        <li>
+                        <Link to={x.to} onClick={() => setActiveId(x.id)} className={activeId===x.id ? "active" : ""}>
+                        {x.text}
+                        </Link>
+
+                        </li>
+
+                    ))
+                }
+
             </ul>
         </div>
     );
