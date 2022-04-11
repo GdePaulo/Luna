@@ -19,4 +19,4 @@ jobs:
           channelId: live
           projectId: luna-8a91a
       - env: 
-          CI: "false"
+          CI: false
