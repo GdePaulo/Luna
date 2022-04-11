@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 function GridCell(props) {
     
     return (
-        <div >
-      {props.id}
+        <div className={props.className}>
+      {props.id}---{props.neighbors}
     </div>
     );
 }
