@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar"
 import About from "./pages/About"
 import Home from "./pages/Home"
 import Cool from "./pages/Cool"
+import Ai from "./pages/Ai"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' exact element={<Home/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/cool' element={<Cool/>} />
+        <Route path='/ai' element={<Ai/>} />
       </Routes>
     </Router>
   );
