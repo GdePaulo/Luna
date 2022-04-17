@@ -229,3 +229,92 @@
 2022-04-17T18:43:00,201 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9003).
 2022-04-17T18:43:00,226 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
 2022-04-17T18:48:06,124 [INFO ] W-9011-foodnet_1.0-stdout MODEL_LOG - Backend received inference at: 1650214086
+2022-04-17T19:42:18,578 [INFO ] W-9005-foodnet_1.0-stdout MODEL_LOG - Backend received inference at: 1650217338
+2022-04-17T19:53:15,678 [INFO ] W-9006-foodnet_1.0-stdout MODEL_LOG - Backend received inference at: 1650217995
+2022-04-17T19:57:54,887 [INFO ] W-9004-foodnet_1.0-stdout MODEL_LOG - Backend received inference at: 1650218274
+2022-04-17T20:06:54,239 [INFO ] W-9002-foodnet_1.0-stdout MODEL_LOG - Backend received inference at: 1650218814
+2022-04-17T20:13:48,840 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - Backend received inference at: 1650219228
+2022-04-17T20:13:48,861 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - Invoking custom service failed.
+2022-04-17T20:13:48,862 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - Traceback (most recent call last):
+2022-04-17T20:13:48,862 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG -   File "C:\Users\Ameno\Anaconda3\envs\luna-ai\lib\site-packages\ts\service.py", line 102, in predict
+2022-04-17T20:13:48,866 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG -     ret = self._entry_point(input_batch, self.context)
+2022-04-17T20:13:48,873 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG -   File "C:\Users\Ameno\Anaconda3\envs\luna-ai\lib\site-packages\ts\torch_handler\base_handler.py", line 219, in handle
+2022-04-17T20:13:48,876 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG -     data_preprocess = self.preprocess(data)
+2022-04-17T20:13:48,881 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG -   File "C:\Users\Ameno\Anaconda3\envs\luna-ai\lib\site-packages\ts\torch_handler\vision_handler.py", line 52, in preprocess
+2022-04-17T20:13:48,887 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG -     image = torch.FloatTensor(image)
+2022-04-17T20:13:48,894 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - TypeError: new(): data must be a sequence (got NoneType)
+2022-04-17T20:14:07,978 [INFO ] W-9010-foodnet_1.0-stdout MODEL_LOG - Backend received inference at: 1650219247
+2022-04-17T20:39:10,478 [INFO ] W-9004-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,479 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,481 [INFO ] W-9004-foodnet_1.0-stdout MODEL_LOG - [PID]16104
+2022-04-17T20:39:10,487 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - [PID]20200
+2022-04-17T20:39:10,487 [INFO ] W-9004-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,493 [INFO ] W-9004-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,493 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,498 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,536 [INFO ] W-9000-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,540 [INFO ] W-9000-foodnet_1.0-stdout MODEL_LOG - [PID]8072
+2022-04-17T20:39:10,542 [INFO ] W-9004-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9004).
+2022-04-17T20:39:10,543 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9009).
+2022-04-17T20:39:10,547 [INFO ] W-9000-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,554 [INFO ] W-9005-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,565 [INFO ] W-9002-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,566 [INFO ] W-9005-foodnet_1.0-stdout MODEL_LOG - [PID]15932
+2022-04-17T20:39:10,568 [INFO ] W-9000-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,572 [INFO ] W-9005-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,578 [INFO ] W-9002-foodnet_1.0-stdout MODEL_LOG - [PID]21156
+2022-04-17T20:39:10,580 [INFO ] W-9005-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,582 [INFO ] W-9000-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9000).
+2022-04-17T20:39:10,584 [INFO ] W-9002-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,600 [INFO ] W-9006-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,605 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,610 [INFO ] W-9005-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9005).
+2022-04-17T20:39:10,610 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,613 [INFO ] W-9002-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,617 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - [PID]7288
+2022-04-17T20:39:10,634 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG - Backend worker process died.
+2022-04-17T20:39:10,637 [INFO ] W-9006-foodnet_1.0-stdout MODEL_LOG - [PID]14360
+2022-04-17T20:39:10,637 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,652 [INFO ] W-9006-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,666 [INFO ] W-9002-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9002).
+2022-04-17T20:39:10,668 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,676 [INFO ] W-9006-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,676 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG - Traceback (most recent call last):
+2022-04-17T20:39:10,678 [INFO ] W-9005-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,680 [INFO ] W-9000-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,679 [INFO ] W-9009-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,681 [INFO ] W-9004-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,683 [INFO ] W-9007-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,687 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9003).
+2022-04-17T20:39:10,699 [INFO ] W-9007-foodnet_1.0-stdout MODEL_LOG - [PID]19824
+2022-04-17T20:39:10,701 [INFO ] W-9006-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9006).
+2022-04-17T20:39:10,702 [INFO ] W-9007-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,709 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG -   File "C:\Users\Ameno\Anaconda3\envs\luna-ai\Lib\site-packages\ts\model_service_worker.py", line 189, in <module>
+2022-04-17T20:39:10,743 [INFO ] W-9007-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,768 [INFO ] W-9006-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,771 [INFO ] W-9003-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,772 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG -     worker.run_server()
+2022-04-17T20:39:10,784 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG -   File "C:\Users\Ameno\Anaconda3\envs\luna-ai\Lib\site-packages\ts\model_service_worker.py", line 148, in run_server
+2022-04-17T20:39:10,813 [INFO ] W-9002-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,815 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG -     self.sock.bind((self.sock_name, int(self.port)))
+2022-04-17T20:39:10,820 [INFO ] W-9001-foodnet_1.0-stdout MODEL_LOG - OSError: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+2022-04-17T20:39:10,822 [INFO ] W-9007-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9007).
+2022-04-17T20:39:10,874 [INFO ] W-9007-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:10,874 [INFO ] W-9008-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,876 [INFO ] W-9011-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,883 [INFO ] W-9008-foodnet_1.0-stdout MODEL_LOG - [PID]16176
+2022-04-17T20:39:10,896 [INFO ] W-9008-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,896 [INFO ] W-9011-foodnet_1.0-stdout MODEL_LOG - [PID]19340
+2022-04-17T20:39:10,917 [INFO ] W-9008-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,932 [INFO ] W-9011-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,952 [INFO ] W-9010-foodnet_1.0-stdout MODEL_LOG - Listening on port: None
+2022-04-17T20:39:10,953 [INFO ] W-9011-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,959 [INFO ] W-9008-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9008).
+2022-04-17T20:39:10,960 [INFO ] W-9010-foodnet_1.0-stdout MODEL_LOG - [PID]3196
+2022-04-17T20:39:10,964 [INFO ] W-9010-foodnet_1.0-stdout MODEL_LOG - Torch worker started.
+2022-04-17T20:39:10,966 [INFO ] W-9011-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9011).
+2022-04-17T20:39:10,974 [INFO ] W-9010-foodnet_1.0-stdout MODEL_LOG - Python runtime: 3.9.4
+2022-04-17T20:39:10,996 [INFO ] W-9010-foodnet_1.0-stdout MODEL_LOG - Connection accepted: ('127.0.0.1', 9010).
+2022-04-17T20:39:11,020 [INFO ] W-9008-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:11,020 [INFO ] W-9011-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
+2022-04-17T20:39:11,039 [INFO ] W-9010-foodnet_1.0-stdout MODEL_LOG - model_name: foodnet, batchSize: 1
