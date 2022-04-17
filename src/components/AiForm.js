@@ -8,12 +8,22 @@ class AiForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileInput = this.handleFileInput.bind(this);
     this.fileInput = React.createRef();
 
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+  }
+
+  handleFileInput(event) {
+    // const file = this.fileInput.current.files[0];
+    const file = this.fileInput.current.files[0];
+    if (file.size > 1000000) {
+      this.props.onFileSelectError({ error: "File is too big"});
+    }
+    this.props.onFileSelectSuccess(file);
   }
 
   handleSubmit(event) {
@@ -29,7 +39,7 @@ class AiForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Upload file:
-          <input type="file" ref={this.fileInput} />
+          <input type="file" ref={this.fileInput} onChange={this.handleFileInput} accept="image/png, image/jpeg" />
         </label>
         <br />
         <button type="submit">Submit</button>
