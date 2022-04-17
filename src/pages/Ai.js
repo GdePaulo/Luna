@@ -10,14 +10,15 @@ import AiForm from "../components/AiForm"
 
 function Ai() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [prediction, setPrediction] = useState({});
 
   return (
     <div>
       <h3>AI</h3>
 
-      <AiForm 
-      onFileSelectSuccess={(file) => setSelectedFile(file)} 
-      onFileSelectError={({ error }) => alert(error)} 
+      <AiForm
+        onFileSelectSuccess={(file) => setSelectedFile(file)}
+        onFileSelectError={({ error }) => alert(error)}
       />
       <Button
         onClick={() => {
@@ -25,19 +26,22 @@ function Ai() {
 
           const url = "http://localhost:9080/predictions/foodnet";
 
-            axios({
-              method: "post",
-              url: url,
-              data: selectedFile,
-              headers: {
-                "Content-Type": "image/jpeg",//"multipart/form-data",
-                "accept": "*/*"
-              },
-            }).then(res => console.log(res.data))
+          axios({
+            method: "post",
+            url: url,
+            data: selectedFile,
+            headers: {
+              "Content-Type": "image/jpeg",//"multipart/form-data",
+              "accept": "*/*"
+            },
+          }).then(res => { console.log("Response:", res.data); setPrediction(res.data) })
             .catch(error => console.log(error));
-          
-          }}
+
+        }}
         children="Tyrone" />
+      <ul>
+        {Object.keys(prediction).map((k, i) => (<li>{k} : {prediction[k]}</li>))}
+      </ul>
     </div>
   );
 }
@@ -56,6 +60,12 @@ exactly the file variable contains. I finally fixed it by just sending the file 
 I have to make the form division and composition more tidy and clean up now.
 may be the other method without headers would work
 
+https://www.digitalocean.com/community/tutorials/react-axios-react
 https://www.pluralsight.com/guides/how-to-use-a-simple-form-submit-with-files-in-react
 https://surajsharma.net/blog/react-upload-file-using-axios
+https://jasonwatmore.com/post/2020/07/17/react-axios-http-post-request-examples
+
+https://github.com/pytorch/serve/issues/760
+https://blog.ceshine.net/post/torchserve/
+https://github.com/pytorch/serve/issues/529
 */
