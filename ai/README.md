@@ -74,3 +74,9 @@ curl -kLSs https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfron
 [Pytorch with SageMaker Amazon guide](https://docs.aws.amazon.com/sagemaker/latest/dg/pytorch.html)  
 
 [Future model CycleGAN](https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_Unpaired_Image-To-Image_Translation_ICCV_2017_paper.pdf)
+
+## Fixing forward pass bug
+
+- Attempt with simple data & feedforward
+- Inspect difference between data type of own definition and automatic sequence model
+- Look into source code checking for dictionary datatype before removing samples in each batch
