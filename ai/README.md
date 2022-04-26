@@ -80,3 +80,8 @@ curl -kLSs https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfron
 - Attempt with simple data & feedforward
 - Inspect difference between data type of own definition and automatic sequence model
 - Look into source code checking for dictionary datatype before removing samples in each batch
+- Look in the source code for internal definition of bird models for suggestions on forward pass definition
+
+- Either don't use a dictionary and past the label as the first element in the array for each prediction as that's what it expects
+- Inspect what happens with the other trainer to understand how the label should be passed or output should be given
+- Modify the evaluator to not pass the label to the input of the model
