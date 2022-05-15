@@ -23,7 +23,7 @@ Tone32 _tone32(TONE_OUTPUT_PIN, TONE_PWM_CHANNEL);
 String currentSong = "none";
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyAHvdxY9CekXqy3j1zkDBcWoi_Al9i4ixg"
+#define API_KEY "AIzaSyAHvdxY9CekXqy3j1zkDBcWoi_Al9i4ix(coffee guy)"
 
 // Insert RTDB URLefine the RTDB URL */
 #define DATABASE_URL "https://luna-8a91a-default-rtdb.europe-west1.firebasedatabase.app"
