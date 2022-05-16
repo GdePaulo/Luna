@@ -21,9 +21,10 @@ const int TONE_PWM_CHANNEL = 0;
 // Create our Tone32 object
 Tone32 _tone32(TONE_OUTPUT_PIN, TONE_PWM_CHANNEL);
 String currentSong = "none";
+String lastSong = "";
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyAHvdxY9CekXqy3j1zkDBcWoi_Al9i4ix(coffee guy)"
+#define API_KEY "AIzaSyAHvdxY9CekXqy3j1zkDBcWoi_Al9i4ix(disney character)"
 
 // Insert RTDB URLefine the RTDB URL */
 #define DATABASE_URL "https://luna-8a91a-default-rtdb.europe-west1.firebasedatabase.app"
@@ -128,8 +129,10 @@ void loop() {
           }
           String currentSongPath = "/savieSongsFreq/" + currentSong;
           // "/savieSongsFreq/happyBirthday
-          if (Firebase.RTDB.getString(&fbdo, currentSongPath)) {
+          if (lastSong != currentSong) {
+            if (Firebase.RTDB.getString(&fbdo, currentSongPath)) {
             if (fbdo.dataType() == "string") {
+              lastSong = currentSong;
               String badStr = fbdo.stringData();
               int strLen = badStr.length() + 1;
               char str[strLen];
@@ -165,6 +168,9 @@ void loop() {
           }
           else {
             Serial.println(fbdo.errorReason());
+          }
+          }else{
+            Serial.printf("Song hasn't changed. Last song: %s Current song: %s \n", lastSong, currentSong);
           }
         }
 //       if (Firebase.RTDB.setString(&fbdo, "/test", "here whohoo")){

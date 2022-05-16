@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import rabbit from "../rabbit.png"
 
 import axios from 'axios';
 
 function Savie() {
 
+  const [playing, setPlaying] = useState(false);
+  const [currentSong, setCurrentSong] = useState("happyBirthday");
+
   const playSong = (event) => {
-    console.log("late song")
+    console.log("late song",playing);
     var PUT_URL = 'https://luna-8a91a-default-rtdb.europe-west1.firebasedatabase.app/status.json';
-    var put = { currentSong:"loveOfMyLiffe", enabled:"false"}
+    // var oldPla:langying = Boolean(playing);
+    var newPlaying = !playing;
+    setPlaying(newPlaying);
+    var put = { currentSong:currentSong, enabled:playing.toString()};
     axios.put(PUT_URL, put);
     // axios.put(PUT_URL, {"first":"nothing"});
     };
@@ -16,9 +22,9 @@ function Savie() {
   return (
     <div className="bkg">
       <h3>Savie</h3>
-      <div>
+      <div className="svi-container">
         {/* <img src={rabbit} alt={"rabbit"}/> */}
-        <button type="submit" onClick={playSong} >Submit</button>
+        <button className="svi-button" type="submit" onClick={playSong} > {playing ? "Playing" : "stopped"} </button>
       </div>
     </div>
   );
