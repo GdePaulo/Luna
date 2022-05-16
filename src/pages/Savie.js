@@ -21,8 +21,8 @@ function Savie() {
 
   return (
     <div className="bkg">
-      <h3>Savie</h3>
       <div className="svi-container">
+        <h3 className="svi-text">HAPPY BIRTHDAY SAVIE!</h3>
         {/* <img src={rabbit} alt={"rabbit"}/> */}
         <button className="svi-button" type="submit" onClick={playSong}> <b> {playing ? "Play" : "Stop"} </b> </button>
       </div>
