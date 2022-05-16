@@ -119,6 +119,10 @@
 
 .bkg {
   background-color: #f2bf84;
+  background-image: url("orange-hearts.jpg");
+  background-repeat: repeat-x;
+  background-size: 100vh  100vh;
+  /* background-size: 256px  256px; */
   /* background-color: #F99F38; */
 }
 
@@ -180,7 +184,12 @@
   font-size:48px;
   text-align: center;
   text-decoration:none;
-  background-color:#FFA12B;
+  /* background-color:#FFA12B; */
+  background-color: #ff4e00;
+background-image: linear-gradient(0deg, #ff4e00 0%, #ec9f05 74%);
+
+
+
   display:block;
   position:relative;
   padding:40px 80px;
@@ -196,6 +205,8 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+
+  
 }
 
 .svi-button b:active{
