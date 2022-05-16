@@ -24,7 +24,7 @@ function Savie() {
       <h3>Savie</h3>
       <div className="svi-container">
         {/* <img src={rabbit} alt={"rabbit"}/> */}
-        <button className="svi-button" type="submit" onClick={playSong} > {playing ? "Playing" : "stopped"} </button>
+        <button className="svi-button" type="submit" onClick={playSong}> <b> {playing ? "Play" : "Stop"} </b> </button>
       </div>
     </div>
   );
