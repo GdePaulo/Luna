@@ -7,16 +7,18 @@ import About from "./pages/About"
 import Home from "./pages/Home"
 import Cool from "./pages/Cool"
 import Ai from "./pages/Ai"
+import Savie from "./pages/Savie"
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path='/' exact element={<Home/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/cool' element={<Cool/>} />
         <Route path='/ai' element={<Ai/>} />
+        <Route path='/savie' element={<Savie/>} />
       </Routes>
     </Router>
   );
