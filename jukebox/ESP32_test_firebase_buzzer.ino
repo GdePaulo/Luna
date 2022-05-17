@@ -12,6 +12,10 @@
 
 const char* ssid = "DESKTOP-49NTERP 3195";
 const char* password =  "whatever1";
+
+//const char* ssid = "TELE2-69E989_2.4G";
+//const char* password =  "266F626FFEC9";
+
 int ledPin = 2;
 // Change this depending on where you put your piezo buzzer
 const int TONE_OUTPUT_PIN = 4;
@@ -20,11 +24,13 @@ const int TONE_OUTPUT_PIN = 4;
 const int TONE_PWM_CHANNEL = 0; 
 // Create our Tone32 object
 Tone32 _tone32(TONE_OUTPUT_PIN, TONE_PWM_CHANNEL);
-String currentSong = "none";
+String currentSong = "none";//"loveOfMyLife";//"none";,
+bool playing = false;//"none";
+bool lastPlaying = false;
 String lastSong = "";
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyAHvdxY9CekXqy3j1zkDBcWoi_Al9i4ix(disney character)"
+#define API_KEY "AIzaSyAHvdxY9CekXqy3j1zkDBcWoi_Al9i4ix(disney dog)"
 
 // Insert RTDB URLefine the RTDB URL */
 #define DATABASE_URL "https://luna-8a91a-default-rtdb.europe-west1.firebasedatabase.app"
@@ -41,7 +47,7 @@ unsigned long lastTime = 0;
 // Timer set to 10 minutes (600000)
 //unsigned long timerDelay = 600000;
 // Set timer to 5 seconds (5000)
-unsigned long timerDelay = 5000;
+unsigned long timerDelay = 3500;
 
 void setup() {
  pinMode(ledPin, OUTPUT);
@@ -111,31 +117,53 @@ void loop() {
     if(WiFi.status()== WL_CONNECTED){
        if (Firebase.ready() && signupOK) {
       
-          if (Firebase.RTDB.getString(&fbdo, "/enabled")) {
-            if (fbdo.dataType() == "string") {
-              String str = fbdo.stringData();
+          if (Firebase.RTDB.getBool(&fbdo, "/status/enabled")) {
+            if (fbdo.dataType() == "boolean") {
+              bool str = fbdo.boolData();
               Serial.println(str);
-              currentSong = str;
-              if (str == "none") {
+              Serial.println("I Just Received The Prior string from the endpoint");
+              playing = str;
+              if (!str) {
                 digitalWrite(ledPin, LOW);
+                
                 _tone32.stopPlaying();
               } else {
                 digitalWrite(ledPin, HIGH);
+                lastSong = "none";
               }
+
+             
+            } else {
+              Serial.println(fbdo.dataType());
+              Serial.println("is a different one");
             }
+            
           }
           else {
             Serial.println(fbdo.errorReason());
           }
-          String currentSongPath = "/savieSongsFreq/" + currentSong;
+
+          if (Firebase.RTDB.getString(&fbdo, "/status/currentSong")) {
+             if (fbdo.dataType() == "string") {
+                String str = fbdo.stringData();
+                currentSong = str;
+             }
+          }
+          
+//          String currentSongPath = "/savieSongsFreq/" + currentSong;
+          String currentSongPath = "/savieSongs/happy";
           // "/savieSongsFreq/happyBirthday
-          if (lastSong != currentSong) {
+//          if (lastSong != currentSong && playing == "true") {
+          if (playing) {
+            
             if (Firebase.RTDB.getString(&fbdo, currentSongPath)) {
             if (fbdo.dataType() == "string") {
+              lastPlaying = true;
               lastSong = currentSong;
               String badStr = fbdo.stringData();
               int strLen = badStr.length() + 1;
               char str[strLen];
+              // Copy to avoid overwriting when splitting
               badStr.toCharArray(str, strLen);
               Serial.println(str);
             
@@ -151,8 +179,8 @@ void loop() {
                 int oct, dur;
                 strncpy(item, pch, 30);
                 printf ("Parsing notes for %s ...\n", pch);
-//                parseNote(item, note, oct, dur);
-                parseNoteFreq(item, oct, dur);
+                parseNote(item, note, oct, dur);
+//                parseNoteFreq(item, oct, dur);
                 pch = strtok_r (NULL, ", ", &pos1);
               }
               
@@ -188,7 +216,11 @@ void loop() {
     }
     lastTime = millis();
   }
+   if(playing) {
    _tone32.update();
+   } else {
+    _tone32.stopPlaying();
+   }
 }
 
 void parseNote(char* str, char*& c, int& oct, int& dur)
@@ -211,6 +243,8 @@ void parseNote(char* str, char*& c, int& oct, int& dur)
       note = NOTE_Cs;
     else if(!strcmp(c,"D"))
       note = NOTE_D;
+    else if(!strcmp(c,"E"))
+      note = NOTE_E;
     else if(!strcmp(c,"Eb"))
       note = NOTE_Eb;
     else if(!strcmp(c,"F"))
@@ -228,10 +262,10 @@ void parseNote(char* str, char*& c, int& oct, int& dur)
       _tone32.playNote(note, oct, dur);
     else
       _tone32.stopPlaying();
-     _tone32.stopPlaying();
+//     _tone32.stopPlaying();
      delay(dur);
     
-    printf ("note: %s %d %d %lu ",c, oct, dur, millis());
+    printf ("note: %s | oct: %d | dur: %d | time: %lu ",c, oct, dur, millis());
 }
 
 void parseNoteFreq(char* str, int& freq, int& dur)
