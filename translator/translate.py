@@ -32,7 +32,7 @@ class Translate:
     @staticmethod
     def attachClosest(df, word):
         df["closest"] = df.apply(lambda row: min( 
-            Translate.distanceToWord(Translate.remove_accents(row.name), word),
+            (Translate.distanceToWord(Translate.remove_accents(row.name), word) + 0.001),
             Translate.distanceToWord(row.name, word)
         ), axis=1)
         df.sort_values(by="closest", inplace= True)
