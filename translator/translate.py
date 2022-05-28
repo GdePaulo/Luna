@@ -31,11 +31,20 @@ class Translate:
 
     @staticmethod
     def attachClosest(df, word):
-        df["closest"] = df.apply(lambda row: min( 
+        d = df.copy()
+        d["closest"] = d.apply(lambda row: min( 
             (Translate.distanceToWord(Translate.remove_accents(row.name), word) + 0.001),
             Translate.distanceToWord(row.name, word)
         ), axis=1)
-        df.sort_values(by="closest", inplace= True)
+        d.sort_values(by="closest", inplace= True)
+        return d
+
+    @staticmethod
+    def attachType(df, lan):
+        d = df.copy()
+        d["type"] = d.apply(lambda row: "sentence" if len(str(row[lan]).split()) > 1 else "word", axis=1)
+        # with_type = df.assign(type=lambda row: "sentence" if len(row[lan].item().split()) > 1 else "word")
+        return d
 
 
     def correctSentence(self, sentence):
