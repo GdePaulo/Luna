@@ -3,6 +3,7 @@ from os import stat
 from deep_translator import GoogleTranslator
 import unicodedata
 import difflib
+import re
 class Translate:
     def __init__(self):
         self.translator_nl_en = GoogleTranslator(source='nl', target='en')
@@ -29,6 +30,42 @@ class Translate:
         # Convert to string to deal with nan string
         nfkd_form = unicodedata.normalize('NFKD', str(input_str))
         return u"".join([c for c in nfkd_form if not unicodedata.combining(c)])
+    
+    @staticmethod
+    def remove_tags(input_str, tags=["[", "(", "{", "<"]):
+        matcher = "].*?["
+        if "[" in tags:
+            matcher = "\[" + matcher + "\]"
+        if "(" in tags:
+            matcher = "\(" + matcher + "\)"
+        if "{" in tags:
+            matcher = "{" + matcher + "}"
+        if "<" in tags:
+            matcher = "<" + matcher + ">"
+        matcher = "[" + matcher + "]"
+        return re.sub(matcher, "", input_str)
+    
+    @staticmethod
+    def find_between_tags(input_str, tags=["[", "(", "{", "<"]):
+        
+        tag_matchers = []
+        if "[" in tags:
+            tag_matchers.append(("\[","\]"))
+        if "(" in tags:
+            tag_matchers.append(("\(","\)"))
+        if "{" in tags:
+            tag_matchers.append(("{","}"))
+        if "<" in tags:
+            tag_matchers.append(("<",">"))
+
+        matched = []
+        
+        for l, r in tag_matchers:
+            matcher = l + "(.*?)" + r
+            res = re.findall(matcher, input_str)
+            matched += res
+
+        return matched
 
     @staticmethod
     def attachClosest(df, word, lan):
@@ -119,7 +156,7 @@ class Translate:
             word = word.lower()
             words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple")
             closest_word = words_corpus.iloc[0]
-            if closest_word["closest"] < 0.1:
+            if closest_word["closest"] <= 1:
                 raw_translation += closest_word["nl-simple"] + " "
             else:
                 raw_translation += word + " "
@@ -129,3 +166,6 @@ class Translate:
         nl_en = self.translator_nl_en.translate(sentence)
         en_nl = self.translator_en_nl.translate(nl_en)
         return en_nl
+if __name__ == "__main__":
+    # print(Translate.remove_tags("fef [fe] (ef)", ["[", "("]))
+    print(Translate.find_between_tags("fef [ef) [fe) (ef[", ["[", "("]))
