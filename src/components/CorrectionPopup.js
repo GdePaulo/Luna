@@ -16,7 +16,7 @@ function CorrectionPopup(props) {
   }
 
   return (
-    <div> 
+    <div className={props.className}> 
       {
         corrections.map((x) => (
           <Button> {x.word}  </Button>

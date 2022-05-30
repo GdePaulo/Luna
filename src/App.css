@@ -132,6 +132,18 @@
   height: 250px;
 }
 
+.highlighted__p {
+  display: inline-block;
+}
+
+.highlighted__corPopup {
+  display: inline-block;
+}
+
+.highlighted__corPopup button{
+  display: inline-block;
+}
+
 
 /* SAVANNE */
 

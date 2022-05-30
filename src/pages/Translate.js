@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Grid from "../components/Grid"
-import Button from "../components/Button"
-import Highlighted from "../components/Highlighted"
-import CorrectionPopup from "../components/CorrectionPopup"
-import TranslationForm from "../components/TranslationForm"
+import Grid from "../components/Grid";
+import Button from "../components/Button";
+import Highlighted from "../components/Highlighted";
+import CorrectionPopup from "../components/CorrectionPopup";
+import TranslationForm from "../components/TranslationForm";
 
 function Translate() {
   const [currentTime, setCurrentTime] = useState(0);

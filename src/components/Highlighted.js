@@ -10,12 +10,12 @@ function Highlighted(props) {
     // this.setState({ value: event.target.value });
     // this.setState({ value: event.currentTarget.textContent });
     // setState(event.currentTarget.textContent);
-    setState(<p>Im not sure  <CorrectionPopup/></p>);
+    setState(<p className="highlighted__p">Im not sure  <CorrectionPopup className="highlighted__corPopup"/></p>);
     console.log(event.currentTarget.textContent);
   }
 
   return (
-    <div contentEditable onInput={handleChange}>whatever {state}</div>
+    <div contentEditable onInput={handleChange} className="highlighted">whatever {state}</div>
   );
 }
 export default Highlighted;
