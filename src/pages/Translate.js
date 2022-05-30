@@ -4,6 +4,7 @@ import axios from 'axios';
 import Grid from "../components/Grid"
 import Button from "../components/Button"
 import Highlighted from "../components/Highlighted"
+import CorrectionPopup from "../components/CorrectionPopup"
 import TranslationForm from "../components/TranslationForm"
 
 function Translate() {
@@ -24,6 +25,7 @@ function Translate() {
     <div>
       <h3>Luna: Translate | Time: {currentTime}</h3>
       console.log("test")
+      <CorrectionPopup />
       <Highlighted />
       <TranslationForm />
     </div>
