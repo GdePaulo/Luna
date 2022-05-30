@@ -20,10 +20,10 @@ class TranslationForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="tform">
         <label>
           Upload file:
-          <textarea value={this.state.value} onChange={this.handleChange} />
+          <textarea value={this.state.value} onChange={this.handleChange} className="tform__txtarea"/>
         </label>
         
         <input type="submit" value="Submit"/>

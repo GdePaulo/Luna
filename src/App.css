@@ -126,6 +126,15 @@
   /* background-color: #F99F38; */
 }
 
+/*http://getbem.com/naming/*/
+.tform__txtarea {
+  width: 500px;
+  height: 250px;
+}
+
+
+/* SAVANNE */
+
 .svi-container {
   /* position:absolute;:lang */
   width: 100%;
