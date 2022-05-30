@@ -6,7 +6,8 @@ function Navbar() {
         { id: 2, to:"/about", text: "About"},
         { id: 3, to:"/projects", text: "Projects"},
         { id: 4, to:"/cool", text: "Cool"},
-        { id: 5, to:"/ai", text: "AI"}
+        { id: 5, to:"/ai", text: "AI"},
+        { id: 6, to:"/translate", text: "Translate"}
     ];
     const [activeId, setActiveId] = useState(1);
     return (
