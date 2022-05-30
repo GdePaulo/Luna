@@ -134,14 +134,25 @@
 
 .highlighted__p {
   display: inline-block;
+  border:1px solid #42A5F5;
+ 
 }
 
 .highlighted__corPopup {
   display: inline-block;
+  /* display: flex; */
+  border:1px solid #42A5F5;
+  
+  /* position: relative; */
+  /* top: 5px; */
+  /* vertical-align: top; */
+
 }
 
 .highlighted__corPopup button{
-  display: inline-block;
+  display: flex;
+  align-self: center;
+  /* vertical-align: middle; */
 }
 
 

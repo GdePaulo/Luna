@@ -6,6 +6,7 @@ function CorrectionPopup(props) {
   const [corrections, setCorrections] = useState([
     { word: "better", rank: 0}, 
     { word: "worse", rank: 1}, 
+    { word: props.typo, rank: 2}, 
   ]);
 
 
@@ -19,7 +20,7 @@ function CorrectionPopup(props) {
     <div className={props.className}> 
       {
         corrections.map((x) => (
-          <Button> {x.word}  </Button>
+          <Button> {x.word} </Button>
         ))
       }
     </div>
