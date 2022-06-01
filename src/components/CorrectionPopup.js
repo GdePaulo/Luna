@@ -19,8 +19,9 @@ function CorrectionPopup(props) {
   return (
     <div className={props.className}> 
       {
-        corrections.map((x) => (
-          <Button> {x.word} </Button>
+        corrections.map((x, id) => (
+
+          <Button className={id==2 ? props.typoClassName : ""}>{x.word}</Button>
         ))
       }
     </div>

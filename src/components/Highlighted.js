@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CorrectionPopup from "../components/CorrectionPopup";
 import $ from "jquery";
+import ReactDOMServer from 'react-dom/server';
 // import parser from "react-html-parser";
 
 function Highlighted(props) {
@@ -11,7 +12,8 @@ function Highlighted(props) {
     war: ["born", "car"],  
   }
   const test = "what im sure hes not born war anytime soon";
-
+  //https://stackoverflow.com/questions/23835277/updating-content-in-contenteditable-container-with-react
+  //maybe don't have it as a child
   const handleChange = (event) => {
     // this.setState({ value: event.target.value });
     // this.setState({ value: event.currentTarget.textContent });
@@ -19,6 +21,7 @@ function Highlighted(props) {
 
     // const textWithoutOptions = 
     // console.log(event.currentTarget.props.children);
+    event.preventDefault();
     const highlightedHtml = event.currentTarget.innerHTML;
     console.log(highlightedHtml);
 
@@ -31,17 +34,20 @@ function Highlighted(props) {
     // console.log(doc);
 
     var textWithOptions = txt.split(" ").map(word => {
-      console.log("Has own property for", word, "is", corrections.hasOwnProperty(word))
+      console.log("Has own property for", word, "is", corrections.hasOwnProperty(word));
+      word = word.trim();
       if (corrections.hasOwnProperty(word)){
         
-        return <CorrectionPopup className="highlighted__corPopup" typo={word} />;
+        return <CorrectionPopup contentEditable="false" className="highlighted__corPopup" typo={word} typoClassName="highlighted__originalText"/>;
       } else {
-        return <span className="highlighted__originalText">{word + " "}</span>;
+        return <span className="highlighted__originalText">{word} </span>;
       }
     });
-    // textWithOptions = event.currentTarget.textContent;
+    // textWithOptions = event.currentTarget.textContent;this
+    let result = <p className="highlighted__p">{textWithOptions}</p>;
+    console.log("result:", ReactDOMServer.renderToStaticMarkup(result));
     setState(
-      <p className="highlighted__p">{textWithOptions}</p>
+      result
       // <p className="highlighted__p">Im not sure  <CorrectionPopup className="highlighted__corPopup" typo="sure" /> or what
       // </p>
     );
