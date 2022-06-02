@@ -24,7 +24,7 @@ function Correction(props) {
                 {
                   Object.keys(props.corrections).map((key, index) => ( 
                         <li>
-                        {key} : {props.corrections[key]}
+                        {key} : {props.corrections[key].join(", ")}
                         </li>
 
                     ))

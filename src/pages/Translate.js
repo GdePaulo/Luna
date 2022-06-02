@@ -10,10 +10,16 @@ import Corrections from '../components/Corrections';
 
 function Translate() {
   const [currentTime, setCurrentTime] = useState(0);
-  const corrections = {
-    sure: ["sures", "her"],  
-    war: ["born", "car"],  
-  }
+  const [corrections, setCorrections] = useState(
+    {
+      sure: ["sures", "her"],  
+      war: ["born", "car"],  
+    }
+  );
+  // const corrections = {
+  //   sure: ["sures", "her"],  
+  //   war: ["born", "car"],  
+  // }
 
   useEffect(() => {
     axios.get('/time')
@@ -33,7 +39,7 @@ function Translate() {
         "Content-Type": "text",
         "accept": "*/*"
       },
-    }).then(res => { console.log("Response:", res.data); })
+    }).then(res => { console.log("Response:", res.data); setCorrections(res.data); })
       .catch(error => console.log(error));
 
 
