@@ -10,6 +10,10 @@ import Corrections from '../components/Corrections';
 
 function Translate() {
   const [currentTime, setCurrentTime] = useState(0);
+  const corrections = {
+    sure: ["sures", "her"],  
+    war: ["born", "car"],  
+  }
 
   useEffect(() => {
     axios.get('/time')
@@ -18,17 +22,39 @@ function Translate() {
     }, error => {
       console.log(error);
     });
+    let url = "/translation"
+    let tst = "a test sentence"
+    axios({
+      method: "post",
+      url: url,
+      data: tst,
+      headers: {
+        // "Content-Type": "image/jpeg",//"multipart/form-data",
+        "Content-Type": "text",
+        "accept": "*/*"
+      },
+    }).then(res => { console.log("Response:", res.data); })
+      .catch(error => console.log(error));
+
+
+
   // The second parameter defines what states this depends on. 
   // This means only initially and not specifying means depend on every state (i.e also setCurrentTime)
   }, []);
+
+  const handleTextChange = (event) => {
+      // let text = event.currentTarget.textContelengthnt;
+      let text = event.currentTarget.value;
+      console.log("New Text:", text);
+  }
 
   return (
     <div>
       <h3>Luna: Translate | Time: {currentTime}</h3>
       console.log("test")
       <CorrectionPopup />
-      <Highlighted />
-      <Corrections />
+      <Highlighted handleTextChange={handleTextChange}/>
+      <Corrections corrections={corrections}/>
       <TranslationForm />
     </div>
   );

@@ -22,9 +22,9 @@ function Correction(props) {
     <div className="corrections">
       <ul>
                 {
-                  Object.keys(corrections).map((key, index) => ( 
+                  Object.keys(props.corrections).map((key, index) => ( 
                         <li>
-                        {key} : {corrections[key]}
+                        {key} : {props.corrections[key]}
                         </li>
 
                     ))

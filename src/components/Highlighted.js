@@ -30,14 +30,16 @@ function Highlighted(props) {
     const highlightedHtml = event.currentTarget.innerHTML;
     console.log(highlightedHtml);
 
-    var txt = $(highlightedHtml).find("p").html();
-    console.log(txt);
-    txt = $(highlightedHtml).find(".highlighted__originalText").text();
-    console.log("Text for hgh_or is", txt);
+    var txt = "";
+    // var txt = $(highlightedHtml).find("p").html();
+    // console.log(txt);
+    // txt = $(highlightedHtml).find(".highlighted__originalText").text();
+    // console.log("Text for hgh_or is", txt);
 
     // const doc = document.getElementsByClassName('highlighted__p')[0].innerText;
     // console.log(doc);
-    txt = event.currentTarget.textContent;
+    // txt = event.currentTarget.textContent;
+    // txt = event.currentTarget.textContent;
     var textWithOptions = txt.split(" ").map(word => {
       console.log("Has own property for", word, "is", corrections.hasOwnProperty(word));
       // word = word.trim();
@@ -51,6 +53,7 @@ function Highlighted(props) {
       }
     });
     // textWithOptions = event.currentTarget.textContent;this
+    textWithOptions = event.currentTarget.value;
     let result = <p className="highlighted__p">{textWithOptions}</p>;
     result = textWithOptions;
     console.log("result:", ReactDOMServer.renderToStaticMarkup(result));
@@ -59,7 +62,7 @@ function Highlighted(props) {
       // <p className="highlighted__p">Im not sure  <CorrectionPopup className="highlighted__corPopup" typo="sure" /> or what
       // </p>
     );
-    
+    props.handleTextChange(event);
   }
 
   return (
@@ -67,7 +70,8 @@ function Highlighted(props) {
     // {
     // getHighlightedText("I Don'T Know but whatever", "But")}
     // </div>
-    <div contentEditable onInput={handleChange} className="highlighted">{state}</div>
+    // <div contentEditable onInput={handleChange} className="highlighted">{state}</div>
+    <textarea onChange={handleChange} className="tform__txtarea"/>
   );
 }
 export default Highlighted;
