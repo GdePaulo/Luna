@@ -11,6 +11,11 @@ function Highlighted(props) {
     sure: ["sures", "her"],  
     war: ["born", "car"],  
   }
+  const getHighlightedText = (text, highlight) => {
+    // Split text on highlight term, include term itself into parts, ignore case
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+    return <span>{parts.map(part => part.toLowerCase() === highlight.toLowerCase() ? <b>{part}</b> : part)}</span>;
+  } 
   const test = "what im sure hes not born war anytime soon";
   //https://stackoverflow.com/questions/23835277/updating-content-in-contenteditable-container-with-react
   //maybe don't have it as a child
@@ -32,19 +37,22 @@ function Highlighted(props) {
 
     // const doc = document.getElementsByClassName('highlighted__p')[0].innerText;
     // console.log(doc);
-
+    txt = event.currentTarget.textContent;
     var textWithOptions = txt.split(" ").map(word => {
       console.log("Has own property for", word, "is", corrections.hasOwnProperty(word));
-      word = word.trim();
+      // word = word.trim();
       if (corrections.hasOwnProperty(word)){
         
-        return <CorrectionPopup contentEditable="false" className="highlighted__corPopup" typo={word} typoClassName="highlighted__originalText"/>;
-      } else {
+      //   return <CorrectionPopup contentEditable="false" className="highlighted__corPopup" typo={word} typoClassName="highlighted__originalText"/>;
+      // } else {
         return <span className="highlighted__originalText">{word} </span>;
+      } else {
+        return word + " ";
       }
     });
     // textWithOptions = event.currentTarget.textContent;this
     let result = <p className="highlighted__p">{textWithOptions}</p>;
+    result = textWithOptions;
     console.log("result:", ReactDOMServer.renderToStaticMarkup(result));
     setState(
       result
@@ -55,6 +63,10 @@ function Highlighted(props) {
   }
 
   return (
+    // <div  onInput={handleChange} className="highlighted">
+    // {
+    // getHighlightedText("I Don'T Know but whatever", "But")}
+    // </div>
     <div contentEditable onInput={handleChange} className="highlighted">{state}</div>
   );
 }

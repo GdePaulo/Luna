@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import Highlighted from "../components/Highlighted";
 import CorrectionPopup from "../components/CorrectionPopup";
 import TranslationForm from "../components/TranslationForm";
+import Corrections from '../components/Corrections';
 
 function Translate() {
   const [currentTime, setCurrentTime] = useState(0);
@@ -27,6 +28,7 @@ function Translate() {
       console.log("test")
       <CorrectionPopup />
       <Highlighted />
+      <Corrections />
       <TranslationForm />
     </div>
   );
