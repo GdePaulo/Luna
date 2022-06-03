@@ -67,6 +67,7 @@ class Translate:
 
         return matched
 
+    # Attempt smarter matching which takes into account consecutive matches and whether it is beginning or ending
     @staticmethod
     def attachClosest(df, word, lan):
         d = df.copy()
@@ -161,6 +162,16 @@ class Translate:
             else:
                 raw_translation += word + " "
         return raw_translation
+    
+    @staticmethod
+    def getWordCorrections(sentence, words_corpus):
+        translations = {}   
+
+        for word in sentence.split():
+            word = word.lower()
+            words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple")
+            translations[word] = words_corpus.head(3)["pap-simple"].to_list()
+        return translations
         
     def correctSentence(self, sentence):
         nl_en = self.translator_nl_en.translate(sentence)
