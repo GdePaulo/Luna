@@ -24,7 +24,20 @@ def parse_request():
     return jsonify(translations)
 
 if __name__ == "__main__":
-    print("yuo")
+    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
 
 # Use to run
 # python -m flask run
+
+###
+# took a long time, but I had to select the link for seeing all the service accounts in the firebase console before it took me to
+# the Google cloud platform from firebase and finally revealed luna within firebase. kept getting permission error when trying to 
+# build to the cloud beforehand and couldn't find how to solve it. then there was still an error, but I had read somewhere before in my searches
+# the billing needs to be enabled and saw that it wasn't for Luna after it appeared.
+# https://medium.com/firebase-developers/hosting-flask-servers-on-firebase-from-scratch-c97cfb204579
+ 
+# https://cloud.google.com/storage/pricing#storage-pricing18
+# gcloud builds submit --tag gcr.io/luna-8a91a/flask-fire
+# gcloud beta run deploy --image gcr.io/luna-8a91a/flask-fire
+# Check out cloud functions as well
+###
