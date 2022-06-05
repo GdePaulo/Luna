@@ -126,10 +126,28 @@
   /* background-color: #F99F38; */
 }
 
+.tform {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  border:1px solid #42A5F5;
+  margin: 50px;
+}
+
 /*http://getbem.com/naming/*/
 .tform__txtarea {
-  width: 500px;
+  flex: 0 1 40em;
+  /* width: 500px; */
   height: 250px;
+}
+
+.tform__corrections {
+  flex: 0 1 25em;
+  /* width: 500px; */
+  /* height: 250px; */
+
+  border:1px solid #FFaaaa;
 }
 
 .highlighted__p {

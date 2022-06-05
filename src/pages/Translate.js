@@ -17,8 +17,7 @@ function Translate() {
     }
   );
   var wordCountAtLastCheck = useRef(null);
-  useEffect(() => {
-    // axios.get('/time')
+  const getCorrections = () => {
     let url = "/translation"
     axios({
       method: "post",
@@ -30,6 +29,9 @@ function Translate() {
       },
     }).then(res => { console.log("Response:", res.data); setCorrections(res.data); })
       .catch(error => console.log(error));
+  }
+  useEffect(() => {
+    // axios.get('/time')
   // The second parameter defines what states this depends on. 
   // This means only initially and not specifying means depend on every state (i.e also setCurrentTime)
   }, [currentText]);
@@ -37,23 +39,32 @@ function Translate() {
   const handleTextChange = (event) => {
     let text = event.currentTarget.value;
     console.log("New Text:", text);
+    setCurrentText(text);
     
-    var regex = /\b(\w+)\b/g;
-    var matches = [];
-    matches = text.match(regex);
-
-    if (wordCountAtLastCheck.current !== matches.length) {
-      console.log("Setting current text..", matches.length, wordCountAtLastCheck.current);
-      setCurrentText(text);
-      wordCountAtLastCheck.current = matches.length;
-    }
   }
 
+  const handleCorrectClick = (event) => {
+    var regex = /\b(\w+)\b/g;
+    var matches = [];
+    matches = currentText.match(regex);
+  
+    if (wordCountAtLastCheck.current !== matches.length) {
+      console.log("Setting current text..", matches.length, wordCountAtLastCheck.current);
+      wordCountAtLastCheck.current = matches.length;
+      getCorrections();
+    }
+  }
+  const handleEditClick = (event) => {
+  }
   return (
     <div>
       <h3>Luna: Translate</h3>
-      <Highlighted handleTextChange={handleTextChange}/>
-      <Corrections corrections={corrections}/>
+      <div className="tform">
+        <Highlighted handleTextChange={handleTextChange}/>
+        <Corrections corrections={corrections}/>
+      </div>
+      <Button onClick={handleCorrectClick}>Correct</Button>
+      <Button onClick={handleEditClick}>Edit</Button>
     </div>
   );
 }
