@@ -7,17 +7,19 @@ import ReactDOMServer from 'react-dom/server';
 function Correction(props) {
   return (
     <div className="tform__corrections">
-      <ul>
+      <ol className="tform__items">
                 {
                   Object.keys(props.corrections).map((key, index) => ( 
-                        <li>
-                        {key} : {props.corrections[key].join(", ")}
+                        <li className="tform__item">
+                        <span className="tform__corrected-word tform__corrected-word--source">{key}</span>{props.corrections[key].map(corr =>
+                          <span className="tform__corrected-word tform__corrected-word--correction">{corr}</span>
+                          )}
                         </li>
 
                     ))
                 }
 
-            </ul>
+            </ol>
     </div>
   );
 }
