@@ -6,7 +6,6 @@ function Editor(props) {
   }
 
   return (
-    // <div contentEditable onInput={handleChange} className="highlighted">{state}</div>
     <textarea onChange={handleChange} className="tform__txtarea" value={props.currentText}/>
   );
 }

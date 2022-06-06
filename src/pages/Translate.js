@@ -10,7 +10,7 @@ import TranslationForm from "../components/TranslationForm";
 import Corrections from '../components/Corrections';
 
 function Translate() {
-  const [currentText, setCurrentText] = useState("a test sentence");
+  const [currentText, setCurrentText] = useState("a test sentence sure is a war");
   const [corrections, setCorrections] = useState(
     {
       sure: ["sures", "her"],  
@@ -19,6 +19,7 @@ function Translate() {
   );
   const [editMode, setEditMode] = useState(true);
   var wordCountAtLastCheck = useRef(null);
+
   const getCorrections = () => {
     let url = "/api/translation"
     axios({
@@ -32,17 +33,10 @@ function Translate() {
     }).then(res => { console.log("Response:", res.data); setCorrections(res.data); })
       .catch(error => console.log(error));
   }
-  useEffect(() => {
-    // axios.get('/time')
-  // The second parameter defines what states this depends on. 
-  // This means only initially and not specifying means depend on every state (i.e also setCurrentTime)
-  }, [currentText]);
 
   const handleTextChange = (event) => {
     let text = event.currentTarget.value;
-    console.log("New Text:", text);
     setCurrentText(text);
-    
   }
 
   const handleCorrectClick = (event) => {
@@ -79,13 +73,15 @@ export default Translate;
 
 /*
 Optimize word search
-Add highlighting of misspelled words
+Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
 Scrape nws for more data
 Add clicking of correction to replace
 Add box for people to evaluate and add corrections
 Add color coding of corrections according to closeness
 Filter bee to only word and no signs
-Make order of words match
+Make order of words match [x]
 After having more sophisticated checks, check for sentences too
+Add scrollbar for corrections box
+Deal with periods and commas and other punctuation in pattern matching
 */

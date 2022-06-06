@@ -140,13 +140,9 @@ http://getbem.com/naming/
 https://sparkbox.com/foundry/bem_by_example
 */
 .tform__txtarea, .tform__highlighted {
-  /* flex: 0 1 40em; */
   flex: 1 1 0;
   width: 0;
-  /* width: 500px; */
   height: 250px;
-
-  /* font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif; */
   font-size: 20px;
   font-weight: 300;
   /* font-family: 'Open Sans', sans-serif; */
@@ -161,7 +157,6 @@ https://sparkbox.com/foundry/bem_by_example
   /* flex: 0 1 25em; */
   /* width: 500px; */
   /* height: 250px; */
-
   border:1px solid #FFaaaa;
 }
 
@@ -234,8 +229,7 @@ https://sparkbox.com/foundry/bem_by_example
 
 .tform__corrected-word--source {
   background-color: #c83e3e6c;
- /* margin: 0 10px;  */
- margin-right: auto; 
+  margin-right: auto; 
 }
 
 .tform__corrected-word--correction {

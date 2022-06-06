@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import CorrectionPopup from "../components/CorrectionPopup";
-import $ from "jquery";
-import ReactDOMServer from 'react-dom/server';
 // import parser from "react-html-parser";
 
 function Correction(props) {
