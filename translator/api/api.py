@@ -40,6 +40,9 @@ if __name__ == "__main__":
 # https://cloud.google.com/storage/pricing#storage-pricing18
 # gcloud builds submit --tag gcr.io/luna-8a91a/flask-fire
 # gcloud beta run deploy --image gcr.io/luna-8a91a/flask-fire
+
+# gcloud beta run deploy luna-cloud-run --image gcr.io/luna-8a91a/flask-fire --region=europe-west4
+
 # Check out cloud functions as well
 # To test rewrite of firebase (possibly before running npm run build):
 # firebase serve --only hosting 
