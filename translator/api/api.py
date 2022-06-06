@@ -10,11 +10,11 @@ import pandas as pd
 
 app = Flask(__name__)
 
-@app.route('/time')
+@app.route('/api/time')
 def get_current_time():
     return {'time': time.time()}
 
-@app.route('/translation', methods=['POST'])
+@app.route('/api/translation', methods=['POST'])
 def parse_request():
     data = request.data.decode("UTF-8")
 

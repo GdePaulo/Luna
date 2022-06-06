@@ -18,7 +18,7 @@ function Translate() {
   );
   var wordCountAtLastCheck = useRef(null);
   const getCorrections = () => {
-    let url = "/translation"
+    let url = "/api/translation"
     axios({
       method: "post",
       url: url,

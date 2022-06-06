@@ -8,7 +8,7 @@
     ],
     "rewrites": [
       {
-      "source": "/time",
+      "source": "/api/time",
       "run": {
         "serviceId": "flask-fire",
         "region": "europe-west4"

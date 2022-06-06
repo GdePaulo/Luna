@@ -8,7 +8,7 @@ def format_server_time():
   server_time = time.localtime()
   return time.strftime("%I:%M:%S %p", server_time)
 
-@app.route('/time')
+@app.route('/api/time')
 def get_current_time():
     return {'time': time.time()}
 
