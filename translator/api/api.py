@@ -19,7 +19,9 @@ def parse_request():
     data = request.data.decode("UTF-8")
 
     ffa = pd.read_csv(f"../data/ffa/pap.csv")
-    translations = Translate.getWordCorrections(data, ffa)
+    hny_pap_nl = pd.read_csv("../data/hny/pap-nl.csv")
+    d = hny_pap_nl
+    translations = Translate.getWordCorrections(data, d[d["type"]=="word"])
     print(f"Correcting:{data}\nReturning:{translations}")
     return jsonify(translations)
 
@@ -34,6 +36,7 @@ if __name__ == "__main__":
 # the Google cloud platform from firebase and finally revealed luna within firebase. kept getting permission error when trying to 
 # build to the cloud beforehand and couldn't find how to solve it. then there was still an error, but I had read somewhere before in my searches
 # the billing needs to be enabled and saw that it wasn't for Luna after it appeared.
+# https://cloud.google.com/community/tutorials/building-flask-api-with-cloud-firestore-and-deploying-to-cloud-run
 # https://medium.com/firebase-developers/hosting-flask-servers-on-firebase-from-scratch-c97cfb204579
 # https://www.infoworld.com/article/3585633/how-to-make-the-most-of-the-google-cloud-free-tier.html
 

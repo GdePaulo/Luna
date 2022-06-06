@@ -170,7 +170,8 @@ class Translate:
         for word in sentence.split():
             word = word.lower()
             words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple")
-            translations[word] = words_corpus.head(3)["pap-simple"].to_list()
+            if words_corpus["closest"].iloc[0] > 0:
+                translations[word] = words_corpus.head(3)["pap-simple"].to_list()
         return translations
         
     def correctSentence(self, sentence):
