@@ -235,6 +235,11 @@ https://sparkbox.com/foundry/bem_by_example
 
 }
 
+.tform__highlighted span {
+  border:rgba(0, 0, 0, 0.85);
+  background-color: #c83e3e6c;
+}
+
 .highlighted__p {
   display: inline-block;
   border:1px solid #42A5F5;

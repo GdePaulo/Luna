@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Grid from "../components/Grid";
 import Button from "../components/Button";
+import Editor from "../components/Editor";
 import Highlighted from "../components/Highlighted";
 import CorrectionPopup from "../components/CorrectionPopup";
 import TranslationForm from "../components/TranslationForm";
@@ -16,6 +17,7 @@ function Translate() {
       war: ["born", "car"],  
     }
   );
+  const [editMode, setEditMode] = useState(true);
   var wordCountAtLastCheck = useRef(null);
   const getCorrections = () => {
     let url = "/api/translation"
@@ -53,14 +55,19 @@ function Translate() {
       wordCountAtLastCheck.current = matches.length;
       getCorrections();
     }
+    setEditMode(false)
   }
   const handleEditClick = (event) => {
+    setEditMode(true)
   }
   return (
     <div>
       <h3>Luna: Translate</h3>
       <div className="tform">
-        <Highlighted handleTextChange={handleTextChange}/>
+        {editMode
+          ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
+          : <Highlighted corrections={corrections} currentText={currentText}/>
+        }
         <Corrections corrections={corrections}/>
       </div>
       <Button onClick={handleCorrectClick}>Correct</Button>
@@ -69,3 +76,16 @@ function Translate() {
   );
 }
 export default Translate;
+
+/*
+Optimize word search
+Add highlighting of misspelled words
+Combine dictionaries of curacaon papiamentu
+Scrape nws for more data
+Add clicking of correction to replace
+Add box for people to evaluate and add corrections
+Add color coding of corrections according to closeness
+Filter bee to only word and no signs
+Make order of words match
+After having more sophisticated checks, check for sentences too
+*/

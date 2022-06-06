@@ -9,6 +9,7 @@ from translate import Translate
 import pandas as pd
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 
 @app.route('/api/time')
 def get_current_time():
