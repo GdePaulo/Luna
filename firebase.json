@@ -8,9 +8,15 @@
     ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+      "source": "/time",
+      "run": {
+        "serviceId": "flask-fire",
+        "region": "europe-west4"
       }
-    ]
+      },
+      {
+      "source": "**",
+      "destination": "/index.html"
+      }]
   }
 }

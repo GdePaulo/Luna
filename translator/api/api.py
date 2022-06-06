@@ -35,9 +35,13 @@ if __name__ == "__main__":
 # build to the cloud beforehand and couldn't find how to solve it. then there was still an error, but I had read somewhere before in my searches
 # the billing needs to be enabled and saw that it wasn't for Luna after it appeared.
 # https://medium.com/firebase-developers/hosting-flask-servers-on-firebase-from-scratch-c97cfb204579
- 
+# https://www.infoworld.com/article/3585633/how-to-make-the-most-of-the-google-cloud-free-tier.html
+
 # https://cloud.google.com/storage/pricing#storage-pricing18
 # gcloud builds submit --tag gcr.io/luna-8a91a/flask-fire
 # gcloud beta run deploy --image gcr.io/luna-8a91a/flask-fire
 # Check out cloud functions as well
+# To test rewrite of firebase (possibly before running npm run build):
+# firebase serve --only hosting 
+
 ###
