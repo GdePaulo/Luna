@@ -3,7 +3,7 @@ import time
 from flask import Flask, request, jsonify
 
 import sys, os
-sys.path.append(r"C:\Users\Ameno\Desktop\luna\translator")
+sys.path.append(os.path.abspath('../code'))
 
 from translate import Translate
 import pandas as pd

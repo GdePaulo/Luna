@@ -5,8 +5,8 @@ FROM python:3.7
 RUN pip install Flask gunicorn
 
 # 3
-COPY api/ /api
-WORKDIR /api
+COPY api/ /app
+WORKDIR /app
 
 # 4
 ENV PORT 8080
