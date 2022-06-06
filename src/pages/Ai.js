@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import rabbit from "../rabbit.png"
-import sample from "../ramen.jpg"
+import rabbit from "../images/rabbit.png"
+import sample from "../images/ramen.jpg"
 
 import Grid from "../components/Grid"
 import Button from "../components/Button"

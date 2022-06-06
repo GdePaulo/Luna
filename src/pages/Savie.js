@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import rabbit from "../rabbit.png"
 
 import axios from 'axios';
 

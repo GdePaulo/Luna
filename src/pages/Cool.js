@@ -1,5 +1,5 @@
 import React from 'react';
-import rabbit from "../rabbit.png"
+import rabbit from "../images/rabbit.png"
 
 import Grid from "../components/Grid"
 
