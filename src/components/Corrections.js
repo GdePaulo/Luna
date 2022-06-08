@@ -8,7 +8,12 @@ function Correction(props) {
                 {
                   Object.keys(props.corrections).map((key, index) => ( 
                         <li className="tform__item">
-                        <span className="tform__corrected-word tform__corrected-word--source">{key}</span>{props.corrections[key].map(corr =>
+                        
+                        <span className={props.activeCorrectionId==index ?
+                          "tform__corrected-word tform__corrected-word--active tform__corrected-word--source" :
+                          "tform__corrected-word tform__corrected-word--source"
+                          }>{key}</span>
+                        {props.corrections[key].map(corr =>
                           <span className="tform__corrected-word tform__corrected-word--correction">{corr}</span>
                           )}
                         </li>

@@ -18,6 +18,7 @@ function Translate() {
     }
   );
   const [editMode, setEditMode] = useState(true);
+  const [activeCorrectionId, setActiveCorrectionId] = useState(0);
   var wordCountAtLastCheck = useRef(null);
 
   const getCorrections = () => {
@@ -30,7 +31,10 @@ function Translate() {
         "Content-Type": "text",
         "accept": "*/*"
       },
-    }).then(res => { console.log("Response:", res.data); setCorrections(res.data); })
+    }).then(res => { 
+      console.log("Responsethis:", res.data); 
+      setCorrections(res.data); 
+    })
       .catch(error => console.log(error));
   }
 
@@ -60,9 +64,9 @@ function Translate() {
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
-          : <Highlighted corrections={corrections} currentText={currentText}/>
+          : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId}/>
         }
-        <Corrections corrections={corrections}/>
+        <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId}/>
         
       </div>
       <Button onClick={handleCorrectClick} className="tform__btn tform__btn--correct">Correct</Button>

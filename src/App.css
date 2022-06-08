@@ -302,6 +302,10 @@ https://sparkbox.com/foundry/bem_by_example
   background-color: #3e6ac865;
 }
 
+.tform__corrected-word--active {
+  background-color: #3ec87565;
+}
+
 
 .tform__item--word {
 
@@ -310,6 +314,12 @@ https://sparkbox.com/foundry/bem_by_example
 .tform__input--highlighted span {
   border:rgba(0, 0, 0, 0.85);
   background-color: #c83e3e6c;
+  cursor: pointer;
+}
+
+.tform__input--highlighted span:hover {
+  border:rgba(0, 0, 0, 0.85);
+  background-color: #e748486c;
 }
 
 .highlighted__p {
