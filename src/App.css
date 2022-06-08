@@ -167,8 +167,9 @@ https://sparkbox.com/foundry/bem_by_example
   flex: 0 1 48%;
   /* flex: 0 1 25em; */
   /* width: 500px; */
-  /* height: 250px; */
+  height: 350px;
   border:1px solid #FFaaaa;
+  overflow-y: scroll;
 }
 
 .tform__btn {

@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 // import parser from "react-html-parser";
 
 function Correction(props) {
+  const activeItem = useRef();
+
+  useEffect(() => {
+    activeItem.current.scrollIntoView({ behavior: "smooth" });
+  }, [props.activeCorrectionId]);
+  
   return (
     <div className="tform__corrections">
       <ol className="tform__items">
                 {
                   Object.keys(props.corrections).map((key, index) => ( 
-                        <li className="tform__item">
+                        
+                        <li className="tform__item" ref={props.activeCorrectionId==index ? activeItem : null}>
                         
                         <span className={props.activeCorrectionId==index ?
                           "tform__corrected-word tform__corrected-word--active tform__corrected-word--source" :
@@ -17,10 +24,8 @@ function Correction(props) {
                           <span className="tform__corrected-word tform__corrected-word--correction">{corr}</span>
                           )}
                         </li>
-
                     ))
                 }
-
             </ol>
     </div>
   );
