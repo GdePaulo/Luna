@@ -20,7 +20,7 @@ def parse_request():
     data = request.data.decode("UTF-8")
 
     ffa = pd.read_csv(f"../data/ffa/pap.csv")
-    hny_pap_nl = pd.read_csv("../data/hny/pap-nl.csv")
+    hny_pap_nl = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False)
     d = hny_pap_nl
     translations = Translate.getWordCorrections(data, d[d["type"]=="word"])
     print(f"Correcting:{data}\nReturning:{translations}")
