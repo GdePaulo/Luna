@@ -6,7 +6,7 @@ function Editor(props) {
   }
 
   return (
-    <textarea onChange={handleChange} className="tform__txtarea" value={props.currentText}/>
+    <textarea onChange={handleChange} className="tform__input tform__input--editor" value={props.currentText}/>
   );
 }
 export default Editor;

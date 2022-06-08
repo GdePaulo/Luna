@@ -20,7 +20,7 @@ function Highlighted(props) {
   }
 
   return (
-    <div className="tform__highlighted" dangerouslySetInnerHTML={{
+    <div className="tform__input tform__input--highlighted" dangerouslySetInnerHTML={{
             __html: getHighlightedText()
             }} />
   );

@@ -56,16 +56,17 @@ function Translate() {
   }
   return (
     <div>
-      <h3>Luna: Translate</h3>
+      <h3 className="luna-translate">Luna: Translate</h3>
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
           : <Highlighted corrections={corrections} currentText={currentText}/>
         }
         <Corrections corrections={corrections}/>
+        
       </div>
-      <Button onClick={handleCorrectClick}>Correct</Button>
-      <Button onClick={handleEditClick}>Edit</Button>
+      <Button onClick={handleCorrectClick} className="tform__btn tform__btn--correct">Correct</Button>
+      <Button onClick={handleEditClick} className="tform__btn tform__btn--edit">Edit</Button>
     </div>
   );
 }
@@ -84,4 +85,6 @@ Make order of words match [x]
 After having more sophisticated checks, check for sentences too
 Add scrollbar for corrections box
 Deal with periods and commas and other punctuation in pattern matching
+
+Add separate css files per page
 */
