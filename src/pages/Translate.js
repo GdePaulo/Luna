@@ -82,12 +82,14 @@ Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
 Scrape nws for more data
 Add clicking of correction to replace
+Add fix all errors button
 Add box for people to evaluate and add corrections
 Add color coding of corrections according to closeness
 Filter bee to only word and no signs
 Make order of words match [x]
 After having more sophisticated checks, check for sentences too
-Add scrollbar for corrections box
+Add scrollbar for corrections box [x]
+Add automatic scrolling to active correction in box [xthis]
 Deal with periods and commas and other punctuation in pattern matching
 
 Add separate css files per page
