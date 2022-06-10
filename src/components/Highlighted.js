@@ -4,10 +4,15 @@ function Highlighted(props) {
     
   const highlightText = (text, highlight, id) => {
     // HAVE TO USE TWO BACKSLASHES INSTEAD OF ONE WHEN USING THE CONSTRUCTOR!!!!!!!!!
-    var regex = new RegExp("\\b(" + highlight + ")\\b", "gi");
+    // var regex = new RegExp("\\b(" + highlight + ")\\b", "gi");
+    // var regex = new RegExp("\\b(" + highlight + "[^\w\'\’])\\b", "gi");
+    // var regex = new RegExp("\\b(" + highlight + ")(?![\w\'-])", "gi");
+    var regex = new RegExp("\\b(" + highlight + ")(?!\\w|\\'|\\’|-)", "gi");
+    
     const highlightedText = text.replace(regex, function replace(match) { 
       return "<span id=" + id + ">" + match + "</span>"; 
     });
+    // \b([^\d\W]+[\'\’-]*[^\d\W\']*)
     return highlightedText;
   }
 

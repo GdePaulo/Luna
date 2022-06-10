@@ -97,5 +97,7 @@ Deal with periods and commas and other punctuation in pattern matching
 -Add separate check for numbers
 -Deal with place names (check for capitalized first letter?)
 -Deal with HTML tags that get parsed
+-Fix bug where if n is matched, then n' will be matched too [x] 
+-Fix bug where if n is matched, then 'n will be matched too 
 Add separate css files per page
 */
