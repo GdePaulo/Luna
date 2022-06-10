@@ -3,24 +3,25 @@ import { Link } from "react-router-dom";
 import moon from "../images/moon.svg"
 function Navbar() {
     const navigationElements = [
-        { id: 1, to:"/", text: "Luna"},
-        { id: 2, to:"/about", text: "About"},
-        { id: 3, to:"/projects", text: "Projects"},
-        { id: 4, to:"/cool", text: "Cool"},
-        { id: 5, to:"/ai", text: "AI"},
-        { id: 6, to:"/translate", text: "Translate"}
+        {to:"/", text: "Luna"},
+        {to:"/", text: "Home"},
+        {to:"/about", text: "About"},
+        {to:"/projects", text: "Projects"},
+        {to:"/cool", text: "Cool"},
+        {to:"/ai", text: "AI"},
+        {to:"/translate", text: "Translate"}
     ];
-    const [activeId, setActiveId] = useState(1);
+    const [activeId, setActiveId] = useState(0);
     return (
         <div className="topnav">
-            <ul className="topnav--items">
+            <ul className="topnav__items">
                 {
-                    navigationElements.map((x) => (
-                        <li className= "topnav--item">
-                        <Link to={x.to} onClick={() => setActiveId(x.id)} className= {"topnav--link " + (activeId===x.id ? "active" : "")}>
-                        {x.text}
-                        {x.id==1 ? (
-                            <img src={moon} alt={"logo"} className= "topnav--logo"/>
+                    navigationElements.map((x, index) => (
+                        <li className= "topnav__item">
+                        <Link to={x.to} onClick={() => setActiveId(index)} className= {"topnav__link " + (activeId===index ? "active" : "")}>
+                        <span className={index==0 ? "topnav__logo-text" : "topnav__text"}>{x.text}</span>
+                        {index==0 ? (
+                            <img src={moon} alt={"logo"} className= "topnav__logo-img"/>
                         ) : null}
                         </Link>
                         </li>
