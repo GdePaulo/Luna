@@ -27,10 +27,11 @@ def parse_request():
 
     ffa = pd.read_csv(f"../data/ffa/pap.csv")
     
-    # to do: fixed bug with extra sentence
     # translations = Translate.getWordCorrections(data, d_words)
     # translations = trans.getFastWordCorrections(data, check_alternatives=True)
-    translations = trans.getMixedWordCorrections(data, d_words)
+    data_words = Translate.findWords(data)
+    print(data_words)
+    translations = trans.getMixedWordCorrections(data_words, d_words)
 
     print(f"Correcting:{data}\nReturning:{translations}")
     return jsonify(translations)

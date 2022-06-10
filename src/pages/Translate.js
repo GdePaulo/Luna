@@ -93,6 +93,9 @@ After having more sophisticated checks, check for sentences too
 Add scrollbar for corrections box [x]
 Add automatic scrolling to active correction in box [xthis]
 Deal with periods and commas and other punctuation in pattern matching
-
+-Deal with abbreviations and acronyms and initials (check for all caps or. Between)
+-Add separate check for numbers
+-Deal with place names (check for capitalized first letter?)
+-Deal with HTML tags that get parsed
 Add separate css files per page
 */

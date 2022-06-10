@@ -70,6 +70,11 @@ class Translate:
             matched += res
 
         return matched
+    @staticmethod
+    def findWords(input_str):
+        # words = re.findall(r'\b(\w+\'*\w*)\b',input_str) 
+        words = re.findall(r'\b([^\d\W]+[\'\’-]*[^\d\W\']*)',input_str) 
+        return words
 
     # Attempt smarter matching which takes into account consecutive matches and whether it is beginning or ending
     @staticmethod
@@ -189,9 +194,9 @@ class Translate:
                     translations[word] = [accented_match]
         return translations
         
-    def getMixedWordCorrections(self, sentence, words_corpus):
+    def getMixedWordCorrections(self, words, words_corpus):
         translations = {}   
-        for word in sentence.split():
+        for word in words:
             word = word.lower()
             exists = self.trie.find(word)
             if not exists:
