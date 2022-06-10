@@ -189,6 +189,16 @@ class Translate:
                     translations[word] = [accented_match]
         return translations
         
+    def getMixedWordCorrections(self, sentence, words_corpus):
+        translations = {}   
+        for word in sentence.split():
+            word = word.lower()
+            exists = self.trie.find(word)
+            if not exists:
+                words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple")
+                translations[word] = words_corpus.head(3)["pap-simple"].to_list()
+                
+        return translations
     def correctSentence(self, sentence):
         nl_en = self.translator_nl_en.translate(sentence)
         en_nl = self.translator_en_nl.translate(nl_en)
