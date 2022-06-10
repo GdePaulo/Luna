@@ -78,10 +78,11 @@ export default Translate;
 
 /*
 Optimize word search
+-Add accent dictionary to make search variant which ignores accents
 Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
 Scrape nws for more data
-Add clicking of correction to replace
+Add clicking of correction to replace or ignore
 Add fix all errors button
 Add box for people to evaluate and add corrections
 Add color coding of corrections according to closeness
