@@ -180,14 +180,13 @@ class Translate:
     
     def getFastWordCorrections(self, sentence, check_alternatives=False):
         translations = {}   
-
         for word in sentence.split():
             word = word.lower()
             exists = self.trie.find(word)
             if not exists and check_alternatives:
                 accented_match = self.trie.lenientFind(word)
                 if accented_match:
-                    translations[word] = accented_match
+                    translations[word] = [accented_match]
         return translations
         
     def correctSentence(self, sentence):

@@ -44,6 +44,7 @@ function Translate() {
   }
 
   const handleCorrectClick = (event) => {
+    // deal with parentheses and periods
     var regex = /\b(\w+)\b/g;
     var matches = [];
     matches = currentText.match(regex);

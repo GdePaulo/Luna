@@ -11,6 +11,12 @@ import pandas as pd
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
+# add filter to deal with not available number values
+hny_pap_nl = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False)
+d = hny_pap_nl
+d_words =  d[d["type"]=="word"]
+trans = Translate(spellchecker_corpus=d_words["pap-simple"].values)
+
 @app.route('/api/time')
 def get_current_time():
     return {'time': time.time()}
@@ -20,9 +26,10 @@ def parse_request():
     data = request.data.decode("UTF-8")
 
     ffa = pd.read_csv(f"../data/ffa/pap.csv")
-    hny_pap_nl = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False)
-    d = hny_pap_nl
-    translations = Translate.getWordCorrections(data, d[d["type"]=="word"])
+    
+    # translations = Translate.getWordCorrections(data, d_words)
+    translations = trans.getFastWordCorrections(data, check_alternatives=True)
+
     print(f"Correcting:{data}\nReturning:{translations}")
     return jsonify(translations)
 
