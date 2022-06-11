@@ -192,8 +192,8 @@
 
 .luna-translate {
   margin-left: 50px;
-  font-size: 30px;
-  font-weight: 500;
+  font-size: 27px;
+  font-weight: 350;
   font-family: 'Roboto', sans-serif;
   
 }
@@ -216,7 +216,7 @@ https://sparkbox.com/foundry/bem_by_example
   flex: 1 1 0;
   /* flex: 0 1 48%; */
   width: 0;
-  height: 250px;
+  height: 350px;
   font-size: 20px;
   font-weight: 300;
   /* font-family: 'Open Sans', sans-serif; */
