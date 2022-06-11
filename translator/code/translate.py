@@ -14,11 +14,16 @@ class Translate:
             self.trie.populate(spellchecker_corpus)
 
     @staticmethod
-    def distanceToWord(hide, seek):
+    def distanceToWord(hide, seek, case=True):
 
         # Deal with nan string
         hide = str(hide)
         seek = str(seek)
+
+        if not case:
+            hide = hide.lower()
+            seek = seek.lower()
+
         max_search = len(seek)
         distance = abs(len(hide)-len(seek))
         if len(seek) > len(hide):
@@ -78,11 +83,12 @@ class Translate:
 
     # Attempt smarter matching which takes into account consecutive matches and whether it is beginning or ending
     @staticmethod
-    def attachClosest(df, word, lan):
+    def attachClosest(df, word, lan, case=True):
         d = df.copy()
+
         d["closest"] = d.apply(lambda row: min( 
-            (Translate.distanceToWord(Translate.remove_accents(row[lan]), word) + 0.001),
-            Translate.distanceToWord(row[lan], word)
+            (Translate.distanceToWord(Translate.remove_accents(row[lan]), word, case) + 0.001),
+            Translate.distanceToWord(row[lan], word, case)
         ), axis=1)
         d.sort_values(by="closest", inplace= True)
         return d
@@ -197,11 +203,14 @@ class Translate:
     def getMixedWordCorrections(self, words, words_corpus):
         translations = {}   
         for word in words:
-            word = word.lower()
+            # Make sure to ignore case if you're making word lowercase
+            lowered_word = word.lower()
             exists = self.trie.find(word)
             if not exists:
-                words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple")
-                translations[word] = words_corpus.head(3)["pap-simple"].to_list()
+                words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple", case=False)
+                if words_corpus["closest"].iloc[0] > 0:
+                    print(word, words_corpus.head(3)["closest"].to_list())
+                    translations[word] = words_corpus.head(3)["pap-simple"].to_list()
                 
         return translations
     def correctSentence(self, sentence):

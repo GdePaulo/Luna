@@ -8,6 +8,7 @@ import Corrections from '../components/Corrections';
 
 function Spellcheck() {
   const [currentText, setCurrentText] = useState("a test sentence sure is a war");
+  const [previousText, setPreviousText] = useState("a test war");
   const [corrections, setCorrections] = useState(
     {
       sure: ["sures", "her"],  
@@ -46,9 +47,11 @@ function Spellcheck() {
     var matches = [];
     matches = currentText.match(regex);
   
-    if (wordCountAtLastCheck.current !== matches.length) {
-      console.log("Setting current text..", matches.length, wordCountAtLastCheck.current);
-      wordCountAtLastCheck.current = matches.length;
+    // if (wordCountAtLastCheck.current !== matches.length) {
+    if (previousText !== currentText) {
+      // console.log("Setting current text..", matches.length, wordCountAtLastCheck.current);
+      // wordCountAtLastCheck.current = matches.length;
+      setPreviousText(currentText);
       getCorrections();
     }
     setEditMode(false)
