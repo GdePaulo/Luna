@@ -63,19 +63,21 @@
   color: #f2f2f2;
   text-decoration: none;
   font-size: 17px;
-  border: 1px solid #017e7f;
+  /* border: 1px solid #017e7f; */
 }
 
 
 /* Change the color of links on hover */
 .topnav__link:hover {
-  background-color: rgba(221, 221, 221, 0.317);
-  color: black;
+  /* background-color: rgba(221, 221, 221, 0.317); */
+  color: rgb(0, 155, 211);
+  /* color: black;:lang */
 }
 
 /* Add a color to the active/current link */
 .topnav__link.active {
   background-color: #42A5F5;
+  /* background-color: #42A5F5; */
   /* background-color: #04AA6D; */
   color: white;
 }
@@ -87,17 +89,21 @@
   color: rgb(71, 71, 71);
   padding: 25px 0px 25px 0px;
   text-decoration: none;
-  border: 1px solid red;
+  /* border: 1px solid red;:lang */
+
+  transition: 0.3s;
 }
 
 .topnav__text {
   font-size: 20px;
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
+
+  padding: 0px 10px 0px 10px;
 }
 
 .topnav__item--logo {
-  border: 1px solid #017e7f;
+  /* border: 1px solid #017e7f;:lang */
 }
 
 .topnav__link--logo {
@@ -108,7 +114,7 @@
 .topnav__text--logo {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #017e7f;
+  /* border: 1px solid #017e7f; */
   /* height:50px;:lang */
 
   font-size: 30px;
@@ -120,7 +126,7 @@
   width:50px;
   height:50px;
   fill: white;
-  border: 1px solid #017e7f;
+  /* border: 1px solid #017e7f:lang; */
 }
 
 .topnav__logo-img:hover {
