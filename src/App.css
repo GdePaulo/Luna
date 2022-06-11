@@ -189,6 +189,15 @@
   /* background-size: 256px  256px; */
   /* background-color: #F99F38; */
 }
+.bkg--projects {
+  background-color: #f2bf84;
+  background-image: url("images/rabbit.png");
+  background-repeat: repeat;
+  background-size: 20vh  20vh;
+  height: 100vh;
+  /* background-size: 256px  256px; */
+  /* background-color: #F99F38; */
+}
 
 .luna-translate {
   margin-left: 50px;

@@ -61,7 +61,7 @@ function Translate() {
   }
   return (
     <div>
-      <h3 className="luna-translate">Luna: Translate</h3>
+      <h3 className="luna-translate">Luna: Translate (Coming Soon)</h3>
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>

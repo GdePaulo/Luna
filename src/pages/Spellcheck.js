@@ -58,7 +58,7 @@ function Spellcheck() {
   }
   return (
     <div>
-      <h3 className="luna-translate">Luna: Spell Checker</h3>
+      <h3 className="luna-translate">Luna: Spell Checker (Alpha)</h3>
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
@@ -97,6 +97,7 @@ Deal with periods and commas and other punctuation in pattern matching
 -Deal with HTML tags that get parsed
 -Fix bug where if n is matched, then n' will be matched too [x] 
 -Fix bug where if n is matched, then 'n will be matched too 
+-Possibly have to take into account words within single quotations
 Add separate css files per page
 Make a navigation bar height more dynamic
 */
