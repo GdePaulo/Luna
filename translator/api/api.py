@@ -21,20 +21,20 @@ trans = Translate(spellchecker_corpus=d_words["pap-simple"].values)
 def get_current_time():
     return {'time': time.time()}
 
-@app.route('/api/translation', methods=['POST'])
+@app.route('/api/spellcheck', methods=['POST'])
 def parse_request():
     data = request.data.decode("UTF-8")
 
     ffa = pd.read_csv(f"../data/ffa/pap.csv")
     
-    # translations = Translate.getWordCorrections(data, d_words)
-    # translations = trans.getFastWordCorrections(data, check_alternatives=True)
+    # corrections = Translate.getWordCorrections(data, d_words)
+    # corrections = trans.getFastWordCorrections(data, check_alternatives=True)
     data_words = Translate.findWords(data)
     print(data_words)
-    translations = trans.getMixedWordCorrections(data_words, d_words)
+    corrections = trans.getMixedWordCorrections(data_words, d_words)
 
-    print(f"Correcting:{data}\nReturning:{translations}")
-    return jsonify(translations)
+    print(f"Correcting:{data}\nReturning:{corrections}")
+    return jsonify(corrections)
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
@@ -52,6 +52,8 @@ if __name__ == "__main__":
 # https://www.infoworld.com/article/3585633/how-to-make-the-most-of-the-google-cloud-free-tier.html
 
 # https://cloud.google.com/storage/pricing#storage-pricing18
+
+# cd translator
 # gcloud builds submit --tag gcr.io/luna-8a91a/flask-fire
 # gcloud beta run deploy --image gcr.io/luna-8a91a/flask-fire
 

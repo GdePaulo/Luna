@@ -9,7 +9,8 @@ function Navbar() {
         {to:"/projects", text: "Projects"},
         {to:"/", text: "Luna Software"},
         {to:"/cool", text: "Cool"},
-        {to:"/ai", text: "AI"},
+        {to:"/spellcheck", text: "Spellcheck"},
+        // {to:"/ai", text: "AI"},
         {to:"/translate", text: "Translate"}
     ];
     const [activeId, setActiveId] = useState(0);
