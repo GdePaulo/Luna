@@ -80,6 +80,7 @@ export default Translate;
 /*
 Optimize word search
 -Add accent dictionary to make search variant which ignores accents
+-Properly take into account different styles of apostrophes
 Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
 Scrape nws for more data
@@ -100,4 +101,5 @@ Deal with periods and commas and other punctuation in pattern matching
 -Fix bug where if n is matched, then n' will be matched too [x] 
 -Fix bug where if n is matched, then 'n will be matched too 
 Add separate css files per page
+Make a navigation bar height more dynamic
 */

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import moon from "../images/moon.svg"
+// import {ReactComponent as moon} from "../images/moon.svg"
 function Navbar() {
     const navigationElements = [
         {to:"/", text: "Home"},
@@ -17,16 +18,17 @@ function Navbar() {
             <ul className="topnav__items">
                 {
                     navigationElements.map((x, index) => (
-                        <li className= {index==3 ? "topnav__logo-item" : "topnav__item"}>
+                        <li className= {"topnav__item" + (index===3 ? " topnav__item--logo" : "")}>
                         <Link to={x.to} onClick={() => setActiveId(index)} 
-                            className= {(index===3 ? "topnav__logo-link" : "topnav__link") + (activeId===index ? " active" : "")}
-                            >
-                        <span className={index===3 ? "topnav__logo-text" : "topnav__text"}>{x.text}</span>
-                        {index===3 ? (
-                            <img src={moon} alt={"logo"} className= "topnav__logo-img"/>
-                            // <span>whatever</span>
-                            // null
-                        ) : null}
+                            className= {"topnav__link" + (index===3 ? " topnav__link--logo" : "") + (activeId===index ? " active" : "")}>
+                            <span className={"topnav__text" + (index===3 ? " topnav__text--logo" : "")}>{x.text}</span>
+                            {index===3 ? (
+                                // <moon />
+                                // <svg xlmns={moon} alt={"logo"} fill="gray" className= "topnav__logo-img"/>
+                                <img src={moon} alt={"logo"} className= "topnav__logo-img"/>
+                                // <span>whatever</span>
+                                // null
+                            ) : null}
                         </Link>
                         </li>
 

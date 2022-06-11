@@ -45,14 +45,11 @@
   background-color: #FFFFFF;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.06) 2px 10px 10px;
-  /* max-width: 300:langpx; */
-  /* margin: 0 auto; */
 }
 
 .topnav__items {
   display:flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
   justify-content: center;
   column-gap: 2em;
   align-items: center;
@@ -60,33 +57,19 @@
   margin: 0;
   padding:0;
   list-style:none;
-
-  /* width: 100%; */
 }
-/* Style the links inside the navigation bar */
-.topnav__item, .topnav__logo-item {
-  /* flex: 0 1 3px; */
-  /* display:flex;
-  flex-direction: row; */
-  /* justify-content: center; */
-  /* align-items: center; */
 
+.topnav__item{
   color: #f2f2f2;
-
-  text-align: center;
-  /* padding: 20px; */
   text-decoration: none;
   font-size: 17px;
   border: 1px solid #017e7f;
-
-  /* height:lang:50px; */
-  /* padding:0px; */
 }
 
 
 /* Change the color of links on hover */
 .topnav__link:hover {
-  background-color: #ddd;
+  background-color: rgba(221, 221, 221, 0.317);
   color: black;
 }
 
@@ -96,58 +79,51 @@
   /* background-color: #04AA6D; */
   color: white;
 }
-.topnav__link, .topnav__logo-link {
+.topnav__link {
   display:flex;
   flex-direction: row;
 
-  /* display: inline-block; */
-  background-color: #dbdbdb43;
+  /* background-color: #dbdbdb43; */
   color: rgb(71, 71, 71);
   padding: 25px 0px 25px 0px;
   text-decoration: none;
   border: 1px solid red;
-  /* height: 100%;  */
-  /* height: 50px;  */
-  text-align: center;
 }
 
-.topnav__logo-item {
-  /* flex-grow: 0.5;
-  flex: 0.5 0 0.5; */
+.topnav__text {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
+
+.topnav__item--logo {
   border: 1px solid #017e7f;
-  padding: 0;
 }
 
-.topnav__logo-link {
-  /* display: flex;
-  flex-direction: row; */
-  justify-content: center;
-  /* height:60px; */
-
+.topnav__link--logo {
   padding: 0;
   padding: 12px 0px 12px 0px;
 }
 
-.topnav__logo-text {
+.topnav__text--logo {
   display: inline-flex;
   align-items: center;
-  /* float: left; */
   border: 1px solid #017e7f;
-  /* text-align: center; */
+  /* height:50px;:lang */
 
-  height:50px;
+  font-size: 30px;
+  font-weight: 570;
+
 }
 
 .topnav__logo-img {
   width:50px;
   height:50px;
-
+  fill: white;
   border: 1px solid #017e7f;
-  /* float: right; */
-  /* vertical-align: middle; */
 }
 
-.topnav__logo:hover {
+.topnav__logo-img:hover {
   /* color: white;
   background: white; */
   animation: App-logo-spin 1 0.5s ease-out; 
