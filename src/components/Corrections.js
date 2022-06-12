@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { act } from 'react-dom/test-utils';
 // import parser from "react-html-parser";
 
 function Correction(props) {
   const activeItem = useRef();
 
   useEffect(() => {
-    activeItem.current.scrollIntoView({ behavior: "smooth" });
+    if (activeItem != null)
+      activeItem.current.scrollIntoView({ behavior: "smooth" });
   }, [props.activeCorrectionId]);
   
   return (

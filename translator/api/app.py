@@ -9,7 +9,7 @@ app.config['JSON_SORT_KEYS'] = False
 
 # add filter to deal with not available number values
 hny_pap_nl = pd.read_csv("data/hny/pap-nl.csv", na_filter=False)
-nbo_pap = pd.read_csv("../data/nbo/pap.csv", na_filter=False)
+nbo_pap = pd.read_csv("data/nbo/pap.csv", na_filter=False)
 d = hny_pap_nl
 d = nbo_pap
 d = Translate.attachType(d, "pap-simple")

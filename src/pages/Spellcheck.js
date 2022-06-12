@@ -7,12 +7,13 @@ import Highlighted from "../components/Highlighted";
 import Corrections from '../components/Corrections';
 
 function Spellcheck() {
-  const [currentText, setCurrentText] = useState("a test sentence sure is a war");
-  const [previousText, setPreviousText] = useState("a test war");
+  const [previousText, setPreviousText] = useState(""); 
+  const [currentText, setCurrentText] = useState("Skibi algu akinan i primi \"koregi\" pa wak e korikshon na man rechts i despues repara e palabra nan robes.");
   const [corrections, setCorrections] = useState(
     {
-      sure: ["sures", "her"],  
-      war: ["born", "car"],  
+      korikshon : ["korekshon", "Korekshon", "korupshon"],
+      // rechts : ["Recht", "rechten", "rechaso"],
+      // repara : ["repará", "ripara", "Separá"]
     }
   );
   const [editMode, setEditMode] = useState(true);

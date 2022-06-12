@@ -10,11 +10,12 @@ import TranslationForm from "../components/TranslationForm";
 import Corrections from '../components/Corrections';
 
 function Translate() {
-  const [currentText, setCurrentText] = useState("a test sentence sure is a war");
+  const [currentText, setCurrentText] = useState("Skibi algu akinan pa wak e korikshon na man rechts i despues repara e palabra nan robes.");
   const [corrections, setCorrections] = useState(
     {
-      sure: ["sures", "her"],  
-      war: ["born", "car"],  
+      korikshon : ["korekshon", "Korekshon", "korupshon"],
+      rechts : ["Recht", "rechten", "rechaso"],
+      repara : ["repará", "ripara", "Separá"]
     }
   );
   const [editMode, setEditMode] = useState(true);
@@ -79,11 +80,12 @@ export default Translate;
 
 /*
 Optimize word search
--Add accent dictionary to make search variant which ignores accents
+-Add accent dictionary to make search variant which ignores accents [x]
 -Properly take into account different styles of apostrophes
 Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
-Scrape nws for more data
+Scrape nws for more data [x]
+Add clicking of somewhere in correction box to return to edit box
 Add clicking of correction to replace or ignore
 Add fix all errors button
 Add box for people to evaluate and add corrections
@@ -100,6 +102,8 @@ Deal with periods and commas and other punctuation in pattern matching
 -Deal with HTML tags that get parsed
 -Fix bug where if n is matched, then n' will be matched too [x] 
 -Fix bug where if n is matched, then 'n will be matched too 
+For nbo:
+-Properly capture beginning of sentences to eliminate superfluous capital letters
 Add separate css files per page
 Make a navigation bar height more dynamic
 */
