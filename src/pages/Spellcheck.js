@@ -64,8 +64,8 @@ function Spellcheck() {
     <div>
       <h1 className="luna-description luna-description__title">Luna: Papiamentu Spell Checker (Alpha)</h1>
       <h3 className="luna-description luna-description__explanation"> This is a Papiamentu spellchecker which will provide corrections to your sentences.
-         You can use this to check your spelling if you are not completely certain of your spelling. Esaki ta un programa di spèlchèk pa papiamentu.
-          Bo por us'é pa koregi i chèk kon bo a spèl bo palabranan.</h3>
+         You can use this to check your spelling if you are not completely certain of it. Esaki ta un programa di spèlchèk pa papiamentu.
+          Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan.</h3>
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
@@ -83,7 +83,8 @@ export default Spellcheck;
 
 /*
 Optimize word search
--Add accent dictionary to make search variant which ignores accents
+-Add accent dictionary to make search variant which ignores accents [x]
+-Add common mistakes (nj->ñ)
 -Properly take into account different styles of apostrophes
 Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu

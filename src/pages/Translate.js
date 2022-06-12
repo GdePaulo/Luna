@@ -63,7 +63,7 @@ function Translate() {
   return (
     <div>
       <h3 className="luna-translate">Luna: Translate (Coming Soon)</h3>
-      <div className="tform">
+      {/* <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
           : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId}/>
@@ -72,7 +72,7 @@ function Translate() {
         
       </div>
       <Button onClick={handleCorrectClick} className="tform__btn tform__btn--correct">Correct</Button>
-      <Button onClick={handleEditClick} className="tform__btn tform__btn--edit">Edit</Button>
+      <Button onClick={handleEditClick} className="tform__btn tform__btn--edit">Edit</Button> */}
     </div>
   );
 }
