@@ -82,28 +82,9 @@ export default Translate;
 Optimize word search
 -Add accent dictionary to make search variant which ignores accents [x]
 -Properly take into account different styles of apostrophes
-Add highlighting of misspelled words [x]
-Combine dictionaries of curacaon papiamentu
-Scrape nws for more data [x]
-Add clicking of somewhere in correction box to return to edit box
-Add clicking of correction to replace or ignore
-Add fix all errors button
-Add box for people to evaluate and add corrections
-Add color coding of corrections according to closeness
-Filter bee to only word and no signs
-Make order of words match [x]
-After having more sophisticated checks, check for sentences too
-Add scrollbar for corrections box [x]
-Add automatic scrolling to active correction in box [xthis]
-Deal with periods and commas and other punctuation in pattern matching
--Deal with abbreviations and acronyms and initials (check for all caps or. Between)
--Add separate check for numbers
--Deal with place names (check for capitalized first letter?)
--Deal with HTML tags that get parsed
--Fix bug where if n is matched, then n' will be matched too [x] 
--Fix bug where if n is matched, then 'n will be matched too 
-For nbo:
--Properly capture beginning of sentences to eliminate superfluous capital letters
-Add separate css files per page
-Make a navigation bar height more dynamic
+
+Begin with iterative approach, making sure sentence by sentence is correct properly
+begin with just be data. And no sentences
+Combine rule-based and automatic translations to use domain knowledge to extract more value from
+limited data set.Rules can deal with common patterns (di e -> dje, e)
 */

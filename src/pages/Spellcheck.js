@@ -62,7 +62,10 @@ function Spellcheck() {
   }
   return (
     <div>
-      <h3 className="luna-translate">Luna: Spell Checker (Alpha)</h3>
+      <h1 className="luna-description luna-description__title">Luna: Papiamentu Spell Checker (Alpha)</h1>
+      <h3 className="luna-description luna-description__explanation"> This is a Papiamentu spellchecker which will provide corrections to your sentences.
+         You can use this to check your spelling if you are not completely certain of your spelling. Esaki ta un programa di spelchèk pa papiamentu.
+          Bo por us'é pa koregi i chèk kon bo a spèl bo palabranan.</h3>
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
@@ -84,7 +87,8 @@ Optimize word search
 -Properly take into account different styles of apostrophes
 Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
-Scrape nws for more data
+Scrape nws for more data [x]
+-nbo deal with words in the beginning of sentences to remove superfluous capitalizations
 Add clicking of correction to replace or ignore
 Add fix all errors button
 Add box for people to evaluate and add corrections
@@ -104,4 +108,6 @@ Deal with periods and commas and other punctuation in pattern matching
 -Possibly have to take into account words within single quotations
 Add separate css files per page
 Make a navigation bar height more dynamic
+Add functionality to take into account frequency to suggest disproportionately high-frequency words
+Help The Government?
 */

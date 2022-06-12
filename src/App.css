@@ -199,12 +199,27 @@
   /* background-color: #F99F38; */
 }
 
-.luna-translate {
+.luna-description {
   margin-left: 50px;
+}
+
+.luna-description__title {
+  margin-top: 50px;
+}
+.luna-description__explanation {
+  margin-top: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {font-family: 'Roboto', sans-serif;}
+
+h1 {
   font-size: 27px;
-  font-weight: 350;
-  font-family: 'Roboto', sans-serif;
-  
+  font-weight: 750;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 550;
 }
 
 .tform {
