@@ -15,3 +15,5 @@ function Home() {
   );
 }
 export default Home;
+
+// Have Header content and footer structure for all pages

@@ -14,7 +14,7 @@ class Translate:
             self.trie.populate(spellchecker_corpus)
 
     @staticmethod
-    def distanceToWord(hide, seek, case=True):
+    def distanceToWord(hide, seek, case=True, apostrophe=False):
 
         # Deal with nan string
         hide = str(hide)
@@ -23,7 +23,11 @@ class Translate:
         if not case:
             hide = hide.lower()
             seek = seek.lower()
-
+        
+        if not apostrophe:
+            hide = hide.replace("’", "'")
+            seek = seek.replace("’", "'")
+        
         max_search = len(seek)
         distance = abs(len(hide)-len(seek))
         if len(seek) > len(hide):
@@ -165,6 +169,8 @@ class Translate:
             translation = translation.replace(k, v)
         return translation
   
+    # Maybe favour words for which full substrings match instead of only individual letters. Especially matching initial strings. Can still use individual letters as heuristic
+    # Also favour words which are the same without capital and without accent
     @staticmethod
     def translateWords(sentence, words_corpus):
         raw_translation = ""
@@ -208,6 +214,8 @@ class Translate:
             exists = self.trie.find(word)
             if not exists:
                 words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple", case=False)
+                # Deal with found word being identical with different case
+                print(word, words_corpus.head(3)["pap-simple"].to_list())
                 if words_corpus["closest"].iloc[0] > 0:
                     print(word, words_corpus.head(3)["closest"].to_list())
                     translations[word] = words_corpus.head(3)["pap-simple"].to_list()

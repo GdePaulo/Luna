@@ -8,7 +8,7 @@ import Corrections from '../components/Corrections';
 
 function Spellcheck() {
   const [previousText, setPreviousText] = useState(""); 
-  const [currentText, setCurrentText] = useState("Skibi algu akinan i primi \"koregi\" pa wak e korikshon na man rechts i despues repara e palabra nan robes.");
+  const [currentText, setCurrentText] = useState("Skibi algu akinan i primi \"koregi\" pa wak e korikshon na man reks i despues repara e palabra nan robes.");
   const [corrections, setCorrections] = useState(
     {
       korikshon : ["korekshon", "Korekshon", "korupshon"],
@@ -64,7 +64,7 @@ function Spellcheck() {
     <div>
       <h1 className="luna-description luna-description__title">Luna: Papiamentu Spell Checker (Alpha)</h1>
       <h3 className="luna-description luna-description__explanation"> This is a Papiamentu spellchecker which will provide corrections to your sentences.
-         You can use this to check your spelling if you are not completely certain of your spelling. Esaki ta un programa di spelchèk pa papiamentu.
+         You can use this to check your spelling if you are not completely certain of your spelling. Esaki ta un programa di spèlchèk pa papiamentu.
           Bo por us'é pa koregi i chèk kon bo a spèl bo palabranan.</h3>
       <div className="tform">
         {editMode
