@@ -1,13 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-
-import Grid from "../components/Grid";
-import Button from "../components/Button";
-import Editor from "../components/Editor";
-import Highlighted from "../components/Highlighted";
-import CorrectionPopup from "../components/CorrectionPopup";
-import TranslationForm from "../components/TranslationForm";
-import Corrections from '../components/Corrections';
+import Title from "../components/Title";
 
 function Translate() {
   const [currentText, setCurrentText] = useState("Skibi algu akinan pa wak e korikshon na man rechts i despues repara e palabra nan robes.");
@@ -62,7 +55,7 @@ function Translate() {
   }
   return (
     <div>
-      <h3 className="luna-translate">Luna: Translate (Coming Soon)</h3>
+      <Title title="Luna: Translate (Coming Soon)"/>
       {/* <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>

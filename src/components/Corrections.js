@@ -12,6 +12,9 @@ function Correction(props) {
   
   return (
     <div className="tform__corrections">
+      {Object.keys(props.corrections).length == 0
+        ? <h3 className="luna-description"> Everything seems to be correct!</h3>
+        : null}
       <ol className="tform__items">
                 {
                   Object.keys(props.corrections).map((key, index) => ( 

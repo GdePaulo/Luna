@@ -1,14 +1,16 @@
 import React from 'react';
 import rabbit from "../images/rabbit.png"
-
+import Title from "../components/Title";
 import Grid from "../components/Grid"
 
 function Cool() {
   return (
     <div>
-      <h3>Cool</h3>
+      <Title title="Cool">
+        Dijkstra's algorithm implemented with JavaScript
+      </Title>
       
-    <Grid numberOfCells={12} />
+      <Grid numberOfCells={12} />
     </div>
   );
 }

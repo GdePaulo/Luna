@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
+import Title from "../components/Title";
 import Button from "../components/Button";
 import Editor from "../components/Editor";
 import Highlighted from "../components/Highlighted";
@@ -62,10 +63,12 @@ function Spellcheck() {
   }
   return (
     <div>
-      <h1 className="luna-description luna-description__title">Luna: Papiamentu Spell Checker (Alpha)</h1>
-      <h3 className="luna-description luna-description__explanation"> This is a Papiamentu spellchecker which will provide corrections to your sentences.
+      
+      <Title title="Luna: Papiamentu Spell Checker (Alpha)">
+        This is a Papiamentu spellchecker which will provide corrections to your sentences.
          You can use this to check your spelling if you are not completely certain of it. Esaki ta un programa di spèlchèk pa papiamentu.
-          Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan.</h3>
+          Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan.
+      </Title>
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
@@ -90,6 +93,7 @@ Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
 Scrape nws for more data [x]
 -nbo deal with words in the beginning of sentences to remove superfluous capitalizations
+-nbo deal with kas, cas CAS
 Add clicking of correction to replace or ignore
 Add fix all errors button
 Add box for people to evaluate and add corrections
@@ -111,4 +115,6 @@ Add separate css files per page
 Make a navigation bar height more dynamic
 Add functionality to take into account frequency to suggest disproportionately high-frequency words
 Help The Government?
+
+
 */
