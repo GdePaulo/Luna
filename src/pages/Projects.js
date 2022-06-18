@@ -4,10 +4,11 @@ import Title from "../components/Title";
 
 function Projects() {
   return (
-    <div className="bkg--projects">
+    // <div className="bkg--projects">
+    <div>
       <div className="landing">
         <Title title="Projects">
-          Projects which I have done
+        This page contains a list of projects which I have done. These range from personal hobby projects to more professional projects.
         </Title>
 
       </div>

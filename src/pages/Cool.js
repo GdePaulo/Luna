@@ -9,8 +9,11 @@ function Cool() {
       <Title title="Cool">
         Dijkstra's algorithm implemented with JavaScript
       </Title>
-      
-      <Grid numberOfCells={12} />
+      <div className="luna-body">
+        <p>This page contains a host of items which I thought would be fun to implement but which might not necessarily be directly useful.
+          Below you can find an implementation of the classic Dijkstra's pathfinding algorithm using JavaScript.</p>
+        <Grid numberOfCells={12} />
+      </div>
     </div>
   );
 }

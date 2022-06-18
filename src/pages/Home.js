@@ -6,7 +6,12 @@ function Home() {
   return (
     <div className="main">
       <Title title="Luna Home">
-        Luna Papiamentu spellchecker can be found by clicking this <Link to="/spellcheck">link.</Link>
+      This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
+It will be continuously updated and one of the functionalities which I'm working on is a Papiamentu-Dutch Translator.
+While I have built a prototype, I currently do not have enough data to further develop it to the appropriate standard.
+In the meantime, I have built and made available a Papiamentu Spellchecker. 
+        <br/><br/>
+        The Luna Papiamentu spellchecker can be found by clicking this <Link to="/spellcheck">link.</Link>
       </Title>
       <div>
 
