@@ -89,6 +89,7 @@ Optimize word search
 -Add accent dictionary to make search variant which ignores accents [x]
 -Add common mistakes (nj->ñ)
 -Properly take into account different styles of apostrophes
+-https://en.wikipedia.org/wiki/Longest_common_substring_problem
 Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
 Scrape nws for more data [x]

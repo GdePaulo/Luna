@@ -1,20 +1,22 @@
 import imp
 from os import stat
+from turtle import distance
 from deep_translator import GoogleTranslator
 import unicodedata
 import difflib
 import re
+import nltk
 class Translate:
     def __init__(self, spellchecker_corpus=[]):
         self.translator_nl_en = GoogleTranslator(source='nl', target='en')
         self.translator_en_nl = GoogleTranslator(source='en', target='nl')
-
+        self.spellchecker_corpus = spellchecker_corpus
         if len(spellchecker_corpus) > 0:
             self.trie = Trie()
             self.trie.populate(spellchecker_corpus)
 
     @staticmethod
-    def distanceToWord(hide, seek, case=True, apostrophe=False):
+    def distanceToWord(hide, seek, case=True, apostrophe=False, metric="Levenstein"):
 
         # Deal with nan string
         hide = str(hide)
@@ -28,15 +30,18 @@ class Translate:
             hide = hide.replace("’", "'")
             seek = seek.replace("’", "'")
         
-        max_search = len(seek)
-        distance = abs(len(hide)-len(seek))
-        if len(seek) > len(hide):
-            max_search = len(hide)
-        
-        for i in range(0, max_search):
-            if hide[i] != seek[i]:
-                distance += 1
-        return distance
+        if metric == "Levenstein":
+            return nltk.edit_distance(hide, seek)
+        else:
+            max_search = len(seek)
+            distance = abs(len(hide)-len(seek))
+            if len(seek) > len(hide):
+                max_search = len(hide)
+            
+            for i in range(0, max_search):
+                if hide[i] != seek[i]:
+                    distance += 1
+            return distance
 
     @staticmethod
     def remove_accents(input_str):
@@ -87,15 +92,35 @@ class Translate:
 
     # Attempt smarter matching which takes into account consecutive matches and whether it is beginning or ending
     @staticmethod
-    def attachClosest(df, word, lan, case=True):
+    def attachClosest(df, word, lan, case=True, metric="Levenstein"):
         d = df.copy()
 
         d["closest"] = d.apply(lambda row: min( 
-            (Translate.distanceToWord(Translate.remove_accents(row[lan]), word, case) + 0.001),
-            Translate.distanceToWord(row[lan], word, case)
+            (Translate.distanceToWord(Translate.remove_accents(row[lan]), word, case, metric=metric) + 0.001),
+            Translate.distanceToWord(row[lan], word, case, metric=metric)
         ), axis=1)
         d.sort_values(by="closest", inplace= True)
         return d
+
+    @staticmethod
+    def getClosest(corpus_words, word, case=False, metric="Levenstein"):
+        matches = []
+        cut_off = len(word)-1
+        close_matches = 0
+        for check in corpus_words:
+            with_accent = Translate.distanceToWord(check, word, case, metric=metric)
+            # distance = min(without_accent, with_accent)
+            distance = with_accent
+            if distance < cut_off:
+                matches.append([check, distance])
+                if distance == 1:
+                    close_matches += 1
+                if close_matches > 3:
+                    break
+            
+
+        matches.sort(key= lambda x: x[1])
+        return matches
 
     @staticmethod
     def attachType(df, lan):
@@ -185,7 +210,7 @@ class Translate:
         return raw_translation
     
     @staticmethod
-    def getWordCorrections(sentence, words_corpus):
+    def getSlowWordCorrections(sentence, words_corpus):
         translations = {}   
 
         for word in sentence.split():
@@ -206,14 +231,14 @@ class Translate:
                     translations[word] = [accented_match]
         return translations
         
-    def getMixedWordCorrections(self, words, words_corpus):
+    def getMixedWordCorrections(self, words, words_corpus, metric="Levenstein"):
         translations = {}   
         for word in words:
             # Make sure to ignore case if you're making word lowercase
-            lowered_word = word.lower()
+            # lowered_word = word.lower()
             exists = self.trie.find(word)
             if not exists:
-                words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple", case=False)
+                words_corpus = Translate.attachClosest(words_corpus, word, "pap-simple", case=False, metric=metric)
                 # Deal with found word being identical with different case
                 print(word, words_corpus.head(3)["pap-simple"].to_list())
                 if words_corpus["closest"].iloc[0] > 0:
@@ -221,6 +246,21 @@ class Translate:
                     translations[word] = words_corpus.head(3)["pap-simple"].to_list()
                 
         return translations
+    def getWordCorrections(self, words, metric="Levenstein"):
+        translations = {}   
+        for word in words:
+            # Make sure to ignore case if you're making word lowercase
+            exists = self.trie.find(word)
+            if not exists:
+                all_matches = self.getClosest(self.spellchecker_corpus, word, case=False, metric=metric)
+                matches = all_matches[:3]
+                print(word, matches)
+                if matches and matches[0][1] > 0:
+                    # print(word, words_corpus.head(3)["closest"].to_list())
+                    translations[word] = list(map(lambda x: x[0], matches))
+                
+        return translations
+
     def correctSentence(self, sentence):
         nl_en = self.translator_nl_en.translate(sentence)
         en_nl = self.translator_en_nl.translate(nl_en)
