@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import Editor from "../components/Editor";
 import Highlighted from "../components/Highlighted";
 import Corrections from '../components/Corrections';
+import Spinner from '../components/Spinner';
 
 function Spellcheck() {
   const [previousText, setPreviousText] = useState(""); 
@@ -19,9 +20,10 @@ function Spellcheck() {
   );
   const [editMode, setEditMode] = useState(true);
   const [activeCorrectionId, setActiveCorrectionId] = useState(0);
-  var wordCountAtLastCheck = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getCorrections = () => {
+    setIsLoading(true)
     let url = "/api/spellcheck"
     axios({
       method: "post",
@@ -34,8 +36,11 @@ function Spellcheck() {
     }).then(res => { 
       console.log("Response:", res.data); 
       setCorrections(res.data); 
-    })
-      .catch(error => console.log(error));
+      setIsLoading(false);
+    }).catch(error => {
+      console.log(error);
+      setIsLoading(false);
+    });
   }
 
   const handleTextChange = (event) => {
@@ -49,10 +54,7 @@ function Spellcheck() {
     var matches = [];
     matches = currentText.match(regex);
   
-    // if (wordCountAtLastCheck.current !== matches.length) {
     if (previousText !== currentText) {
-      // console.log("Setting current text..", matches.length, wordCountAtLastCheck.current);
-      // wordCountAtLastCheck.current = matches.length;
       setPreviousText(currentText);
       getCorrections();
     }
@@ -66,19 +68,23 @@ function Spellcheck() {
       
       <Title title="Luna: Papiamentu Spell Checker (Alpha)">
         This is a Papiamentu spellchecker which will provide corrections to your sentences.
-         You can use this to check your spelling if you are not completely certain of it. Esaki ta un programa di spèlchèk pa papiamentu.
-          Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan.
+         You can use this to check your spelling if you are not completely certain of it. Additionally, you can also use it as an accent checker. 
+         Esaki ta un programa di spèlchèk pa papiamentu.
+          Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan. Bo por us'é tambe pa chèk aksènt.
       </Title>
       <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
-          : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId}/>
+          : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId} onBackgroundClick={() => setEditMode(true)}/>
         }
         <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId}/>
         
       </div>
-      <Button onClick={handleCorrectClick} className="tform__btn tform__btn--correct">Correct</Button>
-      <Button onClick={handleEditClick} className="tform__btn tform__btn--edit">Edit</Button>
+      <div className="tform__control">
+        <Button onClick={handleCorrectClick} className="tform__btn tform__btn--correct" disabled={isLoading}>Correct</Button>
+        <Button onClick={handleEditClick} className="tform__btn tform__btn--edit">Edit</Button>
+        <Spinner isHidden={!isLoading}/>
+      </div>
     </div>
   );
 }
@@ -89,13 +95,17 @@ Optimize word search
 -Add accent dictionary to make search variant which ignores accents [x]
 -Add common mistakes (nj->ñ)
 -Properly take into account different styles of apostrophes [x]
--https://en.wikipedia.org/wiki/Longest_common_substring_problem
+-Make it faster
+--https://en.wikipedia.org/wiki/Longest_common_substring_problem
+--https://www.quora.com/Do-you-know-any-word-matching-algorithm
+--my own trie
 -Penalize accents less in cost function
 Add highlighting of misspelled words [x]
 Combine dictionaries of curacaon papiamentu
 Scrape nws for more data [x]
 -nbo deal with words in the beginning of sentences to remove superfluous capitalizations
 -nbo deal with kas, cas CAS
+Scrape more nws for more data
 Add clicking of correction to replace or ignore
 Add fix all errors button
 Add box for people to evaluate and add corrections

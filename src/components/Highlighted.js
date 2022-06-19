@@ -18,9 +18,7 @@ function Highlighted(props) {
 
   const getHighlightedText = () => {
     let finalText = props.currentText;
-    // for(var key in props.corrections) {
-    //   finalText = highlightText(finalText, key);
-    // }
+    
     Object.keys(props.corrections).forEach((key, index) => {
       finalText = highlightText(finalText, key, index);
     });
@@ -28,12 +26,12 @@ function Highlighted(props) {
   }
 
   const handleClick = (event) => {
-    props.onWordClick(event.target.id);
+    (event.target.id == "highlighted") ? props.onBackgroundClick() : props.onWordClick(event.target.id);
     console.log("click", event.target.id);
   }
 
   return (
-    <div className="tform__input tform__input--highlighted" onClick={handleClick} dangerouslySetInnerHTML={{
+    <div id="highlighted" className="tform__input tform__input--highlighted" onClick={handleClick} dangerouslySetInnerHTML={{
             __html: getHighlightedText()
             }} />
   );
