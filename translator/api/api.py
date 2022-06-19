@@ -6,6 +6,8 @@ import sys, os
 sys.path.append(os.path.abspath('../code'))
 
 from translate import Translate
+from spellcheck import Spellcheck
+from util import Util
 import pandas as pd
 
 app = Flask(__name__)
@@ -16,9 +18,9 @@ hny_pap_nl = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False)
 nbo_pap = pd.read_csv("../data/nbo/pap.csv", na_filter=False)
 d = hny_pap_nl
 d = nbo_pap
-d = Translate.attachType(d, "pap-simple")
+d = Util.attachType(d, "pap-simple")
 d_words =  d[d["type"]=="word"]
-trans = Translate(spellchecker_corpus=d_words["pap-simple"].values)
+spell = Spellcheck(spellchecker_corpus=d_words["pap-simple"].values)
 
 @app.route('/api/time')
 def get_current_time():
@@ -26,16 +28,10 @@ def get_current_time():
 
 @app.route('/api/spellcheck', methods=['POST'])
 def parse_request():
-    data = request.data.decode("UTF-8")
-
-    ffa = pd.read_csv(f"../data/ffa/pap.csv")
-    
-    # corrections = Translate.getWordCorrections(data, d_words)
-    # corrections = trans.getFastWordCorrections(data, check_alternatives=True)
-    data_words = Translate.findWords(data)
+    data = request.data.decode("UTF-8")    
+    data_words = Util.findWords(data)
     print(data_words)
-    corrections = trans.getMixedWordCorrections(data_words, d_words)
-
+    corrections = spell.getWordCorrections(data_words)
     print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 
