@@ -87,9 +87,21 @@
   /* border: 1px solid #017e7f:lang; */
 }
 
+@keyframes topnav-logo-spin {
+  from {
+    transform: rotate(0deg);
+    color: black;
+  }
+
+  to {
+    transform: rotate(30deg);
+    color:blue;
+  }
+}
+
 .topnav__logo-img:hover {
   /* color: white;
   background: white; */
-  animation: App-logo-spin 1 0.5s ease-out; 
+  animation: topnav-logo-spin 1 0.5s ease-out; 
   animation-fill-mode:forwards;
 }

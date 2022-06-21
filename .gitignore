@@ -26,6 +26,10 @@ yarn-error.log*
 
 /ai/logs
 
+# translate
+
+/translator/data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
