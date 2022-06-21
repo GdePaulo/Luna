@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import styles from "../css/tform.module.css";
 import axios from 'axios';
 
 import Title from "../components/Title";
@@ -72,7 +73,7 @@ function Spellcheck() {
          Esaki ta un programa di spèlchèk pa papiamentu.
           Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan. Bo por us'é tambe pa chèk aksènt.
       </Title>
-      <div className="tform">
+      <div className={styles.tform}>
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
           : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId} onBackgroundClick={() => setEditMode(true)}/>
@@ -80,9 +81,9 @@ function Spellcheck() {
         <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId}/>
         
       </div>
-      <div className="tform__control">
-        <Button onClick={handleCorrectClick} className="tform__btn tform__btn--correct" disabled={isLoading}>Correct</Button>
-        <Button onClick={handleEditClick} className="tform__btn tform__btn--edit">Edit</Button>
+      <div className={styles.tform__control}>
+        <Button onClick={handleCorrectClick} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
+        <Button onClick={handleEditClick} className={`${styles.tform__btn} ${styles["tform__btn--edit"]}`} >Edit</Button>
         <Spinner isHidden={!isLoading}/>
       </div>
     </div>
@@ -126,6 +127,7 @@ Deal with periods and commas and other punctuation in pattern matching
 Add separate css files per page
 Make a navigation bar height more dynamic
 Add functionality to take into account frequency to suggest disproportionately high-frequency words
+Make page more mobile friendly
 Help The Government?
 
 

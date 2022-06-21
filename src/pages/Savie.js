@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import styles from "../css/savie.module.css";
 import axios from 'axios';
 
 function Savie() {
@@ -19,11 +19,11 @@ function Savie() {
     };
 
   return (
-    <div className="bkg">
-      <div className="svi-container">
-        <h3 className="svi-text">HAPPY BIRTHDAY SAVIE!</h3>
+    <div className={styles.bkg}>
+      <div className={styles["svi-container"]}>
+        <h3 className={styles["svi-text"]}>HAPPY BIRTHDAY SAVIE!</h3>
         {/* <img src={rabbit} alt={"rabbit"}/> */}
-        <button className="svi-button" type="submit" onClick={playSong}> <b> {playing ? "Play" : "Stop"} </b> </button>
+        <button className={styles["svi-button"]} type="submit" onClick={playSong}> <b> {playing ? "Play" : "Stop"} </b> </button>
       </div>
     </div>
   );

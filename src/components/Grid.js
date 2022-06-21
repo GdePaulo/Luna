@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import styles from "../css/grid.module.css";
 import GridCell from './GridCell';
 function Grid(props) {
 
@@ -13,7 +13,7 @@ function Grid(props) {
     const cells = [...Array(props.numberOfCells).keys()].map(x => {
         let neighbors = getNeighbors(x);
         let weights = neighbors.map(x => x);
-        return <GridCell id={x} neighbors={neighbors} weights={weights} className={route.includes(x) ? "grid-cell visited" : "grid-cell"} />
+        return <GridCell id={x} neighbors={neighbors} weights={weights} className={styles["grid-cell"] + " " + (route.includes(x) ? styles.visited : "")} />
     });
 
     const Dijkstra = (source) => {
@@ -56,7 +56,7 @@ function Grid(props) {
         getRoute(9, p);
     }, []) // <-- empty dependency array
     return (
-        <div className="container">
+        <div className={styles.grid}>
       {cells}
       {cells[0].props.id}
       {/* {Dijkstra(0)} */}

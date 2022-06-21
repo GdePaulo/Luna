@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+
+// import CSSModules from "reactive-css-module"
+import styles from "../css/spinner.module.css";
+
 function Spinner(props) {
     
-  const spinnerContainerClasses = props.isHidden ? "spinner__container hidden" : "spinner__container"
-  const spinnerClasses = props.isHidden ? "spinner__loader hidden" : "spinner__loader"
+  const spinnerClasses = props.isHidden ? `${styles.spinner} ${styles.hidden}` : styles.spinner
+  const spinnerLoaderClasses = props.isHidden ? `${styles.spinner__loader} ${styles.hidden}` : styles.spinner__loader
   return (
-    <div className={spinnerContainerClasses}>
-      <div className={spinnerClasses}>
+    <div className={spinnerClasses}>
+      <div className={spinnerLoaderClasses}>
       </div>
     </div>
   );

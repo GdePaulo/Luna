@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styles from "../css/tform.module.css";
 
 function Highlighted(props) {
     
@@ -31,7 +32,7 @@ function Highlighted(props) {
   }
 
   return (
-    <div id="highlighted" className="tform__input tform__input--highlighted" onClick={handleClick} dangerouslySetInnerHTML={{
+    <div id="highlighted" className={`${styles.tform__input} ${styles["tform__input--highlighted"]}`} onClick={handleClick} dangerouslySetInnerHTML={{
             __html: getHighlightedText()
             }} />
   );

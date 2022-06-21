@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import styles from "../css/tform.module.css";
 import { act } from 'react-dom/test-utils';
 // import parser from "react-html-parser";
 
@@ -11,22 +12,23 @@ function Correction(props) {
   }, [props.activeCorrectionId]);
   
   return (
-    <div className="tform__corrections">
+    <div className={styles.tform__corrections}>
       {Object.keys(props.corrections).length == 0
-        ? <h3 className="luna-description"> Everything seems to be correct!</h3>
+        ? <h3 className={styles["tform_correct-msg"]}> Everything seems to be correct!</h3>
         : null}
-      <ol className="tform__items">
+      <ol className={styles.tform__items}>
                 {
                   Object.keys(props.corrections).map((key, index) => ( 
                         
-                        <li className="tform__item" ref={props.activeCorrectionId==index ? activeItem : null}>
+                        <li className={styles.tform__item} ref={props.activeCorrectionId==index ? activeItem : null}>
                         
-                        <span className={props.activeCorrectionId==index ?
-                          "tform__corrected-word tform__corrected-word--active tform__corrected-word--source" :
-                          "tform__corrected-word tform__corrected-word--source"
+                        <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--source"]}` + " "
+                          + (props.activeCorrectionId==index ?
+                          styles["tform__corrected-word--active"] :
+                          "")
                           }>{key}</span>
                         {props.corrections[key].map(corr =>
-                          <span className="tform__corrected-word tform__corrected-word--correction">{corr}</span>
+                          <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--correction"]}`}>{corr}</span>
                           )}
                         </li>
                     ))

@@ -1,0 +1,95 @@
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #FFFFFF;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.06) 2px 10px 10px;
+}
+
+.topnav__items {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 2em;
+  align-items: center;
+  
+  margin: 0;
+  padding:0;
+  list-style:none;
+}
+
+.topnav__item{
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 17px;
+  /* border: 1px solid #017e7f; */
+}
+
+
+/* Change the color of links on hover */
+.topnav__link:hover {
+  /* background-color: rgba(221, 221, 221, 0.317); */
+  color: rgb(0, 155, 211);
+  /* color: black;:lang */
+}
+
+/* Add a color to the active/current link */
+.topnav__link.active {
+  background-color: #42A5F5;
+  /* background-color: #42A5F5; */
+  /* background-color: #04AA6D; */
+  color: white;
+}
+.topnav__link {
+  display:flex;
+  flex-direction: row;
+
+  /* background-color: #dbdbdb43; */
+  color: rgb(71, 71, 71);
+  padding: 25px 0px 25px 0px;
+  text-decoration: none;
+  /* border: 1px solid red;:lang */
+
+  transition: 0.3s;
+}
+
+.topnav__text {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+
+  padding: 0px 10px 0px 10px;
+}
+
+.topnav__item--logo {
+  /* border: 1px solid #017e7f;:lang */
+}
+
+.topnav__link--logo {
+  padding: 0;
+  padding: 12px 0px 12px 0px;
+}
+
+.topnav__text--logo {
+  display: inline-flex;
+  align-items: center;
+  /* border: 1px solid #017e7f; */
+  /* height:50px;:lang */
+
+  font-size: 30px;
+  font-weight: 570;
+
+}
+
+.topnav__logo-img {
+  width:50px;
+  height:50px;
+  fill: white;
+  /* border: 1px solid #017e7f:lang; */
+}
+
+.topnav__logo-img:hover {
+  /* color: white;
+  background: white; */
+  animation: App-logo-spin 1 0.5s ease-out; 
+  animation-fill-mode:forwards;
+}

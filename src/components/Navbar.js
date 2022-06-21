@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import styles from "../css/navbar.module.css";
 import moon from "../images/moon.svg"
 // import {ReactComponent as moon} from "../images/moon.svg"
 function Navbar() {
@@ -15,20 +16,16 @@ function Navbar() {
     ];
     const [activeId, setActiveId] = useState(0);
     return (
-        <div className="topnav">
-            <ul className="topnav__items">
+        <div className={styles.topnav}>
+            <ul className={styles.topnav__items}>
                 {
                     navigationElements.map((x, index) => (
-                        <li className= {"topnav__item" + (index===3 ? " topnav__item--logo" : "")}>
+                        <li className= {styles.topnav__item + " " + (index===3 ? styles["topnav__item--logo"] : "")}>
                         <Link to={x.to} onClick={() => setActiveId(index)} 
-                            className= {"topnav__link" + (index===3 ? " topnav__link--logo" : "") + (activeId===index ? " active" : "")}>
-                            <span className={"topnav__text" + (index===3 ? " topnav__text--logo" : "")}>{x.text}</span>
+                            className= {styles.topnav__link + " " + (index===3 ? styles["topnav__link--logo"] : "") + " " + (activeId===index ? styles.active : "")}>
+                            <span className={styles.topnav__text + " " + (index===3 ? styles["topnav__text--logo"] : "")}>{x.text}</span>
                             {index===3 ? (
-                                // <moon />
-                                // <svg xlmns={moon} alt={"logo"} fill="gray" className= "topnav__logo-img"/>
-                                <img src={moon} alt={"logo"} className= "topnav__logo-img"/>
-                                // <span>whatever</span>
-                                // null
+                                <img src={moon} alt={"logo"} className= {styles["topnav__logo-img"]}/>
                             ) : null}
                         </Link>
                         </li>
