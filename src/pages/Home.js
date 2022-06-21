@@ -1,19 +1,33 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import s from "../css/home.module.css";
-
-
 import Title from "../components/Title";
+
+import moon from "../images/moon.svg"
 
 function Home() {
   return (
     <div className="main">
-      <Title title="Luna Home">
+      {/* <Title title="Luna Home">
         This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
         It will be continuously updated. 
         <br /><br />
         The Luna Papiamentu spellchecker can be found by clicking this <Link to="/spellcheck">link.</Link>
-      </Title>
+      </Title> */}
+      <div className={s.hero}>
+        <div className={s.hero__text}>
+          <h1 className={s.hero__title}>
+            Luna Software
+          </h1>
+          <h3 className={s.hero__description}>
+          This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
+          It will be continuously updated. 
+          </h3>
+        </div>
+        <div className={s.hero__logo}>
+          <img src={moon} alt={"logo"} className={s.hero__logoIcon}/>
+        </div>
+      </div>
       <div className={s.feed__container}>
         <div className={s.feed}>
           <div className={s.feed__item}>
