@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 import s from "../css/home.module.css";
 import Title from "../components/Title";
 import Button from "../components/Button";
+import Feed from "../components/Feed";
 
 import moon from "../images/moon.svg"
 import down from "../images/down.png"
 
 function Home() {
-  const feed = useRef();
 
+  // Have to use create ref instead of useRef for forwarding
+  const feed = React.createRef();
   const handleGoToFeedClick = (event) => {
     feed.current.scrollIntoView({ behavior: "smooth" });
   }
+
   return (
     <div className="main">
       {/* <Title title="Luna Home">
@@ -36,20 +39,7 @@ function Home() {
           <img src={moon} alt={"logo"} className={s.hero__logoIcon}/>
         </div>
       </div>
-      <div className={s.feed__container}>
-        <div className={s.feed} ref={feed}>
-          <div className={s.feed__item}>
-            <div className={s.feed__itemHeader}><h2>Luna Spellcheck</h2></div>
-            <div className={s.feed__itemBody}>One of the functionalities which I'm currently working on is a Papiamentu-Dutch Translator.
-        While I have built a prototype, I currently do not have enough data to further develop it to the appropriate standard.
-        In the meantime, I have built and made available a Papiamentu Spellchecker.</div>
-          </div>
-          <div className={s.feed__item}>
-            <div className={s.feed__itemHeader}><h2>Luna Translate</h2></div>
-            <div className={s.feed__itemBody}> Once obtaining enough data, this will be made.</div>
-          </div>
-        </div>
-      </div>
+      <Feed ref={feed}/>
     </div>
   );
 }
