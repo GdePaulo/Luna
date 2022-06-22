@@ -4,8 +4,8 @@ import s from "../css/home.module.css";
 import Title from "../components/Title";
 import Button from "../components/Button";
 import Feed from "../components/Feed";
+import Hero from "../components/Hero";
 
-import moon from "../images/moon.svg"
 import down from "../images/down.png"
 
 function Home() {
@@ -24,21 +24,12 @@ function Home() {
         <br /><br />
         The Luna Papiamentu spellchecker can be found by clicking this <Link to="/spellcheck">link.</Link>
       </Title> */}
-      <div className={s.hero}>
-        <div className={s.hero__text}>
-          <h1 className={s.hero__title}>
-            Luna Software
-          </h1>
-          <h3 className={s.hero__description}>
-          This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
-          It will be continuously updated. 
-          </h3>
-          <button className={s.hero__downBtn} onClick={handleGoToFeedClick}>Go to feed <img src={down} alt={"down"} className={s.hero__downIcon}/></button>
-        </div>
-        <div className={s.hero__logo}>
-          <img src={moon} alt={"logo"} className={s.hero__logoIcon}/>
-        </div>
-      </div>
+      <Hero handleGoToFeedClick={handleGoToFeedClick}
+        title="Luna Software"
+        description="This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
+        It will be continuously updated."
+        command="Go to feed"
+      />
       <Feed ref={feed}/>
     </div>
   );

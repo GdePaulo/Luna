@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef, forwardRef } from 'react';
 import s from "../css/feed.module.css";
 import down from "../images/down.png"
-const Feed = React.forwardRef((props, ref) => {
+
+function Feed(props, ref) {
   
   const feedElements = [
     {
@@ -16,13 +17,11 @@ const Feed = React.forwardRef((props, ref) => {
       page: 1,
     },{
       title: "Luna Cool",
-      text: `One of the functionalities which I'm currently working on is a Papiamentu-Dutch Translator.
-      While I have built a prototype, I currently do not have enough data to further develop it to the appropriate standard.
-      In the meantime, I have built and made available a Papiamentu Spellchecker.`,
+      text: `Made a simple implementation of Dijkstra's pathfinding algorithm in javascript.`,
       page: 2,
     },{
       title: "Luna AI",
-      text: `Once obtaining enough data, this will be made.`,
+      text: `Expirementations with PyTorch machine learning models, HuggingFace pretrained models, transfer learning and web inference with TorchServe.`,
       page: 2,
     }
   ];
@@ -37,6 +36,7 @@ const Feed = React.forwardRef((props, ref) => {
     let newPage = (currentPage - 1 < 1 ? 1 : currentPage - 1)
     setCurrentPage(newPage)
   }
+
   return (
     <div className={s.feed__container}>
       <div className={s.feed} ref={ref}>
@@ -63,7 +63,6 @@ const Feed = React.forwardRef((props, ref) => {
         </div>
       </div>
     </div>
-  )
-});
-// export default forwardRef(Feed);
-export default Feed;
+  );
+}
+export default forwardRef(Feed);
