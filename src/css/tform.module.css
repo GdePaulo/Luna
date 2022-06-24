@@ -33,7 +33,9 @@ https://sparkbox.com/foundry/bem_by_example
 .tform__corrections {
   flex: 0 1 48%;
   /* flex: 0 1 25em; */
-  /* width: 500px; */
+  /* width: 250px; */
+  /* height: 500px; */
+  /* overflow-x: scroll; */
   /* border:1px solid #FFaaaa; */
 }
 
@@ -130,13 +132,15 @@ https://sparkbox.com/foundry/bem_by_example
   /* border:1px solid #FFaaaa; */
   padding: 0;
   margin: 0;
+  /* overflow: auto; */
   /* align-items: center; */
 }
 
 .tform__item {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  /* overflow: auto; */
   /* margin: -10px; */
 }
 

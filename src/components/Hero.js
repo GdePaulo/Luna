@@ -23,3 +23,5 @@ function Hero(props) {
   );
 }
 export default Hero;
+
+// Add animation to hero logo with it becomes night time on hover

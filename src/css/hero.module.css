@@ -91,8 +91,8 @@
 
 .hero__logoIcon {
   /* flex: 0 0 0; */
-  width: 300px;
-  height: 300px;
+  width: 50%;
+  height: 50%;
   border-radius: 50%;
   /* box-shadow: rgba(0, 0, 0, 0.03) 2px 10px 10px;   */
   /* border:2px solid #42a4f583;  */

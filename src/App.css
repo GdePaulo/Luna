@@ -1,21 +1,25 @@
+html {
+  font-size: calc(0.6em + 0.8vw);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
   margin: 0;
 }
 
 h1 {
-  font-size: 27px;
+  font-size: 2em;
   font-weight: 750;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 1.7em;
   font-weight: 550;
   /* border:2px solid red;  */
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 1em;
   font-weight: 550;
 }
 .bkg--projects {
@@ -24,8 +28,7 @@ h3 {
   background-repeat: repeat;
   background-size: 20vh  20vh;
   height: 100vh;
-  /* background-size: 256px  256px; */
-  /* background-color: #F99F38; */
+  
 }
 
 .luna-body {

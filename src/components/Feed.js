@@ -9,7 +9,7 @@ function Feed(props, ref) {
       title: "Luna Spellcheck",
       text: `One of the functionalities which I'm currently working on is a Papiamentu-Dutch Translator.
       While I have built a prototype, I currently do not have enough data to further develop it to the appropriate standard.
-      In the meantime, I have built and made available a Papiamentu Spellchecker.`,
+      In the meantime, I have built and made available a Papiamentu Spellchecker which can be found.`,
       page: 1,
     },{
       title: "Luna Translate",
