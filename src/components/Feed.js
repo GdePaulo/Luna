@@ -9,7 +9,7 @@ function Feed(props, ref) {
       title: "Luna Spellcheck",
       text: `One of the functionalities which I'm currently working on is a Papiamentu-Dutch Translator.
       While I have built a prototype, I currently do not have enough data to further develop it to the appropriate standard.
-      In the meantime, I have built and made available a Papiamentu Spellchecker which can be found.`,
+      In the meantime, I have built and made available a Papiamentu Spellchecker which can be found <a href='/spellcheck'>here</a>.`,
       page: 1,
     },{
       title: "Luna Translate",
@@ -55,8 +55,8 @@ function Feed(props, ref) {
             feedElements.map(x => (
               (x.page == currentPage || isRefreshingPage 
               ? <li className={s.feed__item + " " + (x.page == currentPage ? s.scrollIn : s.scrollOut)}>
-                <div className={s.feed__itemHeader}><h2>{x.title}</h2></div>
-                <div className={s.feed__itemBody}>{x.text}</div>
+                <div className={s.feed__itemHeader}><h2 dangerouslySetInnerHTML={{__html: x.title}}></h2></div>
+                <div className={s.feed__itemBody} dangerouslySetInnerHTML={{__html: x.text}}></div>
               </li>
               : null
               )
