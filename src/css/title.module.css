@@ -5,7 +5,9 @@
 
 .luna-description__title {
   margin-top: 50px;
+  font-size: 1.5em;
 }
 .luna-description__explanation {
   margin-top: 15px;
+  font-size: 1em;
 }

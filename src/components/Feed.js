@@ -27,14 +27,24 @@ function Feed(props, ref) {
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [isRefreshingPage, setIsRefreshingPage] = useState(false);
 
   const handleNextBtnClick = (event) => {
-    let newPage = (currentPage + 1 > 2 ? 2 : currentPage + 1)
-    setCurrentPage(newPage)
+    let newPage = (currentPage + 1 > 2 ? 2 : currentPage + 1);
+    goToPage(newPage);
   }
   const handlePrevBtnClick = (event) => {
-    let newPage = (currentPage - 1 < 1 ? 1 : currentPage - 1)
-    setCurrentPage(newPage)
+    let newPage = (currentPage - 1 < 1 ? 1 : currentPage - 1);
+    goToPage(newPage);
+  }
+
+  const goToPage = (page) => {
+    setCurrentPage(page);
+    setIsRefreshingPage(true);
+
+    setTimeout(() => {
+      setIsRefreshingPage(false);
+    }, 300);
   }
 
   return (
@@ -43,10 +53,13 @@ function Feed(props, ref) {
         <ol className={s.feed__items}>
           {
             feedElements.map(x => (
-              <div className={s.feed__item + " " + (x.page == currentPage ? s.scrollIn : s.scrollOut)}>
+              (x.page == currentPage || isRefreshingPage 
+              ? <li className={s.feed__item + " " + (x.page == currentPage ? s.scrollIn : s.scrollOut)}>
                 <div className={s.feed__itemHeader}><h2>{x.title}</h2></div>
                 <div className={s.feed__itemBody}>{x.text}</div>
-              </div>
+              </li>
+              : null
+              )
             ))
           }
         </ol>
