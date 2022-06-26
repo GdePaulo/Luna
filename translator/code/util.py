@@ -1,4 +1,5 @@
 
+
 import unicodedata
 import nltk
 import re
@@ -40,6 +41,12 @@ class Util:
         nfkd_form = unicodedata.normalize('NFKD', str(input_str))
         return u"".join([c for c in nfkd_form if not unicodedata.combining(c)])
     
+    @staticmethod
+    def removeSentenceCapitalization(input_str):
+        matcher = r'([\.\?!]\s*[\"]*\s*)([\w]+)(\s*)'
+        words = re.sub(matcher, lambda m: m.group(1) + m.group(2).lower() + m.group(3), input_str) 
+        return words
+
     @staticmethod
     def remove_tags(input_str, tags=["[", "(", "{", "<"]):
         matcher = "].*?["
