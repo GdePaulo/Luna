@@ -68,6 +68,15 @@ function Spellcheck() {
   const handleEditClick = (event) => {
     setEditMode(true)
   }
+
+  const handleCorrectionClick = (corr) => {
+    var regex = new RegExp("\\b(" + corr[0] + ")(?!\\w|\\'|\\’|-)", "gi");
+    
+    const correctedText = currentText.replace(regex, function replace(match) { 
+      return corr[1]; 
+    });
+    setCurrentText(correctedText);
+  }
   return (
     <div>
       
@@ -82,7 +91,7 @@ function Spellcheck() {
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
           : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId} onBackgroundClick={() => setEditMode(true)}/>
         }
-        <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId}/>
+        <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId} onCorrectionClick={handleCorrectionClick}/>
         
       </div>
       <div className={styles.tform__control}>

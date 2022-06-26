@@ -201,6 +201,11 @@ https://sparkbox.com/foundry/bem_by_example
   background-color: #3e6ac865;
 }
 
+.tform__corrected-word--correction:hover {
+  background-color: #27427c65;
+  cursor: pointer;
+}
+
 .tform__corrected-word--active {
   background-color: #3ec87565;
 }

@@ -28,7 +28,7 @@ function Correction(props) {
                           "")
                           }>{key}</span>
                         {props.corrections[key].map(corr =>
-                          <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--correction"]}`}>{corr}</span>
+                          <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--correction"]}`} onClick={() => props.onCorrectionClick([key, corr])}>{corr}</span>
                           )}
                         </li>
                     ))
