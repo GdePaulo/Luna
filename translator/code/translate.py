@@ -1,6 +1,4 @@
-import imp
 from os import stat
-from turtle import distance
 from deep_translator import GoogleTranslator
 from util import Util
 class Translate:

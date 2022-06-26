@@ -23,6 +23,10 @@ function Spellcheck() {
   const [activeCorrectionId, setActiveCorrectionId] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    document.title = "Luna Spellchecker"
+  }, []);
+
   const getCorrections = () => {
     setIsLoading(true)
     let url = "/api/spellcheck"

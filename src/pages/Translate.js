@@ -15,6 +15,10 @@ function Translate() {
   const [activeCorrectionId, setActiveCorrectionId] = useState(0);
   var wordCountAtLastCheck = useRef(null);
 
+  useEffect(() => {
+    document.title = "Luna Translate"
+  }, []);
+
   const getCorrections = () => {
     let url = "/api/translation"
     axios({

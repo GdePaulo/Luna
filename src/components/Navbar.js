@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "../css/navbar.module.css";
 import moon from "../images/moon.svg"
 // import {ReactComponent as moon} from "../images/moon.svg"
@@ -15,6 +15,8 @@ function Navbar() {
         {to:"/translate", text: "Translate"}
     ];
     const [activeId, setActiveId] = useState(0);
+    const location = useLocation();
+
     return (
         <div className={styles.topnav}>
             <ul className={styles.topnav__items}>
@@ -22,7 +24,8 @@ function Navbar() {
                     navigationElements.map((x, index) => (
                         <li className= {styles.topnav__item + " " + (index===3 ? styles["topnav__item--logo"] : "")}>
                         <Link to={x.to} onClick={() => setActiveId(index)} 
-                            className= {styles.topnav__link + " " + (index===3 ? styles["topnav__link--logo"] : "") + " " + (activeId===index ? styles.active : "")}>
+                            className= {styles.topnav__link + " " + (index===3 ? styles["topnav__link--logo"] : "") + " " 
+                            + (location.pathname===x.to && index !== 3  ? styles.active : "")}>
                             <span className={styles.topnav__text + " " + (index===3 ? styles["topnav__text--logo"] : "")}>{x.text}</span>
                             {index===3 ? (
                                 <img src={moon} alt={"logo"} className= {styles["topnav__logo-img"]}/>
