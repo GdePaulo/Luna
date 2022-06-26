@@ -12,7 +12,7 @@ app.config['JSON_SORT_KEYS'] = False
 
 # add filter to deal with not available number values
 hny_pap_nl = pd.read_csv("data/hny/pap-nl.csv", na_filter=False)
-nbo_pap = pd.read_csv("data/nbo/pap.csv", na_filter=False)
+nbo_pap = pd.read_csv("data/nbo/pap(cap).csv", na_filter=False)
 d = hny_pap_nl
 d = nbo_pap
 d = Util.attachType(d, "pap-simple")
@@ -27,9 +27,9 @@ def get_current_time():
 def parse_request():
     data = request.data.decode("UTF-8")    
     data_words = Util.findWords(data)
-    print(data_words)
+    # print(data_words)
     corrections = spell.getWordCorrections(data_words)
-    print(f"Correcting:{data}\nReturning:{corrections}")
+    # print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 
 

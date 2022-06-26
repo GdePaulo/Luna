@@ -7,7 +7,7 @@ function Correction(props) {
   const activeItem = useRef();
 
   useEffect(() => {
-    if (activeItem != null)
+    if (activeItem != null && activeItem.current != null)
       activeItem.current.scrollIntoView({ behavior: "smooth" });
   }, [props.activeCorrectionId]);
   

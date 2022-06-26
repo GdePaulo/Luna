@@ -27,7 +27,7 @@ function Highlighted(props) {
   }
 
   const handleClick = (event) => {
-    (event.target.id == "highlighted") ? props.onBackgroundClick() : props.onWordClick(event.target.id);
+    (event.target.id == "highlighted") ? props.onBackgroundClick() : props.onWordClick(parseInt(event.target.id));
     console.log("click", event.target.id);
   }
 

@@ -75,6 +75,10 @@ function Spellcheck() {
     const correctedText = currentText.replace(regex, function replace(match) { 
       return corr[1]; 
     });
+    if ((Object.keys(corrections).length - 1) === activeCorrectionId  && activeCorrectionId != 0) {
+      setActiveCorrectionId(activeCorrectionId - 1);
+    }
+    delete corrections[corr[0]];
     setCurrentText(correctedText);
   }
   return (
