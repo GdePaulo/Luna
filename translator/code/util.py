@@ -103,13 +103,22 @@ class Util:
     @staticmethod
     def getClosest(corpus_words, word, case=False, metric="Levenstein"):
         matches = []
+
+        if not case:
+            case_insensitive_matches = []
+
         cut_off = len(word)-1
         close_matches = 0
         for check in corpus_words:
             with_accent = Util.distanceToWord(check, word, case, metric=metric)
             distance = with_accent
-            if distance < cut_off:
+            # If case insensitive, prevent two versions of the same word appearing in results
+            if distance < cut_off and (case or check.lower() not in case_insensitive_matches):
                 matches.append([check, distance])
+
+                if not case:
+                    case_insensitive_matches.append(check.lower())
+
                 if distance == 1:
                     close_matches += 1
                 if close_matches > 3:

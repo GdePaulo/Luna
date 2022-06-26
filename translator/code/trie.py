@@ -35,11 +35,15 @@ class Trie:
             if i == len(word)-1:
                 current.lastNode = True
 
-    def find(self, word):
+    def find(self, word, case=False):
+
         current = self
         for i, l in enumerate(word):
-            if l in current.children:
-                current = current.children[l]
+            children = current.children
+            if not case:
+                l = l.lower()
+            if l in children:
+                current = children[l]
                 if i == len(word)-1:
                     return current.lastNode
             else:
@@ -76,6 +80,9 @@ class Trie:
                     return ""
             
     
-    def populate(self, words):
+    def populate(self, words, case=False):
         for word in words:
-            self.insert(word)
+            if case:
+                self.insert(word)
+            else:
+                self.insert(word.lower())
