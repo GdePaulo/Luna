@@ -35,6 +35,15 @@ def parse_request():
     print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 
+@app.route('/api/accentcheck', methods=['POST'])
+def parse_request_accent():
+    data = request.data.decode("UTF-8")    
+    data_words = Util.findWords(data)
+    print(data_words)
+    corrections = spell.getAccentCorrections(data_words)
+    print(f"Correcting:{data}\nReturning:{corrections}")
+    return jsonify(corrections)
+
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
 

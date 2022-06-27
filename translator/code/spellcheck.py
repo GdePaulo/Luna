@@ -1,3 +1,4 @@
+from tkinter import W
 from trie import Trie
 from util import Util
 
@@ -38,9 +39,9 @@ class Spellcheck:
             if not exists:
                 words_corpus = Util.attachClosest(words_corpus, word, "pap-simple", case=False, metric=metric)
                 # Deal with found word being identical with different case
-                print(word, words_corpus.head(3)["pap-simple"].to_list())
+                # print(word, words_corpus.head(3)["pap-simple"].to_list())
                 if words_corpus["closest"].iloc[0] > 0:
-                    print(word, words_corpus.head(3)["closest"].to_list())
+                    # print(word, words_corpus.head(3)["closest"].to_list())
                     translations[word] = words_corpus.head(3)["pap-simple"].to_list()
                 
         return translations
@@ -53,11 +54,26 @@ class Spellcheck:
             if not exists:
                 all_matches = Util.getClosest(self.spellchecker_corpus, word, case=False, metric=metric)
                 matches = all_matches[:3]
-                print(word, matches)
+                # print(word, matches)
                 if matches and matches[0][1] > 0:
                     # print(word, words_corpus.head(3)["closest"].to_list())
                     translations[word] = list(map(lambda x: x[0], matches))
                 elif not matches:
                     translations[word] = ["This word is incorrect"]
                 
+        return translations
+    
+    def getAccentCorrections(self, words):
+        translations = {}   
+        for word in words:
+            # Make sure to ignore case if you're making word lowercase
+            variants = self.trie.accentFind(word.lower())
+            if len(variants) == 1 and variants[0] == word.lower():
+                continue
+
+            if len(variants) > 0:
+                translations[word] = variants
+            else:
+                translations[word] = []
+    
         return translations

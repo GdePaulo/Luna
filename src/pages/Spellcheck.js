@@ -27,9 +27,14 @@ function Spellcheck() {
     document.title = "Luna Spellchecker"
   }, []);
 
-  const getCorrections = () => {
+  const getCorrections = (accents) => {
     setIsLoading(true)
-    let url = "/api/spellcheck"
+    let url;
+    if (accents) {
+      url = "/api/accentcheck";
+    } else {
+      url = "/api/spellcheck";
+    }
     axios({
       method: "post",
       url: url,
@@ -65,6 +70,20 @@ function Spellcheck() {
     }
     setEditMode(false)
   }
+  
+  const handleAccentClick = (event) => {
+    // deal with parentheses and periods
+    var regex = /\b(\w+)\b/g;
+    var matches = [];
+    matches = currentText.match(regex);
+  
+    if (previousText !== currentText) {
+      setPreviousText(currentText);
+      getCorrections(true);
+    }
+    setEditMode(false)
+  }
+
   const handleEditClick = (event) => {
     setEditMode(true)
   }
@@ -85,9 +104,9 @@ function Spellcheck() {
     <div>
       
       <Title title="Luna: Papiamentu Spell Checker (Alpha)">
-        This is a Papiamentu spellchecker which will provide corrections to your sentences.
+        This is an online Papiamentu spellchecker program which will provide corrections to your sentences.
          You can use this to check your spelling if you are not completely certain of it. Additionally, you can also use it as an accent checker. 
-         Esaki ta un programa di spèlchèk pa papiamentu.
+         Esaki ta un programa online di spèlchèk pa papiamentu.
           Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan. Bo por us'é tambe pa chèk aksènt.
       </Title>
       <div className={styles.tform}>
@@ -101,6 +120,7 @@ function Spellcheck() {
       <div className={styles.tform__control}>
         <Button onClick={handleCorrectClick} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
         <Button onClick={handleEditClick} className={`${styles.tform__btn} ${styles["tform__btn--edit"]}`} >Edit</Button>
+        <Button onClick={handleAccentClick} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Accent</Button>
         <Spinner isHidden={!isLoading}/>
       </div>
     </div>
