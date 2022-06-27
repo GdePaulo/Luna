@@ -14,7 +14,7 @@ function Correction(props) {
   return (
     <div className={styles.tform__corrections}>
       {Object.keys(props.corrections).length == 0
-        ? <h3 className={styles["tform_correct-msg"]}> Everything seems to be correct!</h3>
+        ? <h3 className={styles["tform_correct-msg"]}> Everything seems to be correct! (If you typed more text since the last check, make sure to press the button again to obtain new corrections)</h3>
         : null}
       <ol className={styles.tform__items}>
                 {
@@ -27,9 +27,11 @@ function Correction(props) {
                           styles["tform__corrected-word--active"] :
                           "")
                           }>{key}</span>
-                        {props.corrections[key].map(corr =>
-                          <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--correction"]}`} onClick={() => props.onCorrectionClick([key, corr])}>{corr}</span>
-                          )}
+                        {props.corrections[key].length == 0 
+                          ? <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--incorrect"]}`}>no matches found</span> 
+                          : props.corrections[key].map(corr =>
+                            <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--correction"]}`} onClick={() => props.onCorrectionClick([key, corr])}>{corr}</span>
+                        )}
                         </li>
                     ))
                 }

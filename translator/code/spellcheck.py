@@ -59,21 +59,21 @@ class Spellcheck:
                     # print(word, words_corpus.head(3)["closest"].to_list())
                     translations[word] = list(map(lambda x: x[0], matches))
                 elif not matches:
-                    translations[word] = ["This word is incorrect"]
+                    translations[word] = []
                 
         return translations
     
     def getAccentCorrections(self, words):
         translations = {}   
         for word in words:
-            # Make sure to ignore case if you're making word lowercase
-            variants = self.trie.accentFind(word.lower())
-            if len(variants) == 1 and variants[0] == word.lower():
-                continue
-
-            if len(variants) > 0:
-                translations[word] = variants
-            else:
-                translations[word] = []
-    
+            exists = self.trie.find(word.lower())
+            if not exists:
+                # Make sure to ignore case if you're making word lowercase
+                variants = self.trie.accentFind(word.lower())
+            
+                if len(variants) > 0:
+                    translations[word] = variants
+                else:
+                    translations[word] = []
+        
         return translations

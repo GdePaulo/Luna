@@ -58,7 +58,7 @@ function Spellcheck() {
     setCurrentText(text);
   }
 
-  const handleCorrectClick = (event) => {
+  const handleCorrectClick = (accent) => {
     // deal with parentheses and periods
     var regex = /\b(\w+)\b/g;
     var matches = [];
@@ -66,24 +66,11 @@ function Spellcheck() {
   
     if (previousText !== currentText) {
       setPreviousText(currentText);
-      getCorrections();
+      getCorrections(accent);
     }
     setEditMode(false)
   }
   
-  const handleAccentClick = (event) => {
-    // deal with parentheses and periods
-    var regex = /\b(\w+)\b/g;
-    var matches = [];
-    matches = currentText.match(regex);
-  
-    if (previousText !== currentText) {
-      setPreviousText(currentText);
-      getCorrections(true);
-    }
-    setEditMode(false)
-  }
-
   const handleEditClick = (event) => {
     setEditMode(true)
   }
@@ -118,9 +105,9 @@ function Spellcheck() {
         
       </div>
       <div className={styles.tform__control}>
-        <Button onClick={handleCorrectClick} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
+        <Button onClick={() => handleCorrectClick(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
         <Button onClick={handleEditClick} className={`${styles.tform__btn} ${styles["tform__btn--edit"]}`} >Edit</Button>
-        <Button onClick={handleAccentClick} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Accent</Button>
+        <Button onClick={() => handleCorrectClick(true)} className= {`${styles.tform__btn} ${styles["tform__btn--accent"]}`} disabled={isLoading}>Accent</Button>
         <Spinner isHidden={!isLoading}/>
       </div>
     </div>
