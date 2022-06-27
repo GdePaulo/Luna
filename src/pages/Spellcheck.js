@@ -115,8 +115,8 @@ function Spellcheck() {
       </div>
       <div className={styles.tform__control}>
         <Button onClick={() => handleCorrectClick(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
+        <Button onClick={() => handleCorrectClick(true)} className= {`${styles.tform__btn} ${styles["tform__btn--accent"]}`} disabled={isLoading}>Check accent</Button>
         <Button onClick={handleEditClick} className={`${styles.tform__btn} ${styles["tform__btn--edit"]}`} >Edit</Button>
-        <Button onClick={() => handleCorrectClick(true)} className= {`${styles.tform__btn} ${styles["tform__btn--accent"]}`} disabled={isLoading}>Accent</Button>
         <Spinner isHidden={!isLoading}/>
       </div>
     </div>
