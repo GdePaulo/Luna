@@ -84,8 +84,17 @@ function Spellcheck() {
     if ((Object.keys(corrections).length - 1) === activeCorrectionId  && activeCorrectionId != 0) {
       setActiveCorrectionId(activeCorrectionId - 1);
     }
-    delete corrections[corr[0]];
+    setCorrections(({ [corr[0]]: value, ...corrections }) => corrections);
     setCurrentText(correctedText);
+  }
+
+  const handleSourceClick = (word) => {
+    if ((Object.keys(corrections).length - 1) === activeCorrectionId  && activeCorrectionId != 0) {
+      setActiveCorrectionId(activeCorrectionId - 1);
+    }
+
+    // Delete keys like this to register state change
+    setCorrections(({ [word]: value, ...corrections }) => corrections);
   }
   return (
     <div>
@@ -101,7 +110,7 @@ function Spellcheck() {
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
           : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId} onBackgroundClick={() => setEditMode(true)}/>
         }
-        <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId} onCorrectionClick={handleCorrectionClick}/>
+        <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId} onCorrectionClick={handleCorrectionClick} onSourceClick={handleSourceClick}/>
         
       </div>
       <div className={styles.tform__control}>

@@ -26,7 +26,7 @@ function Correction(props) {
                           + (props.activeCorrectionId==index ?
                           styles["tform__corrected-word--active"] :
                           "")
-                          }>{key}</span>
+                          } onClick={() => props.onSourceClick(key)}>{key}</span>
                         {props.corrections[key].length == 0 
                           ? <span className={`${styles["tform__corrected-word"]} ${styles["tform__corrected-word--incorrect"]}`}>no matches found</span> 
                           : props.corrections[key].map(corr =>
