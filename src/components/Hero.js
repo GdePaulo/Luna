@@ -36,7 +36,7 @@ function Hero(props) {
       <div className={getConditionalclass(s.hero__logo, s.active, isLogoActive)} onMouseEnter={handleLogoMouseEnter} onMouseLeave={handleLogoMouseLeave}>
         <img src={moon} alt={"logo"} className={getConditionalclass(s.hero__logoIcon, s.active, isLogoActive)} />
         <div>
-          {[...Array(4).keys()].map(x => (
+          {[...Array(9).keys()].map(x => (
             <img src={star} alt={"logo"} className={getConditionalclass(s.hero__logoStar, s.active, isLogoActive)} />
           ))}
         </div>

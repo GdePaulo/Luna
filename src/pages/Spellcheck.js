@@ -98,7 +98,8 @@ function Spellcheck() {
         This is an online Papiamentu spellchecker program which will provide corrections to your sentences.
          You can use this to check your spelling if you are not completely certain of it. Additionally, you can also use it as an accent checker. 
          Esaki ta un programa online di spèlchèk pa papiamentu.
-          Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan. Bo por us'é tambe pa chèk aksènt.
+          Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan. Bo por us'é tambe pa chèk aksènt. 
+          <em>This only suggests corrections which are formal words for now.</em>
       </Title>
       <div className={styles.tform}>
         {editMode

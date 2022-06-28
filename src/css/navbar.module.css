@@ -92,7 +92,7 @@
   width: 4vw;
   height: 4vw;
   fill: white;
-  filter: blur(0.05em) drop-shadow(0.1em 0.1em .2em rgba(0, 0, 0,.5));
+  filter: blur(0.05em) drop-shadow(0.1em 0.1em .1em rgba(0, 0, 0,.5));
   /* border: 1px solid #017e7f */
 }
 
