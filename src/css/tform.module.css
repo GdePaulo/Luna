@@ -50,7 +50,8 @@ https://sparkbox.com/foundry/bem_by_example
 }
 
 .tform__btn {
-  align-self: flex-start;
+  /* align-self: flex-start; */
+  flex: 1 1 auto;
 
   background-color: rgba(0, 106, 226, 0.58);
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -61,13 +62,13 @@ https://sparkbox.com/foundry/bem_by_example
   /* padding: calc(.6rem - 1px) calc(1rem - 1px) calc(.6rem - 1px) calc(1rem - 1px); */
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-size: 0.9em;
   font-weight: 600;
   /* justify-content: center; */
-  line-height: 1.25;
+  /* line-height: 1.25; */
   margin: 0;
   min-height: 3rem;
-  padding: calc(1.0em - 1px) calc(2.5em - 1px);
+  /* padding: calc(1.0em - 1px) calc(2.5em - 1px); */
   position: relative;
   text-decoration: none;
   transition: all 250ms;
@@ -75,7 +76,8 @@ https://sparkbox.com/foundry/bem_by_example
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: auto;
+  /* width: 33%; */
+  max-width: 8.5em;
 }
 
 .tform__btn:hover,
@@ -119,7 +121,8 @@ https://sparkbox.com/foundry/bem_by_example
 .tform__control {
   display: flex;
   column-gap: 1em;
-
+  /* width: 100vw; */
+  /* border: 1px solid red; */
   margin: 0px 50px 20px;
 }
 

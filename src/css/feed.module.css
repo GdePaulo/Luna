@@ -187,8 +187,8 @@
   background-color: rgba(0, 0, 0, 0);
   border: none;
   /* border: 1px solid red; */
-  height: 3.5vw;
-  width: 3.5vw;
+  height: 3.5em;
+  width: 3.5em;
   cursor: pointer;
 
   transition: all 0.2s linear;
@@ -196,8 +196,8 @@
 
 .feed__navBtn:hover {
   background-color: rgba(0, 0, 0, 0);
-  height: 4vw;
-  width: 4vw;
+  height: 3.8em;
+  width: 3.8em
 }
 
 .feed__navBtnImg--prev {
