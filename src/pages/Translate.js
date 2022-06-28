@@ -59,7 +59,11 @@ function Translate() {
   }
   return (
     <div>
-      <Title title="Luna: Translate (Coming Soon)"/>
+      <Title title="Luna: Translate (Coming Soon)">
+        This is a Papiamentu - Dutch translator which will be coming soon. It is currently under development pending additional data 
+        of Papiamentu - Dutch translation material. If you would like to contribute data of Papiamentu - Dutch or Dutch - Papiamentu
+        translations of words or sentences, please send a message to contact@lunasoftware.nl.
+      </Title>
       {/* <div className="tform">
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>

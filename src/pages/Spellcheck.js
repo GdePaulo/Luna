@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "../css/tform.module.css";
 import axios from 'axios';
 
@@ -58,12 +58,7 @@ function Spellcheck() {
     setCurrentText(text);
   }
 
-  const handleCorrectClick = (accent) => {
-    // deal with parentheses and periods
-    var regex = /\b(\w+)\b/g;
-    var matches = [];
-    matches = currentText.match(regex);
-  
+  const handleCorrectClick = (accent) => {    
     if (previousText !== currentText) {
       setPreviousText(currentText);
       getCorrections(accent);
@@ -81,7 +76,7 @@ function Spellcheck() {
     const correctedText = currentText.replace(regex, function replace(match) { 
       return corr[1]; 
     });
-    if ((Object.keys(corrections).length - 1) === activeCorrectionId  && activeCorrectionId != 0) {
+    if ((Object.keys(corrections).length - 1) === activeCorrectionId  && activeCorrectionId !== 0) {
       setActiveCorrectionId(activeCorrectionId - 1);
     }
     setCorrections(({ [corr[0]]: value, ...corrections }) => corrections);
@@ -89,7 +84,7 @@ function Spellcheck() {
   }
 
   const handleSourceClick = (word) => {
-    if ((Object.keys(corrections).length - 1) === activeCorrectionId  && activeCorrectionId != 0) {
+    if ((Object.keys(corrections).length - 1) === activeCorrectionId  && activeCorrectionId !== 0) {
       setActiveCorrectionId(activeCorrectionId - 1);
     }
 
