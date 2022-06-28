@@ -7,14 +7,13 @@ function Navbar() {
     const navigationElements = [
         {to:"/", text: "Home"},
         {to:"/about", text: "About"},
-        {to:"/projects", text: "Projects"},
+        // {to:"/projects", text: "Projects"},
         {to:"/", text: "Luna Software"},
-        {to:"/cool", text: "Cool"},
+        // {to:"/cool", text: "Cool"},
         {to:"/spellcheck", text: "Spellcheck"},
         // {to:"/ai", text: "AI"},
         {to:"/translate", text: "Translate"}
     ];
-    const [activeId, setActiveId] = useState(0);
     const location = useLocation();
 
     return (
@@ -22,12 +21,12 @@ function Navbar() {
             <ul className={styles.topnav__items}>
                 {
                     navigationElements.map((x, index) => (
-                        <li key={index} className= {styles.topnav__item + " " + (index===3 ? styles["topnav__item--logo"] : "")}>
-                        <Link to={x.to} onClick={() => setActiveId(index)} 
-                            className= {styles.topnav__link + " " + (index===3 ? styles["topnav__link--logo"] : "") + " " 
-                            + (location.pathname===x.to && index !== 3  ? styles.active : "")}>
-                            <span className={styles.topnav__text + " " + (index===3 ? styles["topnav__text--logo"] : "")}>{x.text}</span>
-                            {index===3 ? (
+                        <li key={index} className= {styles.topnav__item + " " + (x.text === "Luna Software" ? styles["topnav__item--logo"] : "")}>
+                        <Link to={x.to}  
+                            className= {styles.topnav__link + " " + (x.text === "Luna Software" ? styles["topnav__link--logo"] : "") + " " 
+                            + (location.pathname===x.to && x.text !== "Luna Software" ? styles.active : "")}>
+                            <span className={styles.topnav__text + " " + (x.text === "Luna Software" ? styles["topnav__text--logo"] : "")}>{x.text}</span>
+                            {x.text === "Luna Software" ? (
                                 <img src={moon} alt={"logo"} className= {styles["topnav__logo-img"]}/>
                             ) : null}
                         </Link>
