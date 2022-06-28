@@ -22,7 +22,7 @@ function Navbar() {
             <ul className={styles.topnav__items}>
                 {
                     navigationElements.map((x, index) => (
-                        <li className= {styles.topnav__item + " " + (index===3 ? styles["topnav__item--logo"] : "")}>
+                        <li key={index} className= {styles.topnav__item + " " + (index===3 ? styles["topnav__item--logo"] : "")}>
                         <Link to={x.to} onClick={() => setActiveId(index)} 
                             className= {styles.topnav__link + " " + (index===3 ? styles["topnav__link--logo"] : "") + " " 
                             + (location.pathname===x.to && index !== 3  ? styles.active : "")}>
