@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import styles from "../css/tform.module.css";
+import s from "../css/market.module.css";
 import axios from 'axios';
 
 import Title from "../components/Title";
 import Button from "../components/Button";
-import Editor from "../components/Editor";
-import Highlighted from "../components/Highlighted";
-import Corrections from '../components/Corrections';
 import Spinner from '../components/Spinner';
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+import moon from "../images/moon.svg"
+
 function Market() {
+  
+  const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+  
+  const products = [
+    {
+      title: "Luna Spellcheck",
+      text: `This is a terrible product.`,
+      img: moon,
+    },{
+      title: "Luna Translate",
+      text: `Once obtaining enough data, this will be made.`,
+      img: moon,
+    },{
+      title: "Luna Cool",
+      text: `Made a simple implementation ng algorithm in javascript.`,
+      img: moon,
+    },{
+      title: "Luna AI",
+      text: `Expirementations with PyTorch machine  b inference with TorchServe.`,
+      img: moon,
+    }
+  ];
+
+  const [isApproved, setIsApproved] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     document.title = "Luna Market"
@@ -65,6 +88,8 @@ function Market() {
     });
   };
   const onApprove = (data, actions) => {
+    console.log(data, actions);
+    setIsApproved(true);
     return actions.order.capture();
   };
 
@@ -74,14 +99,35 @@ function Market() {
       <Title title="Luna: Market">
         This is a market where you can buy absolutely nothing.
       </Title>
-      <div className={styles.tform}>
-        <Button onClick={() => getCorrections(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
+      {/*<div className={styles[""]}>
+        {<Button onClick={() => getCorrections(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>}
         whatever
+  </div>*/}
+      <div className={s.products__container}>
+        <ol className={s.products}>
+        {
+          products.map(x => (
+            <li className={s.products__item}>
+              <div className={s.products__itemTitle}> {x.title} </div>
+              <div className={s.products__itemImg}> 
+              {/* wat */}
+                <img src={x.img} className={s.products__itemImgIcon} /> 
+              </div>
+              <div className={s.products__itemDescription}> {x.text} </div>
+            </li>
+          ))
+        }
+        </ol>
       </div>
       <PayPalButton
       createOrder={(data, actions) => createOrder(data, actions)}
       onApprove={(data, actions) => onApprove(data, actions)}
-        />
+      />
+      {
+        isApproved
+        ? "Yay"
+        : "Nooo"
+      }
 
       
     </div>
