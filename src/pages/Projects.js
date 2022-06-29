@@ -15,7 +15,7 @@ function Projects() {
   const feedElements = [
     {
       title: "Arrow Finish",
-      description: `A half-year long online ultiplayer first-person shooter project created using Unity3D. All of the code was written in C#.`,
+      description: `A half-year long online multiplayer first-person shooter project created using Unity3D. All of the code was written in C#.`,
       demo: {
         static: arrowfinish,
       },

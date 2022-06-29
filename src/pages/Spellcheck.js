@@ -67,7 +67,7 @@ function Spellcheck() {
   }
   
   const handleEditClick = (event) => {
-    setEditMode(true)
+    setEditMode(!editMode);
   }
 
   const handleCorrectionClick = (corr) => {
@@ -112,7 +112,11 @@ function Spellcheck() {
       <div className={styles.tform__control}>
         <Button onClick={() => handleCorrectClick(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
         <Button onClick={() => handleCorrectClick(true)} className= {`${styles.tform__btn} ${styles["tform__btn--accent"]}`} disabled={isLoading}>Check accent</Button>
-        <Button onClick={handleEditClick} className={`${styles.tform__btn} ${styles["tform__btn--edit"]}`} >Edit</Button>
+        <Button onClick={handleEditClick} className={`${styles.tform__btn} ${styles["tform__btn--edit"]}`}>
+          {
+            editMode ? "view" : "edit"
+          }
+        </Button>
         <Spinner isHidden={!isLoading}/>
       </div>
     </div>
@@ -136,7 +140,9 @@ Scrape nws for more data [x]
 -nbo deal with words in the beginning of sentences to remove superfluous capitalizations
 -nbo deal with kas, cas CAS
 Scrape more nws for more data
-Add clicking of correction to replace or ignore
+Fix double correction if same mistake is present in alternating caps
+Fix correction not matching capitalization e.g. initial sentence words
+Add clicking of correction to replace or ignore [x]
 Add fix all errors button
 Add box for people to evaluate and add corrections
 Add color coding of corrections according to closeness
@@ -153,10 +159,10 @@ Deal with periods and commas and other punctuation in pattern matching
 -Fix bug where if n is matched, then n' will be matched too [x] 
 -Fix bug where if n is matched, then 'n will be matched too 
 -Possibly have to take into account words within single quotations
-Add separate css files per page
-Make a navigation bar height more dynamic
+Add separate css files per page [x]
+Make a navigation bar height more dynamic [x]
 Add functionality to take into account frequency to suggest disproportionately high-frequency words
-Make page more mobile friendly
+Make page more mobile friendly [x]
 Help The Government?
 
 
