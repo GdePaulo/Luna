@@ -10,6 +10,7 @@ import Ai from "./pages/Ai"
 import Savie from "./pages/Savie"
 import Translate from "./pages/Translate"
 import Spellcheck from "./pages/Spellcheck"
+import Market from "./pages/Market"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/savie' element={<Savie/>} />
         <Route path='/translate' element={<Translate/>} />
         <Route path='/spellcheck' element={<Spellcheck/>} />
+        <Route path='/market' element={<Market/>} />
       </Routes>
     </Router>
   );
