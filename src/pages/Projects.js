@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import gitlogo from "../images/GitHub-Mark-64px.png";
+import luna from "../images/luna-text.png";
+import lunatext from "../images/luna-top-logo.png";
+import lunatextbig from "../images/luna-top-logo-text.png";
+import jukebox from "../images/jukebox.jpg";
 import arrowfinish from "../images/arrowfinish.png";
 import spellcheck from "../images/spellchecker.png";
 import cityscope from "../images/cityScope-demo.gif";
 import cityscopestatic from "../images/cityScope-static.png";
 import smartcampus from "../images/smartCampus-demo.gif";
-import smartcampusstatic from "../images/smartCampus-static.png";
+import smartcampusstatic from "../images/smart-campus-model.jpg";
+// import smartcampusstatic from "../images/smartCampus-static.png";
 import Title from "../components/Title";
 import Hero from "../components/Hero";
 import s from "../css/projects.module.css";
@@ -14,12 +19,27 @@ function Projects() {
 
   const feedElements = [
     {
+      title: "Luna Software",
+      description: `
+      A website for my personal company, Luna Software. It serves as a personal page to showcase my projects, experience, and software solutions.
+      The frontend is created using ReactJS, CSS and HTML and it is hosted using Google Firebase.
+      `,
+      demo: {
+        static: lunatextbig,
+      },
+      stretched: false
+    },
+    {
       title: "Arrow Finish",
-      description: `A half-year long online multiplayer first-person shooter project created using Unity3D. All of the code was written in C#.`,
+      description: `
+      A half-year long online multiplayer first-person shooter project created using Unity3D. All of the code was written in C#.
+      I was able to independently learn and develop my skills with 3D modelling, rigging, skinning, creating textures, animations
+      and, of course, writing code for the game logic. As a result, I greatly improved my skills with Unity3D, Photoshop, 3ds Max and C#
+      `,
       demo: {
         static: arrowfinish,
       },
-      reversed: false
+      stretched: true
     },
     {
       title: "CityScope",
@@ -28,7 +48,7 @@ function Projects() {
         static: cityscopestatic,
         dynamic: cityscope
       },
-      reversed: true
+      stretched: true
     },
     {
       title: "Smart Campus",
@@ -38,7 +58,7 @@ function Projects() {
         static: smartcampusstatic,
         dynamic: smartcampus
       },
-      reversed: false
+      stretched: true
     },
     {
       title: "Luna Spellchecker",
@@ -47,7 +67,7 @@ function Projects() {
       demo: {
         static: spellcheck,
       },
-      reversed: true
+      stretched: true
     }
   ];
 
@@ -82,8 +102,14 @@ function Projects() {
 
   const demoSection = (x, index) => {
     return (
-      <div className={s.project__demo} onMouseEnter={() => handleDemoMouseEnter(index)} onMouseLeave={() => handleDemoMouseLeave(index)}>
-        <img src={activeId === index && x.demo.hasOwnProperty("dynamic") ? x.demo.dynamic : x.demo.static} alt={"logo"} className={s.project__image} />
+      <div
+        className={s.project__demo} 
+        onMouseEnter={() => handleDemoMouseEnter(index)} 
+        onMouseLeave={() => handleDemoMouseLeave(index)}>
+        <img 
+          src={activeId === index && x.demo.hasOwnProperty("dynamic") ? x.demo.dynamic : x.demo.static}
+          alt={"logo"} 
+          className={x.stretched ? `${s.project__image} ${s["project__image-stretched"]}` : s.project__image} />
       </div>
     )
   }
@@ -108,8 +134,8 @@ function Projects() {
       {
         feedElements.map((x, index) => (
           <div key={index} className={s.project} ref={index === 0 ? project : null}>
-            {(x.reversed ? demoSection(x, index) : textSection(x))}
-            {(x.reversed ? textSection(x) : demoSection(x, index))}
+            {(index % 2 === 1 ? demoSection(x, index) : textSection(x))}
+            {(index % 2 === 1 ? textSection(x) : demoSection(x, index))}
           </div>
         ))
       }
