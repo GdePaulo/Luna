@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import gitlogo from "../images/GitHub-Mark-64px.png";
-import luna from "../images/luna-text.png";
-import lunatext from "../images/luna-top-logo.png";
 import lunatextbig from "../images/luna-top-logo-text.png";
 import jukebox from "../images/jukebox.jpg";
 import arrowfinish from "../images/arrowfinish.png";
@@ -40,8 +38,8 @@ function Projects() {
       stretched: true
     },
     {
-      title: "CityScope",
-      description: `An MIT open source project which I have helped set up for my team. This project had a Python backend and ReactJS front-end which uses DeckGL for visualization.`,
+      title: "ImpactLab: CityScope",
+      description: `An MIT open source urban-planning project which I have helped set up as part of a YES!Delft ImpactLab team. This project had a Python backend and ReactJS front-end which uses DeckGL for visualization.`,
       demo: {
         static: cityscopestatic,
         dynamic: cityscope
@@ -49,9 +47,9 @@ function Projects() {
       stretched: true
     },
     {
-      title: "Smart Campus",
+      title: "ImpactLab: Smart Campus",
       description: `Working with the Real Estate and Facilities team at Erasmus University Rotterdam as part of its smart campus project.
-      Responsible for building the pipeline for data assimilation, processing, analysis using Python and visualization using ReactJS.`,
+      Responsible for building the pipeline for raw data assimilation, processing and analysis using Python and visualization using ReactJS and the overall Cityscope framework.`,
       demo: {
         static: smartcampusstatic,
         dynamic: smartcampus
