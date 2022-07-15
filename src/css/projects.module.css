@@ -10,6 +10,11 @@
   /* background-color: rgba(101, 173, 255, 0.58); */
 }
 
+.project__gitLogo {
+  width:  2em;
+  height: 2em;
+}
+
 .project__text {
   display: flex;
   flex-direction: column;

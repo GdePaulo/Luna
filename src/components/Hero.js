@@ -29,7 +29,7 @@ function Hero(props) {
           {props.title}
         </h1>
         <h3 className={s.hero__description}>
-          {props.description}
+          {props.children}
         </h3>
         <button className={s.hero__downBtn} onClick={props.handleGoToFeedClick}>{props.command} <img src={down} alt={"down"} className={s.hero__downIcon} /></button>
       </div>

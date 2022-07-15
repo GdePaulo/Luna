@@ -26,10 +26,10 @@ function Home() {
       </Title> */}
       <Hero handleGoToFeedClick={handleGoToFeedClick}
         title="Luna Software"
-        description="This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
-        It will be continuously updated."
-        command="Go to feed"
-      />
+        command="Go to feed">
+          This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
+          It will be continuously updated.
+      </Hero>
       <Feed ref={feed}/>
     </div>
   );

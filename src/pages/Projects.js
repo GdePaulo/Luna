@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import rabbit from "../images/rabbit.png";
+import gitlogo from "../images/GitHub-Mark-64px.png";
 import arrowfinish from "../images/arrowfinish.png";
 import spellcheck from "../images/spellchecker.png";
 import cityscope from "../images/cityScope-demo.gif";
@@ -92,9 +92,14 @@ function Projects() {
     <div>
       <Hero handleGoToFeedClick={handleGoToFeedClick}
         title="Projects"
-        description="This page contains a list of projects which I have done. These range from personal hobby projects to more professional projects."
-        command="Go to projects"
-      />
+        command="Go to projects">
+          This page contains a list of projects which I have done. These range from personal hobby projects to more professional projects.
+          The GitHub page for Luna Software can be found below.
+          <br/> <br/> 
+          <a href='https://github.com/GdePaulo/Luna' target="_blank"> 
+            <img src={gitlogo} className={s.project__gitLogo}/>
+          </a>
+      </Hero>
       <div className="landing">
         {/* <Title title="Projects">
         This page contains a list of projects which I have done. These range from personal hobby projects to more professional projects.
