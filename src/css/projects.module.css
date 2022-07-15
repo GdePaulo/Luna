@@ -16,21 +16,30 @@
 }
 
 .project__text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
   width: 50%;
   color: white;
   background-color: #343d46;
+
   /* border:2px solid #42a4f583;  */
 }
 
+.project__textItemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+
+  padding: 2em 3em 0px;
+}
+
+.project__title {
+  text-align: left;
+}
+
 .project__description {
-  text-align: center;
-  margin: 30px 0px;
-  padding: 0px 30% 0px;
+  text-align: left;
+  padding: 1em 0 2em;
+  /* border:2px solid #42a4f583;  */
 }
 
 .project__demo {

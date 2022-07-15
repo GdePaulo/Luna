@@ -32,9 +32,7 @@ function Projects() {
     {
       title: "Arrow Finish",
       description: `
-      A half-year long online multiplayer first-person shooter project created using Unity3D. All of the code was written in C#.
-      I was able to independently learn and develop my skills with 3D modelling, rigging, skinning, creating textures, animations
-      and, of course, writing code for the game logic. As a result, I greatly improved my skills with Unity3D, Photoshop, 3ds Max and C#
+      A half-year long online multiplayer first-person shooter project created using Unity3D. All of the code was written in C#. The 3D modelling, rigging, skinning, and animations were done using 3ds Max. Finally, textures were created using Photoshop.
       `,
       demo: {
         static: arrowfinish,
@@ -62,10 +60,17 @@ function Projects() {
     },
     {
       title: "Luna Spellchecker",
-      description: `A spellchecker program built as there was no other one available for the language Papiamentu. It uses a ReactJS frontend, a backend written in Python using Flask,
-      and Google cloud to build, host and serve a serverless container containing the backend.`,
+      description: `A spellchecker program built as there was no other one available for the language Papiamentu. It uses a ReactJS frontend, a backend written in Python using Flask, and Google cloud to build, host and serve a serverless Docker container which contains the backend. The word corpus was created by using Selenium to automatically scrape news articles, while the word search recommendation uses a custom implementation of Tries, and generalized suffix trees.`,
       demo: {
         static: spellcheck,
+      },
+      stretched: true
+    },
+    {
+      title: "Luna Jukebox",
+      description: `A small jukebox which served as an experiment with embedded systems. It creates music by using an ESP32 microprocessor and Piezo Buzzer to play musical notes at different frequencies and can be controlled from a website frontend. The code is written in C++, musical notes are extracted from Midi files using Python and stored using Firebase. Finally, communication between the ESP32 chip and the frontend occurs via Wi-Fi.`,
+      demo: {
+        static: jukebox,
       },
       stretched: true
     }
@@ -90,12 +95,14 @@ function Projects() {
   const textSection = (x) => {
     return (
       <div className={s.project__text}>
-        <h1 className={s.project__title}>
-          {x.title}
-        </h1>
-        <h3 className={s.project__description}>
-          {x.description}
-        </h3>
+        <div className={s.project__textItemContainer}>
+          <h1 className={s.project__title}>
+            {x.title}
+          </h1>
+          <h3 className={s.project__description}>
+            {x.description}
+          </h3>
+        </div>
       </div>
     )
   }
