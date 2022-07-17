@@ -1,12 +1,16 @@
 from mailcap import findmatch
 from re import sub
 
-
 class GST:
-    def __init__(self, tag=None):
+    def __init__(self, tag=None, tree_type="suffix"):
+
+        if tree_type not in ["prefix", "suffix"]:
+            raise ValueError("Unsupported tree_type " + str(tree_type))        
+
         self.children = {}
         self.tag = []
         self.corpus = []
+        self.tree_type = tree_type
 
         # Careful with value of zero being interpreted as false
         if tag is not None:
@@ -140,12 +144,16 @@ class GST:
 
             current_word_matches = {}
             for i in range(0, len(word)):
-                suffix = word[i:]
-                matching_words = self.findMatch(suffix)
+                if self.tree_type == "suffix":
+                    sub = word[i:]
+                else:
+                    sub = word[:len(word) - i]
+
+                matching_words = self.findMatch(sub)
                 
                 for match in matching_words:
                     if match not in current_word_matches:
-                        current_word_matches[match] = len(suffix)
+                        current_word_matches[match] = len(sub)
 
                 if len(current_word_matches) >= amount_threshold:
                     break
@@ -154,6 +162,7 @@ class GST:
         return all_matches
 
     def populate(self, words, case=False):
+
         self.corpus = words
         for i, word in enumerate(words):
             if not case:
@@ -161,7 +170,13 @@ class GST:
 
             word_length = len(word)
             for j in range(word_length):
-                k = word_length - j - 1
+
+                if self.tree_type == "suffix":
+                    k = word_length - j - 1
+                    sub_to_insert = word[k:]
+                else:
+                    sub_to_insert = word[:j+1]
+
+                self.insert(sub_to_insert, i)
                 # print(f"inserting {word[k:]}")
-                self.insert(word[k:], i)
                 # print(f"new tree {self}")

@@ -33,7 +33,7 @@ class TestGST(unittest.TestCase):
         self.gst.populate(["anaad", "manad"])
         self.assertEqual(str(self.gst), f"(4 d:[0, 1] a:[] (3 ad:[0] d:[0, 1] na:[] (2 d:[1] ad:[0])) na:[] (2 d:[1] ad:[0]) manad:[1])")
     
-    def test_find_matches(self):
+    def test_find_matches_suffix(self):
         self.gst.populate(["better", "butler", "dog", "cat", "rabbit", "bailerina", "mug", "bar"])
         words = ["botter", "bonler", "dog", "ottar"]
         
@@ -44,6 +44,22 @@ class TestGST(unittest.TestCase):
             "bonler": [("butler", 3), ("better", 2), ("bar", 1)],
             "dog": [("dog", 3), ("mug", 1)],
             "ottar": [("bar", 2), ("better", 1), ("butler", 1)],
+        }
+
+        self.assertEqual(matches, correct)
+    
+    def test_find_matches_prefix(self):
+        self.gst = GST(tree_type="prefix")
+        self.gst.populate(["better", "butler", "dog", "bulldog", "cat", "rabbit", "beilerina", "rug", "bar"])
+        words = ["bettor", "butter", "dog", "rabbi"]
+        
+        matches = self.gst.findMatches(words)
+
+        correct = {
+            "bettor": [("better", 4), ("beilerina", 2), ("butler", 1)],
+            "butter": [("butler", 3), ("bulldog", 2), ("better", 1)],
+            "dog": [("dog", 3)],
+            "rabbi": [("rabbit", 5), ("rug", 1)],
         }
 
         self.assertEqual(matches, correct)
