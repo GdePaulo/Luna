@@ -85,47 +85,38 @@ class Spellcheck:
         
         return translations
     
-    def getPreSufCorrections(self, words):
-        words = {x for x in words if not self.trie.find(x.lower())}   
+    # Avoid searching for too big substrings
+    def getPreSufCorrections(self, words, amount_thresholds=3):
+        words = [x for x in words if not self.trie.find(x.lower())]        
         translations = {x:{} for x in words}
 
         suffix_matches = self.gst.findMatches(words)
-        
-        for word in suffix_matches:
-            print(f"word:{word}")
-            for i, row in enumerate(suffix_matches[word]):
-
-                matching_word, matching_suffix_size = row
-                print(row)
-                max_prefix_search = len(word) - matching_suffix_size
-
-                matching_prefix_size = 0
-                for k in reversed(range(1, max_prefix_search + 1)):
-                    
-                    print(f"checking {word[:k]}")
-                    if word[:k] == matching_word[:k]:
-                       matching_prefix_size = k
-                       break
-                print(f"Matching prefix size {matching_prefix_size}")
-                total_matching_size = matching_suffix_size + matching_prefix_size
-
-                current_matches = translations[word]
-                if current_matches.get(matching_word, 0) < total_matching_size:
-                    current_matches[matching_word] = total_matching_size
-                print(f"New translations {translations}")
-                
-                
-
         prefix_matches = self.gpt.findMatches(words)
-        # for word in words:
-        #     exists = self.trie.find(word.lower())
-        #     if not exists:
-        #         # Make sure to ignore case if you're making word lowercase
-        #         # variants = self.trie.accentFind(word.lower())
 
-        #         if len(variants) > 0:
-        #             translations[word] = variants
-        #         else:
-        #             translations[word] = []
-        
+        for i, matches in enumerate([suffix_matches, prefix_matches]):        
+            for word in matches:
+                # print(f"word:{word}")
+                for matching_word, matching_size in matches[word]:
+                    max_oppositefix_search = len(word) - matching_size
+                    # print(f"matching_word:{matching_word}|matching_size:{matching_size}|max_search:{max_oppositefix_search}")
+
+                    matching_oppositefix_size = 0
+                    for k in reversed(range(1, max_oppositefix_search + 1)):
+                        
+                        sub_word = word[:k] if i == 0 else word[-(k):]
+                        sub_matching_word = matching_word[:k] if i == 0 else matching_word[-(k):]
+                        # print(f"k:{k} checking {sub_word}")
+                        if sub_word == sub_matching_word:
+                            matching_oppositefix_size = k
+                            break
+                    # print(f"Matching prefix size {matching_oppositefix_size}")
+                    total_matching_size = matching_size + matching_oppositefix_size
+
+                    current_matches = translations[word]
+                    if current_matches.get(matching_word, 0) < total_matching_size:
+                        current_matches[matching_word] = total_matching_size
+                    # print(f"New translations {translations}")
+                
+        translations = {word:dict(sorted(matches.items(), key=lambda item: item[1], reverse=True)) for word, matches in translations.items()}
+        translations = {word:list(matches.items())[:amount_thresholds] for word, matches in translations.items()}
         return translations
