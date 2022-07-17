@@ -64,7 +64,7 @@ class GST:
                     if found:
                         # split the node into two and append the tag if the final letters are less than the found node
                         # in which case you are done
-                        if word_length - letters_found < len(found_key):
+                        if word_length - letters_found < len(found_key) and k == word_length:
                             new_node = GST(tag)
                         else:
                             new_node = GST()
