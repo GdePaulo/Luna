@@ -25,10 +25,10 @@ class TestSpellcheck(unittest.TestCase):
         self.spell = Spellcheck(spellchecker_corpus=corpus)
         words = ["Batter", "cot"]
 
-        matches = self.spell.getPreSufCorrections(words)
+        matches = self.spell.getPreSufCorrections(words, case=False)
 
         correct = {
-            "Batter": [("better", 5), ("bar", 3), ("bowl", 1)],
+            "Batter": [("better", 5), ("bar", 3)],
             "cot": [("Cat", 2), ("rabbit", 1)],
         }
 

@@ -125,6 +125,8 @@ class Spellcheck:
                 if not case:
                     word = word.lower()
 
+                # Depending on if this is a suffix or prefix match, increment the matching size
+                # with the maximum amount of possible matching letters if you start at the opposite of the string
                 # print(f"word:{word}")
                 for original_matching_word, matching_size in matches[original_word]:
                     matching_word = original_matching_word
@@ -152,6 +154,19 @@ class Spellcheck:
                     # print(f"New translations {translations}")
                 
         translations = {word:dict(sorted(matches.items(), key=lambda item: item[1], reverse=True)) for word, matches in translations.items()}
-        print(translations)
-        translations = {word:list(matches.items())[:amount_thresholds] for word, matches in translations.items()}
-        return translations
+
+        final_translations = {x:[] for x in words}
+        
+        # Filter duplicate matches and truncate to maximum match amount threshold
+        for word, matches in translations.items():
+            current_final_matches = final_translations[word]
+            for matching_word, matching_size in matches.items():
+                matching_keys = [x[0] for x in current_final_matches if x[0].lower() == matching_word.lower()]
+                
+                # print(f"Matching keys {matching_keys}, matching word {matching_word}, final matches {current_final_matches}")
+                if len(matching_keys) == 0:
+                    current_final_matches.append((matching_word, matching_size))
+                    if len(current_final_matches) >= amount_thresholds:
+                        break
+
+        return final_translations
