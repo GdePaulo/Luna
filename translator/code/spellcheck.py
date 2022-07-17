@@ -112,7 +112,7 @@ class Spellcheck:
     
     # Avoid searching for too big substrings
     # Favor words with matching sizes
-    def getPreSufCorrections(self, words, amount_thresholds=3, case=False):
+    def getPreSufCorrections(self, words, amount_thresholds=3, case=False, words_only=False):
         words = [x for x in words if not self.trie.find(x.lower())]        
         translations = {x:{} for x in words}
 
@@ -169,4 +169,7 @@ class Spellcheck:
                     if len(current_final_matches) >= amount_thresholds:
                         break
 
+        if words_only:
+            final_translations = {k: list(map(lambda x: x[0], matches)) for k,matches in final_translations.items()}
+            
         return final_translations
