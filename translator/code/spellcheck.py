@@ -112,12 +112,15 @@ class Spellcheck:
     
     # Avoid searching for too big substrings
     # Favor words with matching sizes
+    # Todo: bake in adjusted score into gst search algorithm to reduce threshold
     def getPreSufCorrections(self, words, amount_thresholds=3, case=False, words_only=False):
         words = [x for x in words if not self.trie.find(x.lower())]        
         translations = {x:{} for x in words}
 
-        suffix_matches = self.gst.findMatches(words)
-        prefix_matches = self.gpt.findMatches(words)
+        # Make sure the threshold is big enough to allow desired words appear and be filtered with adjusted_score
+        # e.g. to get reks -> rèks over konvikshon
+        suffix_matches = self.gst.findMatches(words, amount_threshold=35)
+        prefix_matches = self.gpt.findMatches(words, amount_threshold=35)
 
         for i, matches in enumerate([suffix_matches, prefix_matches]):        
             for original_word in matches:
@@ -148,10 +151,14 @@ class Spellcheck:
                     # print(f"Matching prefix size {matching_oppositefix_size}")
                     total_matching_size = matching_size + matching_oppositefix_size
 
+                    mismatch_penalty = abs(len(original_matching_word) - len(original_word))
+                    adjusted_score = total_matching_size - mismatch_penalty
+
                     current_matches = translations[original_word]
-                    if current_matches.get(original_matching_word, 0) < total_matching_size:
-                        current_matches[original_matching_word] = total_matching_size
-                    # print(f"New translations {translations}")
+                    if current_matches.get(original_matching_word, 0) < adjusted_score:
+                        current_matches[original_matching_word] = adjusted_score
+                # if word == "reks":
+                #     print(f"New translations {translations[original_word]}")
                 
         translations = {word:dict(sorted(matches.items(), key=lambda item: item[1], reverse=True)) for word, matches in translations.items()}
 
@@ -171,5 +178,5 @@ class Spellcheck:
 
         if words_only:
             final_translations = {k: list(map(lambda x: x[0], matches)) for k,matches in final_translations.items()}
-            
+
         return final_translations
