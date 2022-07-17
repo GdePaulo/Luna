@@ -2,20 +2,45 @@ from tkinter import W
 from trie import Trie
 from util import Util
 from gst import GST
+import pickle
 
 class Spellcheck:
-    def __init__(self, spellchecker_corpus=[]):
+    def __init__(self, spellchecker_corpus, load=False):
         self.spellchecker_corpus = spellchecker_corpus
-        if len(spellchecker_corpus) > 0:
-            self.trie = Trie()
-            self.trie.populate(spellchecker_corpus)
+        if len(spellchecker_corpus) == 0:
+            raise Exception("Empty corpus")
 
-            self.gst = GST(tree_type="suffix")
-            self.gst.populate(spellchecker_corpus)
+        if load:
+            self.loadTrees()    
+        else:
+            self.createTrees()
+   
+    def createTrees(self):
+        self.trie = Trie()
+        self.trie.populate(self.spellchecker_corpus)
 
-            self.gpt = GST(tree_type="prefix")
-            self.gpt.populate(spellchecker_corpus)
-    
+        self.gst = GST(tree_type="suffix")
+        self.gst.populate(self.spellchecker_corpus)
+
+        self.gpt = GST(tree_type="prefix")
+        self.gpt.populate(self.spellchecker_corpus)
+
+    def saveTrees(self):
+        with open('../data/pickles/pap-trie', 'wb') as f:
+            pickle.dump(self.trie, f)
+        with open('../data/pickles/pap-gst', 'wb') as f:
+            pickle.dump(self.gst, f)
+        with open('../data/pickles/pap-gpt', 'wb') as f:
+            pickle.dump(self.gpt, f)
+
+    def loadTrees(self):
+        with open('../data/pickles/pap-trie', 'rb') as f:
+            self.trie = pickle.load(f)
+        with open('../data/pickles/pap-gst', 'rb') as f:
+            self.gst = pickle.load(f)
+        with open('../data/pickles/pap-gpt', 'rb') as f:
+            self.gpt = pickle.load(f)
+
     def getSlowWordCorrections(self, sentence, words_corpus):
         translations = {}   
 
