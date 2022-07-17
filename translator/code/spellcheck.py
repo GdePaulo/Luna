@@ -1,6 +1,7 @@
 from tkinter import W
 from trie import Trie
 from util import Util
+from gst import GST
 
 class Spellcheck:
     def __init__(self, spellchecker_corpus=[]):
@@ -8,6 +9,12 @@ class Spellcheck:
         if len(spellchecker_corpus) > 0:
             self.trie = Trie()
             self.trie.populate(spellchecker_corpus)
+
+            self.gst = GST(tree_type="suffix")
+            self.gst.populate(spellchecker_corpus)
+
+            self.gpt = GST(tree_type="prefix")
+            self.gpt.populate(spellchecker_corpus)
     
     def getSlowWordCorrections(self, sentence, words_corpus):
         translations = {}   
@@ -75,5 +82,50 @@ class Spellcheck:
                     translations[word] = variants
                 else:
                     translations[word] = []
+        
+        return translations
+    
+    def getPreSufCorrections(self, words):
+        words = {x for x in words if not self.trie.find(x.lower())}   
+        translations = {x:{} for x in words}
+
+        suffix_matches = self.gst.findMatches(words)
+        
+        for word in suffix_matches:
+            print(f"word:{word}")
+            for i, row in enumerate(suffix_matches[word]):
+
+                matching_word, matching_suffix_size = row
+                print(row)
+                max_prefix_search = len(word) - matching_suffix_size
+
+                matching_prefix_size = 0
+                for k in reversed(range(1, max_prefix_search + 1)):
+                    
+                    print(f"checking {word[:k]}")
+                    if word[:k] == matching_word[:k]:
+                       matching_prefix_size = k
+                       break
+                print(f"Matching prefix size {matching_prefix_size}")
+                total_matching_size = matching_suffix_size + matching_prefix_size
+
+                current_matches = translations[word]
+                if current_matches.get(matching_word, 0) < total_matching_size:
+                    current_matches[matching_word] = total_matching_size
+                print(f"New translations {translations}")
+                
+                
+
+        prefix_matches = self.gpt.findMatches(words)
+        # for word in words:
+        #     exists = self.trie.find(word.lower())
+        #     if not exists:
+        #         # Make sure to ignore case if you're making word lowercase
+        #         # variants = self.trie.accentFind(word.lower())
+
+        #         if len(variants) > 0:
+        #             translations[word] = variants
+        #         else:
+        #             translations[word] = []
         
         return translations
