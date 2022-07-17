@@ -8,16 +8,14 @@ from util import Util
 import pandas as pd
 
 app = Flask(__name__)
+
+# Preserve order of words 
 app.config['JSON_SORT_KEYS'] = False
 
 # add filter to deal with not available number values
-hny_pap_nl = pd.read_csv("data/hny/pap-nl.csv", na_filter=False)
-nbo_pap = pd.read_csv("data/nbo/pap(cap).csv", na_filter=False)
-d = hny_pap_nl
-d = nbo_pap
-d = Util.attachType(d, "pap-simple")
-d_words =  d[d["type"]=="word"]
-spell = Spellcheck(spellchecker_corpus=d_words["pap-simple"].values)
+nbo_pap = pd.read_csv("../data/nbo/pap(cap).csv", na_filter=False)
+d_words =  nbo_pap
+spell = Spellcheck(spellchecker_corpus=d_words["pap-simple"].values, load=True)
 
 @app.route('/api/time')
 def get_current_time():
@@ -28,7 +26,7 @@ def parse_request():
     data = request.data.decode("UTF-8")    
     data_words = Util.findWords(data)
     # print(data_words)
-    corrections = spell.getWordCorrections(data_words)
+    corrections = spell.getPreSufCorrections(data_words, words_only=True)
     # print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 

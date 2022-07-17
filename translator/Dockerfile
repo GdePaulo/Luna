@@ -7,7 +7,7 @@ FROM python:3.7
 # 3
 COPY api/ /app
 COPY code/ /app
-COPY data/ /app/data
+COPY data/ /data
 
 COPY requirements.txt /app/requirements.txt
 
