@@ -135,9 +135,13 @@ class GST:
                 return []
         return []
 
-    def findMatches(self, words, amount_threshold=3):
+    def findMatches(self, words, amount_threshold=3, case=False):
         all_matches = {}
-        for word in words:
+        for original_word in words:
+            
+            word = original_word
+            if not case:
+                word = word.lower()
 
             if word in all_matches:
                 continue
@@ -158,7 +162,7 @@ class GST:
                 if len(current_word_matches) >= amount_threshold:
                     break
             
-            all_matches[word] = list(current_word_matches.items())[:amount_threshold]
+            all_matches[original_word] = list(current_word_matches.items())[:amount_threshold]
         return all_matches
 
     def populate(self, words, case=False):

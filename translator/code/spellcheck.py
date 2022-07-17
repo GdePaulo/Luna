@@ -111,7 +111,8 @@ class Spellcheck:
         return translations
     
     # Avoid searching for too big substrings
-    def getPreSufCorrections(self, words, amount_thresholds=3):
+    # Favor words with matching sizes
+    def getPreSufCorrections(self, words, amount_thresholds=3, case=False):
         words = [x for x in words if not self.trie.find(x.lower())]        
         translations = {x:{} for x in words}
 
@@ -119,9 +120,17 @@ class Spellcheck:
         prefix_matches = self.gpt.findMatches(words)
 
         for i, matches in enumerate([suffix_matches, prefix_matches]):        
-            for word in matches:
+            for original_word in matches:
+                word = original_word
+                if not case:
+                    word = word.lower()
+
                 # print(f"word:{word}")
-                for matching_word, matching_size in matches[word]:
+                for original_matching_word, matching_size in matches[original_word]:
+                    matching_word = original_matching_word
+                    if not case:
+                        matching_word = matching_word.lower()
+
                     max_oppositefix_search = len(word) - matching_size
                     # print(f"matching_word:{matching_word}|matching_size:{matching_size}|max_search:{max_oppositefix_search}")
 
@@ -137,11 +146,12 @@ class Spellcheck:
                     # print(f"Matching prefix size {matching_oppositefix_size}")
                     total_matching_size = matching_size + matching_oppositefix_size
 
-                    current_matches = translations[word]
-                    if current_matches.get(matching_word, 0) < total_matching_size:
-                        current_matches[matching_word] = total_matching_size
+                    current_matches = translations[original_word]
+                    if current_matches.get(original_matching_word, 0) < total_matching_size:
+                        current_matches[original_matching_word] = total_matching_size
                     # print(f"New translations {translations}")
                 
         translations = {word:dict(sorted(matches.items(), key=lambda item: item[1], reverse=True)) for word, matches in translations.items()}
+        print(translations)
         translations = {word:list(matches.items())[:amount_thresholds] for word, matches in translations.items()}
         return translations
