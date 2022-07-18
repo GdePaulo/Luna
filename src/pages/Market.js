@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import s from "../css/market.module.css";
-import axios from 'axios';
 
 import Title from "../components/Title";
 import Button from "../components/Button";
-import Payment from "../components/Payment";
+import Cart from "../components/Cart";
 import Products from "../components/Products";
-import Spinner from '../components/Spinner';
 
 import moon from "../images/moon.svg"
 import earth from "../images/planets/earth.jpg"
 import mars from "../images/planets/mars.jpg"
 import neptune from "../images/planets/neptune.jpg"
-import titan from "../images/planets/titan.jpg"
-
 
 function Market() {
-
-  const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
-
   const products = [
     {
       title: "Neptune",
@@ -45,8 +36,6 @@ function Market() {
   ];
 
   const [cart, setCart] = useState([]);
-  const [isApproved, setIsApproved] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [isBuying, setIsBuying] = useState(false);
 
 
@@ -58,39 +47,20 @@ function Market() {
     setCart([...cart, product]);
   }
 
-  let total = cart.reduce(function(prev, current) {
-    return prev + current.cost;
-  }, 0);
-
   useEffect(() => {
     document.title = "Luna Market"
   }, []);
 
   return (
     <div>
-
       <Title title="Luna: Market">
         This is a market where you can buy planets. The logistics related to the actual delivery of the planets after purchase are still being figured out. No refunds!
       </Title>
       {isBuying
-        ? <Payment total={total}/>
+        ? <Cart cart={cart}/>
         : <Products products={products} onAddToCartClick={handleAddToCartClick} />
       }
       <Button onClick={handleBuyClick}>Go to cart</Button>
-      <ol className={""}>
-        {
-          cart.map(x => (
-            <li className={""}>
-              <div className={""}> {x.title} : €{x.cost} </div>
-            </li>
-          ))
-        }
-        </ol>
-        {
-          <div>
-            Total: €{total}
-          </div>
-        }
     </div>
   );
 }
