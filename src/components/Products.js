@@ -24,12 +24,12 @@ function Products(props) {
         {
           props.products.map(x => (
             <li className={s.products__item}>
-              <div className={s.products__itemTitle}> {x.title} </div>
-              <div className={s.products__itemImg}> 
+              <div className={s.products__itemImg}>
                 <img src={x.img} className={s.products__itemImgIcon} /> 
               </div>
+              <div className={s.products__itemTitle}> {x.title} </div>
               <div className={s.products__itemDescription}> {x.text} </div>
-              <Button onClick={() => props.onAddToCartClick(x)}>Add to cart</Button>
+              <Button className={s.products__itemAddToCart} onClick={() => props.onAddToCartClick(x)}>Add to cart</Button>
             </li>
           ))
         }

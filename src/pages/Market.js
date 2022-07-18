@@ -8,7 +8,13 @@ import Button from "../components/Button";
 import Payment from "../components/Payment";
 import Products from "../components/Products";
 import Spinner from '../components/Spinner';
+
 import moon from "../images/moon.svg"
+import earth from "../images/planets/earth.jpg"
+import mars from "../images/planets/mars.jpg"
+import neptune from "../images/planets/neptune.jpg"
+import titan from "../images/planets/titan.jpg"
+
 
 function Market() {
 
@@ -16,23 +22,23 @@ function Market() {
 
   const products = [
     {
-      title: "Luna Spellcheck",
-      text: `This is a terrible product.`,
-      img: moon,
+      title: "Neptune",
+      text: `What are you going to do with Neptune?`,
+      img: neptune,
       cost: 5,
     }, {
-      title: "Luna Translate",
-      text: `Once obtaining enough data, this will be made.`,
-      img: moon,
+      title: "Mars",
+      text: `It's really hot.`,
+      img: mars,
       cost: 2.5,
     }, {
-      title: "Luna Cool",
-      text: `Made a simple implementation ng algorithm in javascript.`,
-      img: moon,
+      title: "Earth",
+      text: `Take good care of it.`,
+      img: earth,
       cost: 2.5,
     }, {
-      title: "Luna AI",
-      text: `Expirementations with PyTorch machine  b inference with TorchServe.`,
+      title: "Luna",
+      text: `Bonus package to buy my website and the actual moon.`,
       img: moon,
       cost: 2.5,
     }
@@ -82,7 +88,7 @@ function Market() {
           </div>
         }
       {isBuying
-        ? <Payment />
+        ? <Payment total={total}/>
         : <Products products={products} onAddToCartClick={handleAddToCartClick} />
       }
     </div>
