@@ -12,9 +12,9 @@ app = Flask(__name__)
 cred = credentials.Certificate('../secret/key.json')
 default_app = initialize_app(cred)
 db = firestore.client()
-todo_ref = db.collection('todos')
+todo_ref = db.collection('planets')
 
-@app.route('/add', methods=['POST'])
+@app.route('/api/add', methods=['POST'])
 def create():
     """
         create() : Add document to Firestore collection with request body.
@@ -28,7 +28,7 @@ def create():
     except Exception as e:
         return f"An Error Occurred: {e}"
 
-@app.route('/list', methods=['GET'])
+@app.route('/api/list', methods=['GET'])
 def read():
     """
         read() : Fetches documents from Firestore collection as JSON.
@@ -47,7 +47,7 @@ def read():
     except Exception as e:
         return f"An Error Occurred: {e}"
 
-@app.route('/update', methods=['POST', 'PUT'])
+@app.route('/api/update', methods=['POST', 'PUT'])
 def update():
     """
         update() : Update document in Firestore collection with request body.
@@ -61,7 +61,7 @@ def update():
     except Exception as e:
         return f"An Error Occurred: {e}"
 
-@app.route('/delete', methods=['GET', 'DELETE'])
+@app.route('/api/delete', methods=['GET', 'DELETE'])
 def delete():
     """
         delete() : Delete a document from Firestore collection.
@@ -76,4 +76,5 @@ def delete():
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':
-    app.run(threaded=True, host='0.0.0.0', port=port)
+    # app.run(threaded=True, host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=port)
