@@ -8,9 +8,16 @@
     ],
     "rewrites": [
       {
-      "source": "/api/**",
+      "source": "/api/spellcheck/**",
       "run": {
         "serviceId": "luna-cloud-run",
+        "region": "europe-west4"
+      }
+      },
+      {
+      "source": "/api/market/**",
+      "run": {
+        "serviceId": "luna-market-run",
         "region": "europe-west4"
       }
       },

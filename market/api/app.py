@@ -74,6 +74,7 @@ def delete():
     except Exception as e:
         return f"An Error Occurred: {e}"
 
+# Remove debugging in production
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':
     # app.run(threaded=True, host='0.0.0.0', port=port)
