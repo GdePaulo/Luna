@@ -70,9 +70,13 @@ function Market() {
     <div>
 
       <Title title="Luna: Market">
-        This is a market where you can buy absolutely nothing.
+        This is a market where you can buy planets. The logistics related to the actual delivery of the planets after purchase are still being figured out. No refunds!
       </Title>
-      <Button onClick={handleBuyClick}>Buy Nothing</Button>
+      {isBuying
+        ? <Payment total={total}/>
+        : <Products products={products} onAddToCartClick={handleAddToCartClick} />
+      }
+      <Button onClick={handleBuyClick}>Go to cart</Button>
       <ol className={""}>
         {
           cart.map(x => (
@@ -87,10 +91,6 @@ function Market() {
             Total: €{total}
           </div>
         }
-      {isBuying
-        ? <Payment total={total}/>
-        : <Products products={products} onAddToCartClick={handleAddToCartClick} />
-      }
     </div>
   );
 }

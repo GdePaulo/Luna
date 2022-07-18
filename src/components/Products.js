@@ -27,9 +27,13 @@ function Products(props) {
               <div className={s.products__itemImg}>
                 <img src={x.img} className={s.products__itemImgIcon} /> 
               </div>
-              <div className={s.products__itemTitle}> {x.title} </div>
-              <div className={s.products__itemDescription}> {x.text} </div>
-              <Button className={s.products__itemAddToCart} onClick={() => props.onAddToCartClick(x)}>Add to cart</Button>
+              <div className={s.products__itemText}>
+                <span className={s.products__itemTitle}> {x.title} </span>
+                <span className={s.products__itemDescription}> {x.text} </span>
+              </div>
+              <div className={s.products__itemActions}>
+                <Button className={s.products__itemAddToCart} onClick={() => props.onAddToCartClick(x)}>Add to cart</Button>
+              </div>
             </li>
           ))
         }

@@ -8,7 +8,7 @@ import Button from "./Button";
 import Spinner from './Spinner';
 import moon from "../images/moon.svg"
 
-function Payment() {
+function Payment(props) {
   
   const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
@@ -56,7 +56,7 @@ function Payment() {
       purchase_units: [
         {
           amount: {
-            value: "0.01",
+            value: props.total,
           },
         },
       ],
