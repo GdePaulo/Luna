@@ -17,11 +17,11 @@ nbo_pap = pd.read_csv("../data/nbo/pap(cap).csv", na_filter=False)
 d_words =  nbo_pap
 spell = Spellcheck(spellchecker_corpus=d_words["pap-simple"].values, load=True)
 
-@app.route('/api/time')
+@app.route('/api/spellcheck/time')
 def get_current_time():
     return {'time': time.time()}
 
-@app.route('/api/spellcheck', methods=['POST'])
+@app.route('/api/spellcheck/spellcheck', methods=['POST'])
 def parse_request():
     data = request.data.decode("UTF-8")    
     data_words = Util.findWords(data)
@@ -30,7 +30,7 @@ def parse_request():
     # print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 
-@app.route('/api/accentcheck', methods=['POST'])
+@app.route('/api/spellcheck/accentcheck', methods=['POST'])
 def parse_request_accent():
     data = request.data.decode("UTF-8")    
     data_words = Util.findWords(data)

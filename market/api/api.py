@@ -14,7 +14,7 @@ default_app = initialize_app(cred)
 db = firestore.client()
 todo_ref = db.collection('planets')
 
-@app.route('/api/add', methods=['POST'])
+@app.route('/api/market/add', methods=['POST'])
 def create():
     """
         create() : Add document to Firestore collection with request body.
@@ -28,7 +28,7 @@ def create():
     except Exception as e:
         return f"An Error Occurred: {e}"
 
-@app.route('/api/list', methods=['GET'])
+@app.route('/api/market/list', methods=['GET'])
 def read():
     """
         read() : Fetches documents from Firestore collection as JSON.
@@ -47,7 +47,7 @@ def read():
     except Exception as e:
         return f"An Error Occurred: {e}"
 
-@app.route('/api/update', methods=['POST', 'PUT'])
+@app.route('/api/market/update', methods=['POST', 'PUT'])
 def update():
     """
         update() : Update document in Firestore collection with request body.
@@ -61,7 +61,7 @@ def update():
     except Exception as e:
         return f"An Error Occurred: {e}"
 
-@app.route('/api/delete', methods=['GET', 'DELETE'])
+@app.route('/api/market/delete', methods=['GET', 'DELETE'])
 def delete():
     """
         delete() : Delete a document from Firestore collection.

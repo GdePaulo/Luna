@@ -57,11 +57,11 @@ function Market() {
 
     let url;
 
-    url = "/api/add";
+    url = "/api/market/list";
     axios({
-      method: "post",
+      method: "GET",
       url: url,
-      data: products[3],
+      // data: products[3],
       headers: {
         "Content-Type": "application/json",
         "accept": "*/*"

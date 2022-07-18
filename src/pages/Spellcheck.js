@@ -31,9 +31,9 @@ function Spellcheck() {
     setIsLoading(true)
     let url;
     if (accents) {
-      url = "/api/accentcheck";
+      url = "api/spellcheck/accentcheck";
     } else {
-      url = "/api/spellcheck";
+      url = "api/spellcheck/spellcheck";
     }
     axios({
       method: "post",
