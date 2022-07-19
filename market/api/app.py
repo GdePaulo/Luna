@@ -12,7 +12,7 @@ app = Flask(__name__)
 cred = credentials.Certificate('../secret/key.json')
 default_app = initialize_app(cred)
 db = firestore.client()
-todo_ref = db.collection('planets')
+planet_ref = db.collection('planets')
 
 @app.route('/api/market/add', methods=['POST'])
 def create():
@@ -23,7 +23,7 @@ def create():
     """
     try:
         id = request.json['id']
-        todo_ref.document(id).set(request.json)
+        planet_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occurred: {e}"
@@ -32,18 +32,18 @@ def create():
 def read():
     """
         read() : Fetches documents from Firestore collection as JSON.
-        todo : Return document that matches query ID.
-        all_todos : Return all documents.
+        planet : Return document that matches query ID.
+        all_planets : Return all documents.
     """
     try:
         # Check if ID was passed to URL query
-        todo_id = request.args.get('id')
-        if todo_id:
-            todo = todo_ref.document(todo_id).get()
-            return jsonify(todo.to_dict()), 200
+        planet_id = request.args.get('id')
+        if planet_id:
+            planet = planet_ref.document(planet_id).get()
+            return jsonify(planet.to_dict()), 200
         else:
-            all_todos = [doc.to_dict() for doc in todo_ref.stream()]
-            return jsonify(all_todos), 200
+            all_planets = [doc.to_dict() for doc in planet_ref.stream()]
+            return jsonify(all_planets), 200
     except Exception as e:
         return f"An Error Occurred: {e}"
 
@@ -56,7 +56,7 @@ def update():
     """
     try:
         id = request.json['id']
-        todo_ref.document(id).update(request.json)
+        planet_ref.document(id).update(request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occurred: {e}"
@@ -68,8 +68,8 @@ def delete():
     """
     try:
         # Check for ID in URL query
-        todo_id = request.args.get('id')
-        todo_ref.document(todo_id).delete()
+        planet_id = request.args.get('id')
+        planet_ref.document(planet_id).delete()
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occurred: {e}"

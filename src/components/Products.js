@@ -15,7 +15,7 @@ function Products(props) {
                 <img src={x.img} className={s.products__itemImgIcon} /> 
               </div>
               <div className={s.products__itemText}>
-                <span className={s.products__itemTitle}> {x.title} </span>
+                <span className={s.products__itemTitle}> {x.id} </span>
                 <span className={s.products__itemDescription}> {x.text} </span>
               </div>
               <div className={s.products__itemActions}>

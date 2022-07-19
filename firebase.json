@@ -10,7 +10,7 @@
       {
       "source": "/api/spellcheck/**",
       "run": {
-        "serviceId": "luna-cloud-run",
+        "serviceId": "luna-spellcheck-run",
         "region": "europe-west4"
       }
       },

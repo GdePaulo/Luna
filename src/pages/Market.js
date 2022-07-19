@@ -7,36 +7,8 @@ import Button from "../components/Button";
 import Cart from "../components/Cart";
 import Products from "../components/Products";
 
-import moon from "../images/moon.svg"
-import earth from "../images/planets/earth.jpg"
-import mars from "../images/planets/mars.jpg"
-import neptune from "../images/planets/neptune.jpg"
-
 function Market() {
-  const products = [
-    {
-      id: "Neptune",
-      text: `What are you going to do with Neptune?`,
-      img: "https://i.pinimg.com/originals/e3/b4/fb/e3b4fb705d398c02319400a0796e720b.jpg",
-      cost: 5,
-    }, {
-      id: "Mars",
-      text: `It's really hot.`,
-      img: "https://scitechdaily.com/images/Journey-to-Mars.jpg",
-      cost: 2.5,
-    }, {
-      id: "Earth",
-      text: `Take good care of it.`,
-      img: "https://www.deccanherald.com/sites/dh/files/articleimages/2021/08/05/earth-istoc-k3-1016628-1628178750.jpg",
-      cost: 2.5,
-    }, {
-      id: "Luna",
-      text: `Bonus package to buy my website and the actual moon.`,
-      img: moon,
-      cost: 2.5,
-    }
-  ];
-
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [isBuying, setIsBuying] = useState(false);
 
@@ -45,33 +17,17 @@ function Market() {
     setIsBuying(true);
   }
   
-  const handleTestClick = (event) => {
-    // setIsLoading(true)
-    
-    let testObject = {
-      id:"Earth",
-      text: `Take good care of it.`,
-      img: earth,
-      cost: 2.5,
-    }
+  const getProducts = () => {
+    let url = "/api/market/list";
 
-    let url;
-
-    url = "/api/market/list";
     axios({
       method: "GET",
       url: url,
-      // data: products[3],
-      headers: {
-        "Content-Type": "application/json",
-        "accept": "*/*"
-      },
     }).then(res => { 
       console.log("Response:", res.data); 
-      // setIsLoading(false);
+      setProducts(res.data); 
     }).catch(error => {
       console.log(error);
-      // setIsLoading(false);
     });
   }
   
@@ -81,6 +37,8 @@ function Market() {
 
   useEffect(() => {
     document.title = "Luna Market"
+
+    getProducts();
   }, []);
 
   return (
@@ -93,7 +51,6 @@ function Market() {
         : <Products products={products} onAddToCartClick={handleAddToCartClick} />
       }
       <Button onClick={handleBuyClick}>Go to cart</Button>
-      <Button onClick={handleTestClick}>Test</Button>
     </div>
   );
 }
