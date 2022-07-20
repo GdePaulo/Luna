@@ -7,16 +7,16 @@ sys.path.append(os.path.abspath('../code'))
 
 from translate import Translate
 from spellcheck import Spellcheck
+from loader import Loader
 from util import Util
 import pandas as pd
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
-# add filter to deal with not available number values
-nbo_pap = pd.read_csv("../data/nbo/pap(cap).csv", na_filter=False)
-d_words = nbo_pap
-spell = Spellcheck(spellchecker_corpus=d_words["pap-simple"].values, load=True)
+load = Loader()
+corpus = load.loadWords()
+spell = Spellcheck(spellchecker_corpus=corpus["pap-simple"].values, load=True)
 
 @app.route('/api/spellcheck/time')
 def get_current_time():
