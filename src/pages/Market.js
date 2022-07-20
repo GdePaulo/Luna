@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
+import s from "../css/market.module.css";
+import cartIcon from "../images/cart.png";
+
 import Title from "../components/Title";
 import Button from "../components/Button";
 import Cart from "../components/Cart";
@@ -50,7 +53,9 @@ function Market() {
         ? <Cart cart={cart}/>
         : <Products products={products} onAddToCartClick={handleAddToCartClick} />
       }
-      <Button onClick={handleBuyClick}>Go to cart</Button>
+      <div className={s.market__actions}>
+        <Button className={s.market__goToCart} onClick={handleBuyClick} styleType="button-default">Go to cart <img src={cartIcon} alt={"cart icon"} className={s.market__goToCartIcon}/></Button>
+      </div>
     </div>
   );
 }

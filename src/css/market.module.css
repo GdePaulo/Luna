@@ -1,0 +1,17 @@
+.market__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 2em;
+}
+
+.market__goToCart {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+}
+
+.market__goToCartIcon {
+    width: 1em;
+}

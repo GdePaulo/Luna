@@ -79,9 +79,12 @@
 }
 
 .products__itemActions  {
+  display: flex;
+  justify-content: space-between;
   /* flex: 1 1 10%; */
   width: 100%;
-  padding: 0em 0em 0.9em 0.9em;
+  box-sizing: border-box;
+  padding: 0em 0.9em 0.9em 0.9em;
 }
 
 .products__itemAddToCart  {
@@ -89,5 +92,10 @@
   border: 3px solid grey;
 
   font-size: 1.2em;
+  font-weight: 500;
+}
+
+.products__itemCost  {
+  font-size: 1.8em;
   font-weight: 500;
 }
