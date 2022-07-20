@@ -4,6 +4,8 @@ import down from "../images/down.png"
 import moon from "../images/moon.svg"
 import star from "../images/star.png"
 
+import { getConditionalclass } from "./Utils"
+
 function Hero(props) {
 
   const [isLogoActive, setIsLogoActive] = useState(false);
@@ -15,12 +17,6 @@ function Hero(props) {
   const handleLogoMouseLeave = (event) => {
     setIsLogoActive(false);
   }
-
-  const getConditionalclass = (cls, conditionalclass, condition) => {
-    return cls + " " + (condition ? conditionalclass : "")
-  }
-
-
 
   return (
     <div className={s.hero}>

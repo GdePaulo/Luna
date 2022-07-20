@@ -19,7 +19,7 @@ function Products(props) {
                 <span className={s.products__itemDescription}> {x.text} </span>
               </div>
               <div className={s.products__itemActions}>
-                <Button className={s.products__itemAddToCart} onClick={() => props.onAddToCartClick(x)}>Add to cart</Button>
+                <Button className={s.products__itemAddToCart} onClick={() => props.onAddToCartClick(x)} styleType="button-default">Add to cart</Button>
                 <div className={s.products__itemCost}> € {x.cost} </div>
               </div>
             </li>
