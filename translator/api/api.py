@@ -26,8 +26,11 @@ def get_current_time():
 def parse_request():
     data = request.data.decode("UTF-8")    
     data_words = Util.findWords(data)
-    print(data_words)
-    corrections = spell.getPreSufCorrections(data_words, words_only=True, penalize_mismatch=True)
+    print(data_words)   
+
+    data_words_unique = Util.removeDuplicates(data_words)
+    corrections = spell.getPreSufCorrections(data_words_unique, words_only=True, penalize_mismatch=True)
+
     print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 
@@ -36,7 +39,10 @@ def parse_request_accent():
     data = request.data.decode("UTF-8")    
     data_words = Util.findWords(data)
     print(data_words)
-    corrections = spell.getAccentCorrections(data_words)
+
+    data_words_unique = Util.removeDuplicates(data_words)
+    corrections = spell.getAccentCorrections(data_words_unique)
+    
     print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 

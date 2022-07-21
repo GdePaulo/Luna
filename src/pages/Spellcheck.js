@@ -11,12 +11,13 @@ import Spinner from '../components/Spinner';
 
 function Spellcheck() {
   const [previousText, setPreviousText] = useState(""); 
-  const [currentText, setCurrentText] = useState("Skibi algu akinan i primi \"koregi\" pa wak e korikshon na man reks i despues repara e palabra nan robes.");
+  const [currentText, setCurrentText] = useState(
+    `Skibi algu akinan i primi "koregi" pa wak e korikshon na banda drechi. Despues di hasi esaki, bo por klek riba un di e korekshonnan pa drecha e foutnan. Bo por klek tambe riba e palabra original pa ignora un korekshon.`);
   const [corrections, setCorrections] = useState(
     {
-      korikshon : ["korekshon", "Korekshon", "korupshon"],
-      // rechts : ["Recht", "rechten", "rechaso"],
-      // repara : ["repará", "ripara", "Separá"]
+      koregi: ['koregí', 'koregidó', 'koredó'],
+      korikshon: ['korekshon', 'konvikshon', 'frikshon'], 
+      ignora: ['ignorá', 'iksora', 'Leonora']
     }
   );
   const [editMode, setEditMode] = useState(true);
@@ -164,8 +165,9 @@ Make a navigation bar height more dynamic [x]
 Add functionality to take into account frequency to suggest disproportionately high-frequency words
 Make page more mobile friendly [x]
 Help The Government?
--Deal with contractions (us'e)
+-Deal with contractions (us'e) 'e should have sharp accent if referring to person
 -deal with duplicate matches and highlighting
-
+-Remove unnecessary files in docker container
+-Prioritize similarity if letter is a variant of an accented version
 
 */

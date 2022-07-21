@@ -90,6 +90,17 @@ class Util:
         return words
 
     @staticmethod
+    def removeDuplicates(input_str):
+        input_str_unique = []
+        input_str_unique_lower = []
+        for word in input_str:
+            word_lower = word.lower()
+            if word_lower not in input_str_unique_lower:
+                input_str_unique_lower.append(word_lower)
+                input_str_unique.append(word)
+        return input_str_unique
+
+    @staticmethod
     def attachType(df, lan):
         d = df.copy()
         d["type"] = d.apply(lambda row: "sentence" if len(str(row[lan]).split()) > 1 else "word", axis=1)
