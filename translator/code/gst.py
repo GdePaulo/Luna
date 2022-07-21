@@ -171,6 +171,9 @@ class GST:
         for i, word in enumerate(words):
             if not case:
                 word = word.lower()
+            
+            # Make it easier to search when a different quotation unicode character is used
+            word = word.replace("’", "'")
 
             word_length = len(word)
             for j in range(word_length):

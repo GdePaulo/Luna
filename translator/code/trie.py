@@ -155,6 +155,7 @@ class Trie:
     
     def populate(self, words, case=False):
         for word in words:
+            word = word.replace("’", "'")
             if case:
                 self.insert(word)
             else:

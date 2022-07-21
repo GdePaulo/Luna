@@ -114,6 +114,7 @@ class Spellcheck:
     # Favor words with matching sizes
     # Todo: bake in adjusted score into gst search algorithm to reduce threshold
     def getPreSufCorrections(self, words, amount_thresholds=3, case=False, words_only=False):
+        words = [x.replace("’", "'") for x in words]        
         words = [x for x in words if not self.trie.find(x.lower())]        
         translations = {x:{} for x in words}
 

@@ -2,6 +2,19 @@ import unittest
 from spellcheck import Spellcheck
 class TestSpellcheck(unittest.TestCase):        
 
+    def test_get_pre_suf_mismatching_apostrophe_types(self):
+        corpus = ["fo’i", "akus'e", "mesko's"]
+        self.spell = Spellcheck(spellchecker_corpus=corpus)
+        words = ["fo'i", "akus’e", "mesko's", "fo’ie"]
+
+        matches = self.spell.getPreSufCorrections(words)
+
+        correct = {
+            "fo’ie": [("fo’i", 3)],
+        }
+
+        self.assertEqual(matches, correct)
+
     def test_get_pre_suf_corrections(self):
         corpus = ["better", "butler", "dog", "bulldog", "cat", "rabbit", "beilerina", "rug", "bar"]
         self.spell = Spellcheck(spellchecker_corpus=corpus)
