@@ -10,7 +10,7 @@ class TestSpellcheck(unittest.TestCase):
         matches = self.spell.getPreSufCorrections(words)
 
         correct = {
-            "fo’ie": [("fo’i", 3)],
+            "fo'ie": [("fo’i", 4), ("akus'e", 1)],
         }
 
         self.assertEqual(matches, correct)
@@ -41,7 +41,7 @@ class TestSpellcheck(unittest.TestCase):
         matches = self.spell.getPreSufCorrections(words, case=False)
 
         correct = {
-            "Batter": [("better", 5), ("bar", 3)],
+            "Batter": [("better", 5), ("bar", 3), ("bowl", 1)],
             "cot": [("Cat", 2), ("rabbit", 1)],
         }
 

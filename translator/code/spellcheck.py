@@ -113,7 +113,7 @@ class Spellcheck:
     # Avoid searching for too big substrings
     # Favor words with matching sizes
     # Todo: bake in adjusted score into gst search algorithm to reduce threshold
-    def getPreSufCorrections(self, words, amount_thresholds=3, case=False, words_only=False):
+    def getPreSufCorrections(self, words, amount_thresholds=3, case=False, words_only=False, penalize_mismatch=False):
         words = [x.replace("’", "'") for x in words]        
         words = [x for x in words if not self.trie.find(x.lower())]        
         translations = {x:{} for x in words}
@@ -152,7 +152,9 @@ class Spellcheck:
                     # print(f"Matching prefix size {matching_oppositefix_size}")
                     total_matching_size = matching_size + matching_oppositefix_size
 
-                    mismatch_penalty = abs(len(original_matching_word) - len(original_word))
+                    mismatch_penalty = 0
+                    if penalize_mismatch:
+                        mismatch_penalty = abs(len(original_matching_word) - len(original_word))
                     adjusted_score = total_matching_size - mismatch_penalty
 
                     current_matches = translations[original_word]

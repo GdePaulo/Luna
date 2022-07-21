@@ -164,7 +164,7 @@ Make a navigation bar height more dynamic [x]
 Add functionality to take into account frequency to suggest disproportionately high-frequency words
 Make page more mobile friendly [x]
 Help The Government?
--Deal with contractions
+-Deal with contractions (us'e)
 -deal with duplicate matches and highlighting
 
 

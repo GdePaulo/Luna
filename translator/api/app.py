@@ -26,7 +26,7 @@ def parse_request():
     data = request.data.decode("UTF-8")    
     data_words = Util.findWords(data)
     # print(data_words)
-    corrections = spell.getPreSufCorrections(data_words, words_only=True)
+    corrections = spell.getPreSufCorrections(data_words, words_only=True, penalize_mismatch=True)
     # print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 
