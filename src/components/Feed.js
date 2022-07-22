@@ -7,9 +7,9 @@ function Feed(props, ref) {
   const feedElements = [
     {
       title: "Luna Spellcheck",
-      text: `One of the functionalities which I'm currently working on is a Papiamentu-Dutch Translator.
-      While I have built a prototype, I currently do not have enough data to further develop it to the appropriate standard.
-      In the meantime, I have built and made available a Papiamentu Spellchecker which can be found <a href='/spellcheck'>here</a>.`,
+      text: `One of the functionalities which is currently being worked on is a Papiamentu-Dutch Translator.
+      While a prototype has been built, there is currently not enough data to further develop it to the appropriate standard.
+      In the meantime, a Papiamentu Spellchecker has been made available, which can be found <a href='/spellcheck'>here</a>.`,
       page: 1,
     },{
       title: "Luna Translate",
@@ -39,6 +39,9 @@ function Feed(props, ref) {
   }
 
   const goToPage = (page) => {
+    if (page === currentPage) {
+      return;
+    }    
     setCurrentPage(page);
     setIsRefreshingPage(true);
 

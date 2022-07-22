@@ -27,7 +27,7 @@ function Home() {
       <Hero handleGoToFeedClick={handleGoToFeedClick}
         title="Luna Software"
         command="Go to feed">
-          This website contains a collection of functionalities which I thought were interesting, fun to implement and/or useful.
+          This website contains a collection of functionalities which were thought to be interesting, fun to implement and/or useful.
           It will be continuously updated.
       </Hero>
       <Feed ref={feed}/>

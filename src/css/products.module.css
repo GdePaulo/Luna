@@ -39,6 +39,7 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   border: 1px solid rgb(49, 49, 49);
   border-radius: 0.1em 0.1em 0 0;
+  background-color: white;
 }
 
 .products__itemImg  {

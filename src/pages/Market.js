@@ -45,7 +45,7 @@ function Market() {
   }, []);
 
   return (
-    <div>
+    <div className={s.main}>
       <Title title="Luna: Market">
         This is a market where you can buy planets. The logistics related to the actual delivery of the planets after purchase are still being figured out. No refunds!
       </Title>

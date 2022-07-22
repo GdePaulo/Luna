@@ -169,5 +169,6 @@ Help The Government?
 -deal with duplicate matches and highlighting
 -Remove unnecessary files in docker container
 -Prioritize similarity if letter is a variant of an accented version
+-Create limits in front and backend eg. max word
 
 */

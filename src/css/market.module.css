@@ -1,9 +1,14 @@
+.main {
+    /* background-image: url("https://t3.ftcdn.net/jpg/02/61/38/06/360_F_261380630_Sb21T0SSkkZdI1oxb8V19jEfBy4Wl4F4.jpg"); */
+    /* background-color: blue; */
+}
+
 .market__actions {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin-top: 2em;
+    margin: 2em 0em;
 }
 
 .market__goToCart {
