@@ -95,7 +95,7 @@ function Spellcheck() {
   return (
     <div>
       
-      <Title title="Luna: Papiamentu Spell Checker (Alpha)">
+      <Title title="Luna: Papiamentu Spell Checker (Beta)">
         This is an online Papiamentu spellchecker program which will provide corrections to your sentences.
          You can use this to check your spelling if you are not completely certain of it. Additionally, you can also use it as an accent checker. 
          Esaki ta un programa online di spèlchèk pa papiamentu.
