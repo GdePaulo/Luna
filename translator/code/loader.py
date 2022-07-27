@@ -4,8 +4,17 @@ class Loader:
     def __init__(self):
         pass
    
-    def loadWords(self, freq_threshold=7):
-        
+    def loadWords(self, lan="PAP"):
+        corpus = None
+
+        if lan=="PAP":
+            corpus = self.loadPapAN()
+        elif lan=="PAP(AW)":
+            corpus = self.loadPapAW()
+
+        return corpus.iloc[:, 0].values
+
+    def loadPapAN(self, freq_threshold=7):
         custom_pap = pd.read_csv("../data/custom/pap.csv", na_filter=False)[["pap-simple"]]
         
         # Contains many duplicates with different grammar types
@@ -19,8 +28,15 @@ class Loader:
         # Make sure golden goes first nbo will then come in order of frequency
         combined = pd.concat([custom_pap, gold_pap, nbo_pap])
         combined = combined.drop_duplicates(subset="pap-simple", ignore_index=True)
-
         return combined
+    
+    def loadPapAW(self):        
+        # Contains many duplicates with different grammar types
+        # add filter to deal with not available number values
+        gold_pap = pd.read_csv("../data/ffa/pap.csv", na_filter=False)[["pap-simple"]]
+        
+        # Make sure golden goes first nbo will then come in order of frequency
+        return gold_pap
 
 if __name__ == "__main__":
     load = Loader()

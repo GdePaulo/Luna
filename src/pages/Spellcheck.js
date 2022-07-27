@@ -170,5 +170,5 @@ Help The Government?
 -Remove unnecessary files in docker container
 -Prioritize similarity if letter is a variant of an accented version
 -Create limits in front and backend eg. max word
-
+-Create simple word lookup and dictionary function
 */

@@ -5,8 +5,10 @@ from gst import GST
 import pickle
 
 class Spellcheck:
-    def __init__(self, spellchecker_corpus, load=False):
+    def __init__(self, spellchecker_corpus, lan="PAP", load=False):
         self.spellchecker_corpus = spellchecker_corpus
+        self.lan = lan
+
         if len(spellchecker_corpus) == 0:
             raise Exception("Empty corpus")
 
@@ -26,19 +28,19 @@ class Spellcheck:
         self.gpt.populate(self.spellchecker_corpus)
 
     def saveTrees(self):
-        with open('../data/pickles/pap-trie', 'wb') as f:
+        with open(f'../data/pickles/{self.lan.lower()}-trie', 'wb') as f:
             pickle.dump(self.trie, f)
-        with open('../data/pickles/pap-gst', 'wb') as f:
+        with open(f'../data/pickles/{self.lan.lower()}-gst', 'wb') as f:
             pickle.dump(self.gst, f)
-        with open('../data/pickles/pap-gpt', 'wb') as f:
+        with open(f'../data/pickles/{self.lan.lower()}-gpt', 'wb') as f:
             pickle.dump(self.gpt, f)
 
     def loadTrees(self):
-        with open('../data/pickles/pap-trie', 'rb') as f:
+        with open(f'../data/pickles/{self.lan.lower()}-trie', 'rb') as f:
             self.trie = pickle.load(f)
-        with open('../data/pickles/pap-gst', 'rb') as f:
+        with open(f'../data/pickles/{self.lan.lower()}-gst', 'rb') as f:
             self.gst = pickle.load(f)
-        with open('../data/pickles/pap-gpt', 'rb') as f:
+        with open(f'../data/pickles/{self.lan.lower()}-gpt', 'rb') as f:
             self.gpt = pickle.load(f)
 
     def getSlowWordCorrections(self, sentence, words_corpus):
