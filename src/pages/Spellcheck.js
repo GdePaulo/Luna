@@ -11,8 +11,7 @@ import Spinner from '../components/Spinner';
 
 function Spellcheck(props) {
   const [previousText, setPreviousText] = useState(""); 
-  const [currentText, setCurrentText] = useState(
-    `Skibi algu akinan i primi "koregi" pa wak e korikshon na banda drechi. Despues di hasi esaki, bo por klek riba un di e korekshonnan pa drecha e foutnan. Bo por klek tambe riba e palabra original pa ignora un korekshon.`);
+  const [currentText, setCurrentText] = useState();
   const [corrections, setCorrections] = useState(
     {
       koregi: ['koregí', 'koregidó', 'koredó'],
@@ -28,7 +27,7 @@ function Spellcheck(props) {
     { label: "Papiamentu (Curaçao)", value: "PAP"},
     { label: "Papiamento (Aruba)", value: "PAP(AW)"}
   ];
-  const [language, setLanguage] = useState("PAP(AW)"); 
+  const [language, setLanguage] = useState("PAP"); 
 
   useEffect(() => {
     document.title = "Luna Spellchecker"
@@ -130,7 +129,10 @@ function Spellcheck(props) {
       </div>
       <div className={styles.tform__control}>
         <Button onClick={() => handleCorrectClick(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
-        <Button onClick={() => handleCorrectClick(true)} className= {`${styles.tform__btn} ${styles["tform__btn--accent"]}`} disabled={isLoading}>Check accent</Button>
+        {language == "PAP"
+          ? <Button onClick={() => handleCorrectClick(true)} className= {`${styles.tform__btn} ${styles["tform__btn--accent"]}`} disabled={isLoading}>Check accent</Button>
+          : null
+        }
         <Button onClick={handleEditClick} className={`${styles.tform__btn} ${styles["tform__btn--edit"]}`}>
           {
             editMode ? "view" : "edit"
