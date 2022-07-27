@@ -22,7 +22,8 @@ function Spellcheck() {
   );
   const [editMode, setEditMode] = useState(true);
   const [activeCorrectionId, setActiveCorrectionId] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
+  const [language, setLanguage] = useState("PAP(AW)"); 
 
   useEffect(() => {
     document.title = "Luna Spellchecker"
@@ -32,9 +33,9 @@ function Spellcheck() {
     setIsLoading(true)
     let url;
     if (accents) {
-      url = "api/spellcheck/accentcheck";
+      url = "api/spellcheck/accentcheck?lan=" + language;
     } else {
-      url = "api/spellcheck/spellcheck";
+      url = "api/spellcheck/spellcheck?lan=" + language;
     }
     axios({
       method: "post",
@@ -171,4 +172,5 @@ Help The Government?
 -Prioritize similarity if letter is a variant of an accented version
 -Create limits in front and backend eg. max word
 -Create simple word lookup and dictionary function
+-Placeholder and color
 */

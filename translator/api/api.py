@@ -14,9 +14,17 @@ import pandas as pd
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
-load = Loader()
-corpus = load.loadWords()
-spell = Spellcheck(spellchecker_corpus=corpus["pap-simple"].values, load=True)
+spell = None
+
+def initialize_spellchecker(lan="PAP"):
+    global spell
+    if spell is not None and spell.lan == lan:
+        print("Spell already initialized.")
+        return
+
+    load = Loader()
+    corpus = load.loadWords(lan=lan)
+    spell = Spellcheck(spellchecker_corpus=corpus, lan=lan, load=True)
 
 @app.route('/api/spellcheck/time')
 def get_current_time():
@@ -29,6 +37,10 @@ def parse_request():
     print(data_words)   
 
     data_words_unique = Util.removeDuplicates(data_words)
+
+    lan = request.args.get('lan')
+    initialize_spellchecker(lan=lan)
+    
     corrections = spell.getPreSufCorrections(data_words_unique, words_only=True, penalize_mismatch=True)
 
     print(f"Correcting:{data}\nReturning:{corrections}")

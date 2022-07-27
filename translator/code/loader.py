@@ -6,7 +6,7 @@ class Loader:
    
     def loadWords(self, lan="PAP"):
         corpus = None
-
+        print(lan)
         if lan=="PAP":
             corpus = self.loadPapAN()
         elif lan=="PAP(AW)":
