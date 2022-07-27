@@ -23,8 +23,8 @@ function App() {
         <Route path='/cool' element={<Cool/>} />
         <Route path='/ai' element={<Ai/>} />
         <Route path='/savie' element={<Savie/>} />
-        <Route path='/translate' element={<Translate/>} />
-        <Route path='/spellcheck' element={<Spellcheck/>} />
+        <Route path='/translate' element={<Translate className="lunaSection"/>} />
+        <Route path='/spellcheck' element={<Spellcheck className="lunaSection"/>} />
         <Route path='/market' element={<Market/>} />
       </Routes>
     </Router>

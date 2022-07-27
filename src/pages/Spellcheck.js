@@ -9,7 +9,7 @@ import Highlighted from "../components/Highlighted";
 import Corrections from '../components/Corrections';
 import Spinner from '../components/Spinner';
 
-function Spellcheck() {
+function Spellcheck(props) {
   const [previousText, setPreviousText] = useState(""); 
   const [currentText, setCurrentText] = useState(
     `Skibi algu akinan i primi "koregi" pa wak e korikshon na banda drechi. Despues di hasi esaki, bo por klek riba un di e korekshonnan pa drecha e foutnan. Bo por klek tambe riba e palabra original pa ignora un korekshon.`);
@@ -22,7 +22,12 @@ function Spellcheck() {
   );
   const [editMode, setEditMode] = useState(true);
   const [activeCorrectionId, setActiveCorrectionId] = useState(0);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const languages = [
+    { label: "Papiamentu (Curaçao)", value: "PAP"},
+    { label: "Papiamento (Aruba)", value: "PAP(AW)"}
+  ];
   const [language, setLanguage] = useState("PAP(AW)"); 
 
   useEffect(() => {
@@ -71,6 +76,10 @@ function Spellcheck() {
   const handleEditClick = (event) => {
     setEditMode(!editMode);
   }
+  
+  const handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
+  }
 
   const handleCorrectionClick = (corr) => {
     var regex = new RegExp("\\b(" + corr[0] + ")(?!\\w|\\'|\\’|-)", "gi");
@@ -94,7 +103,7 @@ function Spellcheck() {
     setCorrections(({ [word]: value, ...corrections }) => corrections);
   }
   return (
-    <div>
+    <div className={props.className}>
       
       <Title title="Luna: Papiamentu Spell Checker (Beta)">
         This is an online Papiamentu spellchecker program which will provide corrections to your sentences.
@@ -103,6 +112,14 @@ function Spellcheck() {
           Bo por us'é pa koregí i chèk kon bo a spèl bo palabranan. Bo por us'é tambe pa chèk aksènt. 
           <em>This only suggests corrections which are formal words for now.</em>
       </Title>
+      
+      <Dropdown
+        label="Language:"
+        options={languages}
+        value={language}
+        onChange={handleLanguageChange}
+      />
+
       <div className={styles.tform}>
         {editMode
           ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
@@ -124,6 +141,22 @@ function Spellcheck() {
     </div>
   );
 }
+
+const Dropdown = ({ label, value, options, onChange }) => {
+  return (
+    <div className={styles.languages}>
+      <label className={styles.languages__label}>
+        {label}
+        <select className={styles.languages__dropdown} value={value} onChange={onChange}>
+          {options.map((option) => (
+            <option className={styles.languages__item} value={option.value}>{option.label}</option>
+          ))}
+        </select>
+      </label>
+    </div>
+  );
+};
+
 export default Spellcheck;
 
 /*
