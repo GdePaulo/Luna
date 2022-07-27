@@ -30,14 +30,18 @@
   /* background-color: rgba(221, 221, 221, 0.317); */
   color: rgb(0, 155, 211);
   /* color: black;:lang */
+
+  border-bottom: 4px solid #2798f3;
 }
 
 /* Add a color to the active/current link */
 .topnav__link.active {
-  background-color: #42A5F5;
+  /* background-color:  #2798f3; */
   /* background-color: #42A5F5; */
   /* background-color: #04AA6D; */
-  color: white;
+  /* color: white; */
+
+  border-bottom: 4px solid #2798f3;
 }
 .topnav__link {
   display:flex;
@@ -48,7 +52,7 @@
   /* padding: 25px 0px 25px 0px; */
   padding: 1.5vw 0.4vw;
   text-decoration: none;
-  /* border: 1px solid red; */
+  border-bottom: 4px solid transparent;
 
   transition: 0.3s;
 }
@@ -67,10 +71,11 @@
   /* border: 1px solid #017e7f;:lang */
 }
 
-.topnav__link--logo {
+.topnav__link--logo, .topnav__link--logo:hover {
   padding: 0;
   /* padding: 12px 0px 12px 0px; */
   /* padding: 12px 0px; */
+  border: none;
 }
 
 .topnav__text--logo {
