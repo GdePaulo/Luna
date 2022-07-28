@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Title from "../components/Title";
 
-function Translate() {
+function Translate(props) {
   const [currentText, setCurrentText] = useState("Skibi algu akinan pa wak e korikshon na man rechts i despues repara e palabra nan robes.");
   const [corrections, setCorrections] = useState(
     {
@@ -58,7 +58,7 @@ function Translate() {
     setEditMode(true)
   }
   return (
-    <div>
+    <div className={props.className}>
       <Title title="Luna: Translate (Coming Soon)">
         This is a Papiamentu - Dutch translator which will be coming soon. It is currently under development pending additional data 
         of Papiamentu - Dutch translation material. If you would like to contribute data of Papiamentu - Dutch or Dutch - Papiamentu

@@ -18,14 +18,14 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' exact element={<Home/>} />
-        <Route path='/about' element={<About/>} />
+        <Route path='/about' element={<About className="lunaSection"/>} />
         <Route path='/projects' element={<Projects/>} />
         <Route path='/cool' element={<Cool/>} />
         <Route path='/ai' element={<Ai/>} />
         <Route path='/savie' element={<Savie/>} />
         <Route path='/translate' element={<Translate className="lunaSection"/>} />
         <Route path='/spellcheck' element={<Spellcheck className="lunaSection"/>} />
-        <Route path='/market' element={<Market/>} />
+        <Route path='/market' element={<Market className="lunaSection"/>} />
       </Routes>
     </Router>
   );

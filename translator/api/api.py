@@ -33,6 +33,9 @@ def get_current_time():
 @app.route('/api/spellcheck/spellcheck', methods=['POST'])
 def parse_request():
     data = request.data.decode("UTF-8")    
+    if(len(data) > 10000):
+        print("String too long.")
+        return jsonify({"error": ["String too long"]})
     data_words = Util.findWords(data)
     print(data_words)   
 
@@ -53,6 +56,10 @@ def parse_request_accent():
     print(data_words)
 
     data_words_unique = Util.removeDuplicates(data_words)
+
+    lan = request.args.get('lan')
+    initialize_spellchecker(lan=lan)
+
     corrections = spell.getAccentCorrections(data_words_unique)
     
     print(f"Correcting:{data}\nReturning:{corrections}")

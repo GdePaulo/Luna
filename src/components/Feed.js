@@ -13,7 +13,7 @@ function Feed(props, ref) {
       page: 1,
     },{
       title: "Luna Translate",
-      text: `Once obtaining enough data, this will be made.`,
+      text: `A Papiamentu-Dutch translator currently under development. It is still under development and is continuously being improved to be able to provide reliable translations. Once the alpha version is released, it will be hosted on <a href='/translate'>this page</a>.`,
       page: 1,
     },{
       title: "Luna Cool",

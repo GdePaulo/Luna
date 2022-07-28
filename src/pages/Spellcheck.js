@@ -11,7 +11,7 @@ import Spinner from '../components/Spinner';
 
 function Spellcheck(props) {
   const [previousText, setPreviousText] = useState(""); 
-  const [currentText, setCurrentText] = useState();
+  const [currentText, setCurrentText] = useState("");
   const [corrections, setCorrections] = useState(
     {
       koregi: ['koregí', 'koregidó', 'koredó'],
