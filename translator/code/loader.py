@@ -30,13 +30,19 @@ class Loader:
         combined = combined.drop_duplicates(subset="pap-simple", ignore_index=True)
         return combined
     
-    def loadPapAW(self):        
+    def loadPapAW(self, freq_threshold=7):        
         # Contains many duplicates with different grammar types
         # add filter to deal with not available number values
         gold_pap = pd.read_csv("../data/ffa/pap.csv", na_filter=False)[["pap-simple"]]
         
+        nbo_pap = pd.read_csv("../data/mrng/pap(cap).csv", na_filter=False)
+        nbo_pap = nbo_pap[nbo_pap["freq"] >= freq_threshold]
+        nbo_pap = nbo_pap[["pap-simple"]]
+        
         # Make sure golden goes first nbo will then come in order of frequency
-        return gold_pap
+        combined = pd.concat([gold_pap, nbo_pap])
+        combined = combined.drop_duplicates(subset="pap-simple", ignore_index=True)
+        return combined
 
 if __name__ == "__main__":
     load = Loader()

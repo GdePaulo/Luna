@@ -33,7 +33,7 @@ def get_current_time():
 @app.route('/api/spellcheck/spellcheck', methods=['POST'])
 def parse_request():
     data = request.data.decode("UTF-8")    
-    if(len(data) > 10000):
+    if(len(data) > 50000):
         print("String too long.")
         return jsonify({"error": ["String too long"]})
     data_words = Util.findWords(data)
