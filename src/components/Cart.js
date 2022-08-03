@@ -13,7 +13,7 @@ function Cart(props) {
         {
           props.cart.map(x => (
             <li className={""}>
-              <div className={""}> {x.title} : €{x.cost} </div>
+              <div className={""}> {x.id} : €{x.cost} </div>
             </li>
           ))
         }

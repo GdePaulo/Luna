@@ -28,3 +28,6 @@
   color: white;
 }
 
+.button__link {
+  text-decoration: none;
+}

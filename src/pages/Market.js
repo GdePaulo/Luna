@@ -7,19 +7,13 @@ import cartIcon from "../images/cart.png";
 
 import Title from "../components/Title";
 import Button from "../components/Button";
-import Cart from "../components/Cart";
 import Products from "../components/Products";
 
-function Market() {
+
+function Market(props) {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [isBuying, setIsBuying] = useState(false);
 
-
-  const handleBuyClick = (event) => {
-    setIsBuying(true);
-  }
-  
   const getProducts = () => {
     let url = "/api/market/list";
 
@@ -36,25 +30,30 @@ function Market() {
   
   const handleAddToCartClick = (product) => {
     setCart([...cart, product]);
+
   }
 
   useEffect(() => {
     document.title = "Luna Market"
 
     getProducts();
+
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    setCart(storedCart);
   }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
-    <div className={s.main}>
+    <div className={props.className}>
       <Title title="Luna: Market">
         This is a market where you can buy planets. The logistics related to the actual delivery of the planets after purchase are still being figured out. No refunds!
       </Title>
-      {isBuying
-        ? <Cart cart={cart}/>
-        : <Products products={products} onAddToCartClick={handleAddToCartClick} />
-      }
+      <Products products={products} onAddToCartClick={handleAddToCartClick} />
       <div className={s.market__actions}>
-        <Button className={s.market__goToCart} onClick={handleBuyClick} styleType="button-default">Go to cart <img src={cartIcon} alt={"cart icon"} className={s.market__goToCartIcon}/></Button>
+          <Button className={s.market__goToCart} styleType="button-default" to="/checkout">Go to cart <img src={cartIcon} alt={"cart icon"} className={s.market__goToCartIcon}/></Button>
       </div>
     </div>
   );

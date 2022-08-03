@@ -11,6 +11,7 @@ import Savie from "./pages/Savie"
 import Translate from "./pages/Translate"
 import Spellcheck from "./pages/Spellcheck"
 import Market from "./pages/Market"
+import Checkout from "./pages/Checkout"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/translate' element={<Translate className="lunaSection"/>} />
         <Route path='/spellcheck' element={<Spellcheck className="lunaSection"/>} />
         <Route path='/market' element={<Market className="lunaSection"/>} />
+        <Route path='/checkout' element={<Checkout className="lunaSection"/>} />
       </Routes>
     </Router>
   );
