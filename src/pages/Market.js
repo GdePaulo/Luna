@@ -12,7 +12,7 @@ import Products from "../components/Products";
 
 function Market(props) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
 
   const getProducts = () => {
     let url = "/api/market/list";
@@ -29,8 +29,15 @@ function Market(props) {
   }
   
   const handleAddToCartClick = (product) => {
-    setCart([...cart, product]);
-
+    // Don't assign to original copy to use state update functions
+    let newCart = { ...cart };
+    if (newCart.hasOwnProperty(product.id)) {  
+      newCart[product.id].quantity += 1;
+    } else {
+      newCart[product.id] = product;
+      newCart[product.id].quantity = 1;
+    }
+    setCart(newCart);
   }
 
   useEffect(() => {
@@ -43,7 +50,10 @@ function Market(props) {
   }, []);
   
   useEffect(() => {
+    let fake = {}
     localStorage.setItem("cart", JSON.stringify(cart));
+    // localStorage.setItem("cart", JSON.stringify(fake));
+    console.log("Updating storage to", cart);
   }, [cart]);
 
   return (
