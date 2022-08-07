@@ -1,5 +1,6 @@
 import React from 'react';
 import Payment from "./Payment";
+import s from "../css/cart.module.css";
 
 function Cart(props) {
 
@@ -7,38 +8,28 @@ function Cart(props) {
   
   return (
     <div>
-      <table>
+      <table className={s.cart__products}>
         <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Quantity</th>
-          <th>Cost</th>
+          <th className={s.cart__img}>Img</th>
+          <th className={s.cart__name}>Name</th>
+          <th className={s.cart__quantity}>Qnt.</th>
+          <th className={s.cart__cost}>Cost</th>
         </tr>
         {
           Object.values(props.cart).map((x, key) => (
             <tr key={key}>
-              <td>{x.img}</td>
-              <td>{x.id}</td>
-              <td>{x.quantity}</td>
-              <td>{x.cost}</td>
+              <td className={s.product__img}><img className={s.product__imgIcon} src={x.img} ></img></td>
+              <td className={s.product__name}>{x.id}</td>
+              <td className={s.product__quantity}>{x.quantity}</td>
+              <td className={s.product__cost}>€{x.cost.toFixed(2)}</td>
             </tr>
           ))
         }
       </table>
-      {/* <ol className={""}>
-        {
-          props.cart.map(x => (
-            <li className={""}>
-              <div className={""}> {x.id} : €{x.cost} </div>
-            </li>
-          ))
-        }
-      </ol>*/}
-      {
-        <div>
-          Total: €{total}
-        </div>
-      } 
+      
+      <div>
+        Total: €{total.toFixed(2)}
+      </div>
       <Payment total={total}/>
     </div>
   );

@@ -20,7 +20,7 @@ function Products(props) {
               </div>
               <div className={s.products__itemActions}>
                 <Button className={s.products__itemAddToCart} onClick={() => props.onAddToCartClick(x)} styleType="button-default">Add to cart</Button>
-                <div className={s.products__itemCost}> € {x.cost} </div>
+                <div className={s.products__itemCost}> € {x.cost.toFixed(2)} </div>
               </div>
             </li>
           ))

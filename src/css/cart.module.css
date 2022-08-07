@@ -1,0 +1,54 @@
+.cart__products, th, td, tr {
+    /* border: 1px grey solid; */
+    padding: 0;
+    margin: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 0.2em 0px;
+}
+
+.cart__products {
+    width: 40%;
+}
+
+.cart__img {
+    width: 3em;   
+}
+
+.cart__name {
+    text-align: left;
+    padding: 0 1em;
+}
+
+.cart__quantity {
+    width: 10%;   
+}
+
+.cart__cost {
+    width: 10%;   
+}
+
+td {
+    /* border: 1px black solid; */
+}
+
+.product__name {
+    text-align: left;
+    padding: 0 1em;
+}
+
+.product__quantity, .product__cost {
+    text-align: center;
+}
+
+.product__quantity {
+    background-color: rgba(141, 141, 141, 0.418);
+}
+
+.product__imgIcon {
+    width: 3em;
+    height: 3em;
+}
