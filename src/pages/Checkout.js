@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-import s from "../css/market.module.css";
+import s from "../css/checkout.module.css";
 import cartIcon from "../images/cart.png";
 
 import Title from "../components/Title";
 import Button from "../components/Button";
 import Cart from "../components/Cart";
+import Payment from "../components/Payment";
 import Products from "../components/Products";
 
 function Checkout(props) {
   const [cart, setCart] = useState([]);
+
+  let total = Object.values(cart).reduce((total, current) => total + current.cost * current.quantity, 0);
 
   useEffect(() => {
     document.title = "Luna Market: Checkout"
@@ -25,8 +28,10 @@ function Checkout(props) {
       <Title title="Luna: Market Checkout">
         Purchase the planets you have selected.
       </Title>
-      <Cart cart={cart}/>
-    
+      <div className={s.checkoutArea}>
+        <Cart cart={cart} total={total}/>
+        <Payment total={total}/>
+      </div>
     </div>
   );
 }

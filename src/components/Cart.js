@@ -1,13 +1,10 @@
 import React from 'react';
-import Payment from "./Payment";
 import s from "../css/cart.module.css";
 
 function Cart(props) {
-
-  let total = Object.values(props.cart).reduce((total, current) => total + current.cost * current.quantity, 0);
   
   return (
-    <div>
+    <div className={s.cart}>
       <table className={s.cart__products}>
         <tr>
           <th className={s.cart__img}>Img</th>
@@ -28,9 +25,8 @@ function Cart(props) {
       </table>
       
       <div>
-        Total: €{total.toFixed(2)}
+        Total: €{props.total.toFixed(2)}
       </div>
-      <Payment total={total}/>
     </div>
   );
 }

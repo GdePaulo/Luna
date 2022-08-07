@@ -1,3 +1,10 @@
+
+.cart {
+    border: 1px blue solid;
+
+    width: 60%;
+}
+
 .cart__products, th, td, tr {
     /* border: 1px grey solid; */
     padding: 0;
@@ -11,7 +18,7 @@ th {
 }
 
 .cart__products {
-    width: 40%;
+    /* width: 40%; */
 }
 
 .cart__img {

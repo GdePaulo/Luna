@@ -4,9 +4,6 @@ import s from "../css/payment.module.css";
 import axios from 'axios';
 
 import Title from "./Title";
-import Button from "./Button";
-import Spinner from './Spinner';
-import moon from "../images/moon.svg"
 
 function Payment(props) {
   
@@ -69,11 +66,9 @@ function Payment(props) {
   };
 
   return (
-    <div>
+    <div className={s.payment}>
       
-      <Title title="Please pay">
-        GIVE ME MY MONEY!!
-      </Title>
+      <h3>Payment method</h3> 
       {/*<div className={styles[""]}>
         {<Button onClick={() => getCorrections(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>}
         whatever
@@ -84,8 +79,8 @@ function Payment(props) {
       />
       {
         isApproved
-        ? "Yay"
-        : "Nooo"
+        ? "Payment succeeded!"
+        : "Awaiting payment"
       }
 
       

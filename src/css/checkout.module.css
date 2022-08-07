@@ -1,0 +1,11 @@
+.checkoutArea {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* align-content: flex-start; */
+    align-content: flex-start;
+
+    margin: 1em 0em;
+
+    border: 1px grey solid;
+}
