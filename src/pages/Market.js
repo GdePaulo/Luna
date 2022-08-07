@@ -14,6 +14,8 @@ function Market(props) {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
 
+  let cartSize = Object.values(cart).reduce((total, current) => total + current.quantity, 0);
+
   const getProducts = () => {
     let url = "/api/market/list";
 
@@ -63,7 +65,10 @@ function Market(props) {
       </Title>
       <Products products={products} onAddToCartClick={handleAddToCartClick} />
       <div className={s.market__actions}>
+        <div className={s.market__goToCartContainer}>
+          <span className={s.market__goToCartCartSize}>{cartSize}</span>
           <Button className={s.market__goToCart} styleType="button-default" to="/checkout">Go to cart <img src={cartIcon} alt={"cart icon"} className={s.market__goToCartIcon}/></Button>
+        </div>
       </div>
     </div>
   );
