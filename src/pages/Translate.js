@@ -1,26 +1,26 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState} from 'react';
+import styles from "../css/tform.module.css";
+
 import axios from 'axios';
+import Button from "../components/Button";
 import Title from "../components/Title";
+import Editor from "../components/Editor";
+import Translations from "../components/Translations";
+import Spinner from '../components/Spinner';
 
 function Translate(props) {
-  const [currentText, setCurrentText] = useState("Skibi algu akinan pa wak e korikshon na man rechts i despues repara e palabra nan robes.");
-  const [corrections, setCorrections] = useState(
-    {
-      korikshon : ["korekshon", "Korekshon", "korupshon"],
-      rechts : ["Recht", "rechten", "rechaso"],
-      repara : ["repará", "ripara", "Separá"]
-    }
-  );
-  const [editMode, setEditMode] = useState(true);
-  const [activeCorrectionId, setActiveCorrectionId] = useState(0);
-  var wordCountAtLastCheck = useRef(null);
+  const [previousText, setPreviousText] = useState(""); 
+  const [currentText, setCurrentText] = useState("");
+  const [translations, setTranslations] = useState("Example Translation");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     document.title = "Luna Translate"
   }, []);
 
-  const getCorrections = () => {
-    let url = "/api/translation"
+  const getTranslation = () => {
+    setIsLoading(true)
+    let url = "/api/translate"
     axios({
       method: "post",
       url: url,
@@ -30,10 +30,13 @@ function Translate(props) {
         "accept": "*/*"
       },
     }).then(res => { 
-      console.log("Responsethis:", res.data); 
-      setCorrections(res.data); 
-    })
-      .catch(error => console.log(error));
+      console.log("Response:", res.data); 
+      setTranslations(res.data); 
+      setIsLoading(false);
+    }).catch(error => {
+       console.log(error);
+       setIsLoading(false);}
+      );
   }
 
   const handleTextChange = (event) => {
@@ -41,22 +44,13 @@ function Translate(props) {
     setCurrentText(text);
   }
 
-  const handleCorrectClick = (event) => {
-    // deal with parentheses and periods
-    var regex = /\b(\w+)\b/g;
-    var matches = [];
-    matches = currentText.match(regex);
-  
-    if (wordCountAtLastCheck.current !== matches.length) {
-      console.log("Setting current text..", matches.length, wordCountAtLastCheck.current);
-      wordCountAtLastCheck.current = matches.length;
-      getCorrections();
+  const handleTranslateClick = (event) => {
+    if (previousText !== currentText) {
+      setPreviousText(currentText);
+      // getCorrections(accent);
     }
-    setEditMode(false)
   }
-  const handleEditClick = (event) => {
-    setEditMode(true)
-  }
+    
   return (
     <div className={props.className}>
       <Title title="Luna: Translate (Coming Soon)">
@@ -64,16 +58,17 @@ function Translate(props) {
         of Papiamentu - Dutch translation material. If you would like to contribute data of Papiamentu - Dutch or Dutch - Papiamentu
         translations of words or sentences, please send a message to contact@lunasoftware.nl.
       </Title>
-      {/* <div className="tform">
-        {editMode
-          ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
-          : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId}/>
-        }
-        <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId}/>
-        
+      <div className={styles.tform}>
+        <Editor 
+          handleTextChange={handleTextChange}
+          currentText={currentText}
+          placeholder="Write a word or sentence here and press 'Translate' to translate it."/>
+        <Translations translations={translations} />
       </div>
-      <Button onClick={handleCorrectClick} className="tform__btn tform__btn--correct">Correct</Button>
-      <Button onClick={handleEditClick} className="tform__btn tform__btn--edit">Edit</Button> */}
+      <div className={styles.tform__control}>
+        <Button onClick={() => handleTranslateClick()} className= {`${styles.tform__btn}`} disabled={isLoading}>Translate</Button>
+        <Spinner isHidden={!isLoading}/>
+      </div>
     </div>
   );
 }

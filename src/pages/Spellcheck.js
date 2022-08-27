@@ -121,7 +121,10 @@ function Spellcheck(props) {
 
       <div className={styles.tform}>
         {editMode
-          ? <Editor handleTextChange={handleTextChange} currentText={currentText}/>
+          ? <Editor 
+            handleTextChange={handleTextChange}
+            currentText={currentText}
+            placeholder={`Skibi algu akinan i primi "koregi" pa wak e korikshon na banda drechi. Despues di hasi esaki, bo por klek riba un di e korekshonnan pa drecha e foutnan. Bo por klek tambe riba e palabra original pa ignora un korekshon.`}/>
           : <Highlighted corrections={corrections} currentText={currentText} onWordClick={setActiveCorrectionId} onBackgroundClick={() => setEditMode(true)}/>
         }
         <Corrections corrections={corrections} activeCorrectionId={activeCorrectionId} onCorrectionClick={handleCorrectionClick} onSourceClick={handleSourceClick}/>
@@ -129,7 +132,7 @@ function Spellcheck(props) {
       </div>
       <div className={styles.tform__control}>
         <Button onClick={() => handleCorrectClick(false)} className= {`${styles.tform__btn} ${styles["tform__btn--correct"]}`} disabled={isLoading}>Correct</Button>
-        {language == "PAP"
+        {language === "PAP"
           ? <Button onClick={() => handleCorrectClick(true)} className= {`${styles.tform__btn} ${styles["tform__btn--accent"]}`} disabled={isLoading}>Check accent</Button>
           : null
         }
