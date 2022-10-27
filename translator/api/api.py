@@ -26,6 +26,19 @@ def initialize_spellchecker(lan="PAP"):
     corpus = load.loadWords(lan=lan)
     spell = Spellcheck(spellchecker_corpus=corpus, lan=lan, load=True)
 
+translate = None
+
+def initialize_translator(lan="PAP-NL"):
+    global translate
+    if translate is not None and translate.lan == lan:
+        print("Translate already initialized.")
+        return
+
+    load = Loader()
+    dictionary, dictionary_corpus = load.loadDictionary(lan=lan)
+    word_corrector = Spellcheck(spellchecker_corpus=dictionary_corpus, lan=lan, load=True)
+    translate = Translate(dictionary, word_corrector, lan)
+
 @app.route('/api/spellcheck/time')
 def get_current_time():
     return {'time': time.time()}
@@ -76,13 +89,13 @@ def parse_request_translate_word():
 
     source_lan = request.args.get('srclan')
     target_lan = request.args.get('trgtlan')
+    lan = source_lan + "-" + target_lan
     print(f"Translating for {source_lan} -> {target_lan}")
-    # initialize_spellchecker(lan=lan)
+    initialize_translator(lan=lan)
+    translation, corrected_word = translate.translateWord(data_words)
     
-    # corrections = spell.getPreSufCorrections(data_words_unique, words_only=True, penalize_mismatch=True)
-
-    # print(f"Correcting:{data}\nReturning:{corrections}")
-    result = {"corrected":"whatever", "translated":"what"}
+    print(f"Translated\n{data_words} -> {corrected_word} -> {translation}")
+    result = {"corrected": corrected_word, "translated": translation}
     return jsonify(result)
 
 if __name__ == "__main__":

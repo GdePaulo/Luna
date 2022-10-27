@@ -20,7 +20,7 @@ function Translate(props) {
 
   const getTranslation = () => {
     setIsLoading(true)
-    let url = "/api/translate/word?srclan=pap&trgtlan=nl"
+    let url = "/api/translate/word?srclan=PAP&trgtlan=NL"
     axios({
       method: "post",
       url: url,
