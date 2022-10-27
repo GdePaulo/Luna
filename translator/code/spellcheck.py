@@ -173,6 +173,7 @@ class Spellcheck:
         for word, matches in translations.items():
             current_final_matches = final_translations[word]
             for matching_word, matching_size in matches.items():
+                # Check to see if the current correction is already in the final matches
                 matching_keys = [x[0] for x in current_final_matches if x[0].lower() == matching_word.lower()]
                 
                 # print(f"Matching keys {matching_keys}, matching word {matching_word}, final matches {current_final_matches}")

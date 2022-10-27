@@ -13,6 +13,15 @@ class Loader:
             corpus = self.loadPapAW()
 
         return corpus.iloc[:, 0].values
+    
+    def loadDictionary(self, lan="PAP-NL"):
+        corpus = None
+        print(lan)
+        
+        if lan=="PAP-NL":
+            dictionary, corpus = self.loadPapANToNL()
+
+        return dictionary, corpus.iloc[:, 0].values
 
     def loadPapAN(self, freq_threshold=7):
         custom_pap = pd.read_csv("../data/custom/pap.csv", na_filter=False)[["pap-simple"]]
@@ -43,6 +52,15 @@ class Loader:
         combined = pd.concat([gold_pap, nbo_pap])
         combined = combined.drop_duplicates(subset="pap-simple", ignore_index=True)
         return combined
+
+    def loadPapANToNL(self):
+        pap_nl_raw = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False)
+        pap_nl = pap_nl_raw[["pap-simple", "nl-simple"]]
+        pap_nl_dictionary = dict(zip(pap_nl["pap-simple"], pap_nl["nl-simple"]))
+
+        pap = pap_nl[["pap-simple"]]
+        combined = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
+        return pap_nl_dictionary, combined
 
 if __name__ == "__main__":
     load = Loader()
