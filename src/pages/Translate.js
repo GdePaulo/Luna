@@ -20,7 +20,7 @@ function Translate(props) {
 
   const getTranslation = () => {
     setIsLoading(true)
-    let url = "/api/translate"
+    let url = "/api/translate/word?srclan=pap&trgtlan=nl"
     axios({
       method: "post",
       url: url,
@@ -47,7 +47,7 @@ function Translate(props) {
   const handleTranslateClick = (event) => {
     if (previousText !== currentText) {
       setPreviousText(currentText);
-      // getCorrections(accent);
+      getTranslation(); 
     }
   }
     

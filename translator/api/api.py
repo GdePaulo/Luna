@@ -65,6 +65,26 @@ def parse_request_accent():
     print(f"Correcting:{data}\nReturning:{corrections}")
     return jsonify(corrections)
 
+@app.route('/api/translate/word', methods=['POST'])
+def parse_request_translate_word():
+    data = request.data.decode("UTF-8")    
+    if(len(data) > 5000):
+        print("String too long.")
+        return jsonify({"error": ["String too long"]})
+    data_words = data
+    print(data_words)   
+
+    source_lan = request.args.get('srclan')
+    target_lan = request.args.get('trgtlan')
+    print(f"Translating for {source_lan} -> {target_lan}")
+    # initialize_spellchecker(lan=lan)
+    
+    # corrections = spell.getPreSufCorrections(data_words_unique, words_only=True, penalize_mismatch=True)
+
+    # print(f"Correcting:{data}\nReturning:{corrections}")
+    result = {"corrected":"whatever", "translated":"what"}
+    return jsonify(result)
+
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
 
