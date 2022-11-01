@@ -1,5 +1,5 @@
 import pandas as pd
-
+import config
 class Loader:
     def __init__(self):
         pass
@@ -20,6 +20,8 @@ class Loader:
         
         if lan=="PAP-NL":
             dictionary, corpus = self.loadPapANToNL()
+        elif lan=="PAP-EN":
+            dictionary, corpus = self.loadPapANToEN()
 
         return dictionary, corpus.iloc[:, 0].values
 
@@ -61,6 +63,15 @@ class Loader:
         pap = pap_nl[["pap-simple"]]
         combined = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
         return pap_nl_dictionary, combined
+    
+    def loadPapANToEN(self):
+        pap_en_raw = pd.read_csv(config.vre["topapname"], na_filter=False)
+        pap_en = pap_en_raw[["pap-simple", "en-simple"]]
+        pap_en_dictionary = dict(zip(pap_en["pap-simple"], pap_en["en-simple"]))
+
+        pap = pap_en[["pap-simple"]]
+        combined = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
+        return pap_en_dictionary, combined
 
 if __name__ == "__main__":
     load = Loader()
