@@ -7,6 +7,7 @@ import Title from "../components/Title";
 import Editor from "../components/Editor";
 import Translations from "../components/Translations";
 import Spinner from '../components/Spinner';
+import Dropdown from "../components/Dropdown";
 
 function Translate(props) {
   const [previousText, setPreviousText] = useState(""); 
@@ -14,13 +15,20 @@ function Translate(props) {
   const [translations, setTranslations] = useState("Example Translation");
   const [isLoading, setIsLoading] = useState(false);
 
+  const toLanguages = [
+    { label: "English", value: "EN"},
+    { label: "Dutch", value: "NL"}
+  ];
+  const [toLanguage, setToLanguage] = useState("NL"); 
+  const [fromLanguage, setFromLanguage] = useState("PAP"); 
+
   useEffect(() => {
     document.title = "Luna Translate"
   }, []);
 
   const getTranslation = () => {
-    setIsLoading(true)
-    let url = "/api/translate/word?srclan=PAP&trgtlan=NL"
+    setIsLoading(true);
+    let url = "/api/translate/word?srclan=" + fromLanguage + "&trgtlan=" + toLanguage;
     axios({
       method: "post",
       url: url,
@@ -50,6 +58,10 @@ function Translate(props) {
       getTranslation(); 
     }
   }
+
+  const handleLanguageChange = (event) => {
+    setToLanguage(event.target.value);
+  }
     
   return (
     <div className={props.className}>
@@ -58,6 +70,12 @@ function Translate(props) {
         of Papiamentu - Dutch translation material. If you would like to contribute data of Papiamentu - Dutch or Dutch - Papiamentu
         translations of words or sentences, please send a message to contact@lunasoftware.nl.
       </Title>
+      <Dropdown
+        label="To language:"
+        options={toLanguages}
+        value={toLanguage}
+        onChange={handleLanguageChange}
+      />
       <div className={styles.tform}>
         <Editor 
           handleTextChange={handleTextChange}

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Title from "../components/Title";
 import Button from "../components/Button";
+import Dropdown from "../components/Dropdown";
 import Editor from "../components/Editor";
 import Highlighted from "../components/Highlighted";
 import Corrections from '../components/Corrections';
@@ -146,21 +147,6 @@ function Spellcheck(props) {
     </div>
   );
 }
-
-const Dropdown = ({ label, value, options, onChange }) => {
-  return (
-    <div className={styles.languages}>
-      <label className={styles.languages__label}>
-        {label}
-        <select className={styles.languages__dropdown} value={value} onChange={onChange}>
-          {options.map((option) => (
-            <option className={styles.languages__item} value={option.value}>{option.label}</option>
-          ))}
-        </select>
-      </label>
-    </div>
-  );
-};
 
 export default Spellcheck;
 
