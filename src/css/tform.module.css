@@ -245,3 +245,17 @@ https://sparkbox.com/foundry/bem_by_example
   border:rgba(0, 0, 0, 0.85);
   background-color: #e748486c;
 }
+
+.translationCorrection {
+  margin-top: 0.8em;
+}
+
+.translationCorrection__text {
+  font-size: 1em;
+  font-style: italic;
+}
+
+.translationCorrection__correction {
+  font-size: 1.2em;
+  font-style: normal;
+}

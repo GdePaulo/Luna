@@ -5,7 +5,7 @@ function Translations(props) {
 
   return (
     <div className={styles.tform__corrections}>
-      {props.translations.translated}
+      {props.translations}
     </div>
   );
 }

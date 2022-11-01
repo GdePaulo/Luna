@@ -12,7 +12,7 @@ import Dropdown from "../components/Dropdown";
 function Translate(props) {
   const [previousText, setPreviousText] = useState(""); 
   const [currentText, setCurrentText] = useState("");
-  const [translations, setTranslations] = useState("Example Translation");
+  const [translations, setTranslations] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const toLanguages = [
@@ -21,6 +21,7 @@ function Translate(props) {
   ];
   const [toLanguage, setToLanguage] = useState("NL"); 
   const [fromLanguage, setFromLanguage] = useState("PAP"); 
+  const [correctedWord, setCorrectedWord] = useState(""); 
 
   useEffect(() => {
     document.title = "Luna Translate"
@@ -39,7 +40,9 @@ function Translate(props) {
       },
     }).then(res => { 
       console.log("Response:", res.data); 
-      setTranslations(res.data); 
+      setTranslations(res.data.translated); 
+      setCorrectedWord(res.data.corrected); 
+
       setIsLoading(false);
     }).catch(error => {
        console.log(error);
@@ -76,6 +79,14 @@ function Translate(props) {
         value={toLanguage}
         onChange={handleLanguageChange}
       />
+      <div className={styles.translationCorrection}>
+          {correctedWord !== previousText
+            ? <span className={styles.translationCorrection__text}>
+                Exact text not found. Providing translation for: 
+                 <span className={styles.translationCorrection__correction}> {correctedWord}</span>
+              </span>
+            : null}
+      </div>
       <div className={styles.tform}>
         <Editor 
           handleTextChange={handleTextChange}
