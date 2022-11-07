@@ -8,18 +8,25 @@
     ],
     "rewrites": [
       {
-      "source": "/api/spellcheck/**",
-      "run": {
-        "serviceId": "luna-spellcheck-run",
-        "region": "europe-west4"
-      }
+        "source": "/api/spellcheck/**",
+        "run": {
+          "serviceId": "luna-spellcheck-run",
+          "region": "europe-west4"
+        }
       },
       {
-      "source": "/api/market/**",
-      "run": {
-        "serviceId": "luna-market-run",
-        "region": "europe-west4"
-      }
+        "source": "/api/translate/**",
+        "run": {
+          "serviceId": "luna-spellcheck-run",
+          "region": "europe-west4"
+        }
+      },
+      {
+        "source": "/api/market/**",
+        "run": {
+          "serviceId": "luna-market-run",
+          "region": "europe-west4"
+        }
       },
       {
       "source": "**",

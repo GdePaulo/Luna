@@ -81,7 +81,7 @@ def parse_request_accent():
 @app.route('/api/translate/word', methods=['POST'])
 def parse_request_translate_word():
     data = request.data.decode("UTF-8")    
-    if(len(data) > 5000):
+    if(len(data) > 30):
         print("String too long.")
         return jsonify({"error": ["String too long"]})
     data_words = data
