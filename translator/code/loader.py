@@ -65,13 +65,17 @@ class Loader:
         return pap_nl_dictionary, combined
     
     def loadPapANToEN(self):
-        pap_en_raw = pd.read_csv(config.vre["topapname"], na_filter=False)
-        pap_en = pap_en_raw[["pap-simple", "en-simple"]]
-        pap_en_dictionary = dict(zip(pap_en["pap-simple"], pap_en["en-simple"]))
+        cols = ["pap-simple", "en-simple"]
+        vre_pap_en_raw = pd.read_csv(config.vre["topapname"], na_filter=False, usecols=cols)
+        custom_pap_en_raw = pd.read_csv("../data/custom/pap-en.csv", na_filter=False, usecols=cols)
+        stpark_pap_en_raw = pd.read_csv("../data/stparkpap/pap-en(extracted_words).csv", na_filter=False, usecols=cols)
 
-        pap = pap_en[["pap-simple"]]
-        combined = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
-        return pap_en_dictionary, combined
+        pap_en_dfs = pd.concat([custom_pap_en_raw, vre_pap_en_raw, stpark_pap_en_raw])
+        pap_en_dictionary = dict(zip(pap_en_dfs["pap-simple"], pap_en_dfs["en-simple"]))
+
+        pap = pap_en_dfs[["pap-simple"]]
+        pap_en_corpus = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
+        return pap_en_dictionary, pap_en_corpus
 
 if __name__ == "__main__":
     load = Loader()
