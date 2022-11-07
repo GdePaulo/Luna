@@ -68,9 +68,11 @@ function Translate(props) {
     
   return (
     <div className={props.className}>
-      <Title title="Luna: Translate (Coming Soon)">
-        This is a Papiamentu - Dutch translator which will be coming soon. It is currently under development pending additional data 
-        of Papiamentu - Dutch translation material. If you would like to contribute data of Papiamentu - Dutch or Dutch - Papiamentu
+      <Title title="Luna: Translate (Alpha)">
+        This is a free online Papiamentu - Dutch and Papiamentu - English translator. You 
+        can use it to translate Papiamentu words to Dutch or to English. It currently only
+        translates words. A Papiamentu - Dutch and Papiamentu - English sentence translator is currently under development.
+        If you would like to contribute data of Papiamentu - Dutch or Papiamentu - English
         translations of words or sentences, please send a message to contact@lunasoftware.nl.
       </Title>
       <Dropdown
@@ -80,7 +82,7 @@ function Translate(props) {
         onChange={handleLanguageChange}
       />
       <div className={styles.translationCorrection}>
-          {correctedWord !== previousText
+          {correctedWord !== previousText && correctedWord
             ? <span className={styles.translationCorrection__text}>
                 Exact text not found. Providing translation for: 
                  <span className={styles.translationCorrection__correction}> {correctedWord}</span>
@@ -91,7 +93,7 @@ function Translate(props) {
         <Editor 
           handleTextChange={handleTextChange}
           currentText={currentText}
-          placeholder="Write a word or sentence here and press 'Translate' to translate it."/>
+          placeholder="Write a word here and press 'Translate' to translate it."/>
         <Translations translations={translations} />
       </div>
       <div className={styles.tform__control}>
