@@ -24,7 +24,7 @@ function Translate(props) {
   const [correctedWord, setCorrectedWord] = useState(""); 
 
   useEffect(() => {
-    document.title = "Luna Translate"
+    document.title = "Luna: Papiamentu Translator"
   }, []);
 
   const getTranslation = () => {
@@ -68,7 +68,7 @@ function Translate(props) {
     
   return (
     <div className={props.className}>
-      <Title title="Luna: Translate (Alpha)">
+      <Title title="Luna: Papiamentu Translator (Alpha)">
         This is a free online Papiamentu - Dutch and Papiamentu - English translator. You 
         can use it to translate Papiamentu words to Dutch or to English. It currently only
         translates words. A Papiamentu - Dutch and Papiamentu - English sentence translator is currently under development.
