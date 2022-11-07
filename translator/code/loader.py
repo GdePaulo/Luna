@@ -56,13 +56,17 @@ class Loader:
         return combined
 
     def loadPapANToNL(self):
-        pap_nl_raw = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False)
-        pap_nl = pap_nl_raw[["pap-simple", "nl-simple"]]
-        pap_nl_dictionary = dict(zip(pap_nl["pap-simple"], pap_nl["nl-simple"]))
-
-        pap = pap_nl[["pap-simple"]]
-        combined = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
-        return pap_nl_dictionary, combined
+        cols = ["pap-simple", "nl-simple"]
+        hny_pap_nl_raw = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False, usecols=cols)
+        custom_pap_nl_raw = pd.read_csv("../data/custom/pap-nl.csv", na_filter=False, usecols=cols)
+        stpark_pap_nl_raw = pd.read_csv("../data/stparkpap/pap-nl(extracted_words).csv", na_filter=False, usecols=cols)
+        
+        pap_nl_dfs = pd.concat([custom_pap_nl_raw, hny_pap_nl_raw, stpark_pap_nl_raw])        
+        pap_nl_dictionary = dict(zip(pap_nl_dfs["pap-simple"], pap_nl_dfs["nl-simple"]))
+        
+        pap = pap_nl_dfs[["pap-simple"]]
+        pap_nl_corpus = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
+        return pap_nl_dictionary, pap_nl_corpus
     
     def loadPapANToEN(self):
         cols = ["pap-simple", "en-simple"]
