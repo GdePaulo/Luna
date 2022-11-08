@@ -1,4 +1,3 @@
-from tkinter import W
 from trie import Trie
 from util import Util
 from gst import GST

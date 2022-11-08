@@ -88,6 +88,11 @@ class Util:
         # words = re.findall(r'\b(\w+\'*\w*)\b',input_str) 
         words = re.findall(r'\b([^\d\W]+[\'\’-]*[^\d\W\']*)',input_str) 
         return words
+    
+    @staticmethod
+    def removeTrailingPunctuation(input_str, punctuation=",!?"):
+        matcher = f"[{punctuation}]$"
+        return re.sub(matcher, "", input_str)
 
     @staticmethod
     def removeDuplicates(input_str):
