@@ -37,7 +37,7 @@ class Loader:
         nbo_pap = nbo_pap[["pap-simple"]]
         
         # Make sure golden goes first nbo will then come in order of frequency
-        combined = pd.concat([custom_pap, gold_pap, nbo_pap])
+        combined = pd.concat([custom_pap, gold_pap, nbo_pap], ignore_index=True)
         combined = combined.drop_duplicates(subset="pap-simple", ignore_index=True)
         return combined
     
@@ -51,7 +51,7 @@ class Loader:
         nbo_pap = nbo_pap[["pap-simple"]]
         
         # Make sure golden goes first nbo will then come in order of frequency
-        combined = pd.concat([gold_pap, nbo_pap])
+        combined = pd.concat([gold_pap, nbo_pap], ignore_index=True)
         combined = combined.drop_duplicates(subset="pap-simple", ignore_index=True)
         return combined
 
@@ -60,8 +60,9 @@ class Loader:
         hny_pap_nl_raw = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False, usecols=cols)
         custom_pap_nl_raw = pd.read_csv("../data/custom/pap-nl.csv", na_filter=False, usecols=cols)
         stpark_pap_nl_raw = pd.read_csv("../data/stparkpap/pap-nl(extracted_words).csv", na_filter=False, usecols=cols)
+        rblx_pap_nl_raw = pd.read_csv("../data/rblx/pap-nl.csv", na_filter=False, usecols=cols)
         
-        pap_nl_dfs = pd.concat([custom_pap_nl_raw, hny_pap_nl_raw, stpark_pap_nl_raw])        
+        pap_nl_dfs = pd.concat([custom_pap_nl_raw, hny_pap_nl_raw, stpark_pap_nl_raw, rblx_pap_nl_raw], ignore_index=True)        
         pap_nl_dictionary = dict(zip(pap_nl_dfs["pap-simple"], pap_nl_dfs["nl-simple"]))
         
         pap = pap_nl_dfs[["pap-simple"]]
@@ -74,10 +75,13 @@ class Loader:
         custom_pap_en_raw = pd.read_csv("../data/custom/pap-en.csv", na_filter=False, usecols=cols)
         stpark_pap_en_raw = pd.read_csv("../data/stparkpap/pap-en(extracted_words).csv", na_filter=False, usecols=cols)
 
-        pap_en_dfs = pd.concat([custom_pap_en_raw, vre_pap_en_raw, stpark_pap_en_raw])
+        # Ignore index to avoid duplicates and speed up
+        pap_en_dfs = pd.concat([custom_pap_en_raw, vre_pap_en_raw, stpark_pap_en_raw], ignore_index=True)
         pap_en_dictionary = dict(zip(pap_en_dfs["pap-simple"], pap_en_dfs["en-simple"]))
 
         pap = pap_en_dfs[["pap-simple"]]
+
+        # ignore index to avoid lapses in counting
         pap_en_corpus = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
         return pap_en_dictionary, pap_en_corpus
 
