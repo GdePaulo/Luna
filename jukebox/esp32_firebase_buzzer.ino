@@ -9,9 +9,11 @@
 #include "addons/TokenHelper.h"
 //Provide the RTDB payload printing info and other helper functions.
 #include "addons/RTDBHelper.h"
+//Needs to be in subfolder or it won't be found by compiler
+#include "extensions/arduino_secrets.h"
 
-const char* ssid = "DESKTOP-49NTERP 3195";
-const char* password =  "whatever1";
+const char* ssid = SECRET_SSID;
+const char* password = SECRET_PASS;
 
 //const char* ssid = "TELE2-69E989_2.4G";
 //const char* password =  "266F626FFEC9";
@@ -28,12 +30,6 @@ String currentSong = "none";//"loveOfMyLife";//"none";,
 bool playing = false;//"none";
 bool lastPlaying = false;
 String lastSong = "";
-
-// Insert Firebase project API Key
-#define API_KEY "AIzaSyAHvdxY9CekXqy3j1zkDBcWoi_Al9i4ix(disney dog)"
-
-// Insert RTDB URLefine the RTDB URL */
-#define DATABASE_URL "https://luna-8a91a-default-rtdb.europe-west1.firebasedatabase.app"
 
 //Define Firebase Data object
 FirebaseData fbdo;
