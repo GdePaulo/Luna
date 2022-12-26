@@ -1,11 +1,76 @@
 .bkg {
-    background-color: #f2bf84;
-    background-image: url("../images/orange-hearts.jpg");
-    background-repeat: repeat-x;
+    /* background-color: #f2bf84; */
+    background-image: url("../images/christmas-tree.webp");
+    /* background-repeat: repeat-x; */
     background-size: 100vh  100vh;
     /* background-size: 256px  256px; */
     /* background-color: #F99F38; */
+    overflow: hidden;
   }
+
+.bellIcon {
+  width: 20%;
+  /* mix-blend-mode: multiply; */
+}
+
+.santaIcon {
+  position: absolute;
+  width: 40%;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  /* mix-blend-mode: multiply; */
+  animation: santa-move 1 10s ease-out; 
+  animation-iteration-count: infinite;
+  /* animation-direction: alternate; */
+}
+
+.svi-christmas-button{
+  position:relative;
+  z-index: 3;
+  /* display:inline-block; */
+  margin:20px;
+  top: 10vh;
+  /* background-color:none; */
+  background:none;
+  /* background-color:#000000; */
+  border: none;
+}
+
+.svi-christmas-button:hover{
+  /* margin:20px; */
+  /* top: 10vh; */
+  /* border:none; */
+  cursor: pointer;
+
+  filter: brightness(120%);
+}
+
+.svi-christmas-button.active{  
+  animation: bell-swing 1 0.5s ease-out; 
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes santa-move {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: translate3d(200vh, -65vh, 0) rotate(20deg);
+  }
+}
+
+@keyframes bell-swing {
+  from {
+    transform: rotate(-30deg);
+  }
+
+  to {
+    transform: rotate(30deg);
+  }
+}
 
 .svi-container {
     /* position:absolute;:lang */
@@ -22,6 +87,23 @@
   
   }
   
+  .svi-christmas-text {
+    font-size: 6rem;
+    text-align: center;
+    /* height:30vh; */
+    /* line-height: 90vh; */
+    color: #fcedd8;
+    /* background: #d52e3f; */
+    font-family: 'Mountains of Christmas';
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+
+    text-shadow: 5px 5px 0px #eb452b, 
+                10px 10px 0px #efa032, 
+                15px 15px 0px #027c3b;
+  }
+
   /* https://codepen.io/TajShireen/pen/abzmoRE */
   .svi-text {
     font-size: 6rem;

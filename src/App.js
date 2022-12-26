@@ -16,7 +16,7 @@ import Checkout from "./pages/Checkout"
 function App() {
   return (
     <Router>
-      <Navbar />
+      {window.location.pathname !== "/savie" ?  <Navbar />: null}
       <Routes>
         <Route path='/' exact element={<Home/>} />
         <Route path='/about' element={<About className="lunaSection"/>} />
