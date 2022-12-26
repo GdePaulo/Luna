@@ -1,21 +1,22 @@
 .bkg {
     /* background-color: #f2bf84; */
-    background-image: url("../images/christmas-tree.webp");
+    background: url("../images/christmas-tree.webp") no-repeat;
     /* background-repeat: repeat-x; */
-    background-size: 100vh  100vh;
+    background-size: cover;
     /* background-size: 256px  256px; */
     /* background-color: #F99F38; */
     overflow: hidden;
   }
 
 .bellIcon {
-  width: 20%;
+  width: 50%;
+  max-width: 50em;
   /* mix-blend-mode: multiply; */
 }
 
 .santaIcon {
   position: absolute;
-  width: 40%;
+  width: 60vw;
   z-index: 1;
   left: 0;
   bottom: 0;
