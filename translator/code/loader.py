@@ -74,9 +74,10 @@ class Loader:
         vre_pap_en_raw = pd.read_csv(config.vre["topapname"], na_filter=False, usecols=cols)
         custom_pap_en_raw = pd.read_csv("../data/custom/pap-en.csv", na_filter=False, usecols=cols)
         stpark_pap_en_raw = pd.read_csv("../data/stparkpap/pap-en(extracted_words).csv", na_filter=False, usecols=cols)
+        enhanced_pap_en_raw = pd.read_csv("../data/custom/enhanced/pap-en.csv", na_filter=False, usecols=cols)
 
         # Ignore index to avoid duplicates and speed up
-        pap_en_dfs = pd.concat([custom_pap_en_raw, vre_pap_en_raw, stpark_pap_en_raw], ignore_index=True)
+        pap_en_dfs = pd.concat([custom_pap_en_raw, vre_pap_en_raw, stpark_pap_en_raw, enhanced_pap_en_raw], ignore_index=True)
         pap_en_dictionary = dict(zip(pap_en_dfs["pap-simple"], pap_en_dfs["en-simple"]))
 
         pap = pap_en_dfs[["pap-simple"]]
