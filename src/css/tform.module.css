@@ -1,3 +1,21 @@
+.tform__languageSelection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  column-gap: 1em;
+  /* border:2px solid #42A5F5; */
+  margin: 0.5em 0px 1em;
+}
+.tform__fromLanguage {
+  /* flex: 1 0 0; */
+}
+
+.tform__toLanguage {
+  /* margin-left: 50px; */
+  /* flex: 0 1 43%; */
+}
+
 .tform {
   display: flex;
   flex-direction: row;

@@ -16,12 +16,16 @@ class Loader:
     
     def loadDictionary(self, lan="PAP-NL"):
         corpus = None
-        print(lan)
+        print(f"Loading dictionary {lan}")
         
         if lan=="PAP-NL":
             dictionary, corpus = self.loadPapANToNL()
         elif lan=="PAP-EN":
             dictionary, corpus = self.loadPapANToEN()
+        elif lan=="NL-PAP":
+            dictionary, corpus = self.loadPapANToNL(reversed=True)
+        elif lan=="EN-PAP":
+            dictionary, corpus = self.loadPapANToEN(reversed=True)
 
         return dictionary, corpus.iloc[:, 0].values
 
@@ -55,22 +59,28 @@ class Loader:
         combined = combined.drop_duplicates(subset="pap-simple", ignore_index=True)
         return combined
 
-    def loadPapANToNL(self):
+    def loadPapANToNL(self, reversed=False):
         cols = ["pap-simple", "nl-simple"]
+        if reversed:
+            cols = cols[::-1]
+
         hny_pap_nl_raw = pd.read_csv("../data/hny/pap-nl.csv", na_filter=False, usecols=cols)
         custom_pap_nl_raw = pd.read_csv("../data/custom/pap-nl.csv", na_filter=False, usecols=cols)
         stpark_pap_nl_raw = pd.read_csv("../data/stparkpap/pap-nl(extracted_words).csv", na_filter=False, usecols=cols)
         rblx_pap_nl_raw = pd.read_csv("../data/rblx/pap-nl.csv", na_filter=False, usecols=cols)
         
         pap_nl_dfs = pd.concat([custom_pap_nl_raw, hny_pap_nl_raw, stpark_pap_nl_raw, rblx_pap_nl_raw], ignore_index=True)        
-        pap_nl_dictionary = dict(zip(pap_nl_dfs["pap-simple"], pap_nl_dfs["nl-simple"]))
+        pap_nl_dictionary = dict(zip(pap_nl_dfs[cols[0]], pap_nl_dfs[cols[1]]))
         
-        pap = pap_nl_dfs[["pap-simple"]]
-        pap_nl_corpus = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
+        pap = pap_nl_dfs[[cols[0]]]
+        pap_nl_corpus = pap.drop_duplicates(subset=cols[0], ignore_index=True)
         return pap_nl_dictionary, pap_nl_corpus
     
-    def loadPapANToEN(self):
+    def loadPapANToEN(self, reversed=False):
         cols = ["pap-simple", "en-simple"]
+        if reversed:
+            cols = cols[::-1]
+
         vre_pap_en_raw = pd.read_csv(config.vre["topapname"], na_filter=False, usecols=cols)
         custom_pap_en_raw = pd.read_csv("../data/custom/pap-en.csv", na_filter=False, usecols=cols)
         stpark_pap_en_raw = pd.read_csv("../data/stparkpap/pap-en(extracted_words).csv", na_filter=False, usecols=cols)
@@ -78,12 +88,12 @@ class Loader:
 
         # Ignore index to avoid duplicates and speed up
         pap_en_dfs = pd.concat([custom_pap_en_raw, vre_pap_en_raw, stpark_pap_en_raw, enhanced_pap_en_raw], ignore_index=True)
-        pap_en_dictionary = dict(zip(pap_en_dfs["pap-simple"], pap_en_dfs["en-simple"]))
+        pap_en_dictionary = dict(zip(pap_en_dfs[cols[0]], pap_en_dfs[cols[1]]))
 
-        pap = pap_en_dfs[["pap-simple"]]
+        pap = pap_en_dfs[[cols[0]]]
 
         # ignore index to avoid lapses in counting
-        pap_en_corpus = pap.drop_duplicates(subset="pap-simple", ignore_index=True)
+        pap_en_corpus = pap.drop_duplicates(subset=cols[0], ignore_index=True)
         return pap_en_dictionary, pap_en_corpus
 
 if __name__ == "__main__":

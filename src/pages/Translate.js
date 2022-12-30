@@ -15,10 +15,26 @@ function Translate(props) {
   const [translations, setTranslations] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const toLanguages = [
+  const fromLanguages = [
     { label: "English", value: "EN"},
-    { label: "Dutch", value: "NL"}
+    { label: "Dutch", value: "NL"},
+    { label: "Papiamentu", value: "PAP"}
   ];
+  const toLanguages = { 
+    "PAP": 
+    [
+      { label: "English", value: "EN"},
+      { label: "Dutch", value: "NL"}
+    ],
+    "EN": 
+    [
+      { label: "Papiamentu", value: "PAP"},
+    ],
+    "NL": 
+    [
+      { label: "Papiamentu", value: "PAP"},
+    ]
+  };
   const [toLanguage, setToLanguage] = useState("NL"); 
   const [fromLanguage, setFromLanguage] = useState("PAP"); 
   const [correctedWord, setCorrectedWord] = useState(""); 
@@ -62,7 +78,14 @@ function Translate(props) {
     }
   }
 
-  const handleLanguageChange = (event) => {
+  const handleFromLanguageChange = (event) => {
+    let newFromLanguage = event.target.value;
+    setFromLanguage(newFromLanguage);
+    let newDefaultToLanguage = toLanguages[newFromLanguage][0].value;
+    setToLanguage(newDefaultToLanguage);
+  }
+
+  const handleToLanguageChange = (event) => {
     setToLanguage(event.target.value);
   }
     
@@ -75,12 +98,24 @@ function Translate(props) {
         If you would like to contribute data of Papiamentu - Dutch or Papiamentu - English
         translations of words or sentences, please send a message to contact@lunasoftware.nl.
       </Title>
-      <Dropdown
-        label="To language:"
-        options={toLanguages}
-        value={toLanguage}
-        onChange={handleLanguageChange}
-      />
+      <div className={styles.tform__languageSelection}>
+        <div className={styles.tform__fromLanguage}>
+          <Dropdown
+            label="From:"
+            options={fromLanguages}
+            value={fromLanguage}
+            onChange={handleFromLanguageChange}
+          />
+        </div>
+        <div className={styles.tform__tolanguage}>
+          <Dropdown
+            label="To:"
+            options={toLanguages[fromLanguage]}
+            value={toLanguage}
+            onChange={handleToLanguageChange}
+          />
+        </div>
+      </div>
       <div className={styles.translationCorrection}>
           {correctedWord !== previousText && correctedWord
             ? <span className={styles.translationCorrection__text}>
